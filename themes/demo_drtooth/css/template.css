@@ -1,0 +1,227 @@
+
+#top{position:relative; width:100%; height:47px; margin:0 auto; background-image: url(../images/bg-top1.png); background-repeat:no-repeat; background-position:center;  background-color: white; color:white;  padding-top:10px; }
+#top-page{position:relative; width:100%; height:47px; margin:0 auto; background-image: url(../images/bg-top1.png); background-repeat:no-repeat; background-position:center; color:white;  padding-top:10px; }
+
+#top-text{position:relative; width:95%;margin:0 auto; }
+.mail{float:left; padding-left:25px; padding-right:25px; background-image: url(../images/icon-email.png); background-repeat:no-repeat;background-position:0px 5px; }
+.mail a {color:white;}
+.tel{float:left; padding-left:17px;  background-image: url(../images/icon-phone.png); background-repeat:no-repeat;background-position:0px 2px;}
+.time{float:right; padding-left:17px;  background-image: url(../images/icon-time.png); background-repeat:no-repeat;background-position:0px 4px;}
+
+.brand{ display:block; width:179px; height:95px; background-image: url(../images/logo.png); background-repeat:no-repeat; margin-top:15px; margin-bottom:15px;}
+
+.line-hilight{margin:0 auto;  height:1px;  margin-bottom:22px; border-top:1px solid #9669b0;}
+#highlight{ margin:0 auto;  height:433px; background-image: url(../images/bg-highlight.png); background-repeat:no-repeat; }
+	.img-highlight{width:1030px; height:406px; margin-top:4px;}
+
+	.picmenu {	margin: 0;	padding: 0 0 19px;}
+	.picmenu div {margin: 0 auto;	padding: 10px 20px 38px;	position: relative;	width: 95%;	margin-top:-23px;	}
+	.picmenu div img {	display: block;}
+	.picmenu div ul {background: url(../images/transparent.png) repeat;	border-bottom: 1px solid #cecece;	border-right: 1px solid #cecece;	border-top: 1px solid #cecece;
+		bottom: 40px; margin: 0;	padding: 0;	position: absolute; width: 96%;}
+	.picmenu div ul:before, .picmenu ul:after {	content: "";	display: table;}
+	.picmenu ul:after {	clear: both;}
+	.picmenu ul li {border-left: 1px solid #cecece;	float: left;	list-style: none;	margin: 0;	padding: 0;	width:25%;	box-shadow: 0 0 5px #c9c9c9;
+		-moz-box-shadow: 0 0 5px #c9c9c9;	-webkit-box-shadow: 0 0 5px #c9c9c9;	}
+	.picmenu ul li a {	color: #33608a;	display: block;	font-family: 'maxpinjohnv2';font-size:22px;	font-weight: normal;	height: 78px;	text-align: center;	text-decoration: none;
+		text-transform: capitalize;}
+	.picmenu ul li a:hover { background-color:#7180b7; color: #fff; }
+		.picmenu01{  background: url(../images/icon-check.png); background-repeat:no-repeat;  background-position: center 13px; line-height: 120px;}
+		.picmenu01:hover{  background: url(../images/icon-check-wh.png); background-repeat:no-repeat; background-position: center 13px;}
+		.picmenu02{  background: url(../images/icon-drtooth.png); background-repeat:no-repeat;  background-position: center 13px; line-height: 120px;}
+		.picmenu02:hover{  background: url(../images/icon-drtooth-wh.png); background-repeat:no-repeat; background-position: center 13px;}
+		.picmenu03{  background: url(../images/icon-tooth-beauty.png); background-repeat:no-repeat;  background-position: center 13px; line-height: 120px;}
+		.picmenu03:hover{  background: url(../images/icon-tooth-beauty-wh.png); background-repeat:no-repeat;background-position: center 13px; }
+		.picmenu04{  background: url(../images/icon-child.png); background-repeat:no-repeat;  background-position: center 13px; line-height: 120px;}
+		.picmenu04:hover{  background: url(../images/icon-child-wh.png); background-repeat:no-repeat; background-position: center 13px;}
+
+.reson{	color: #582b85;	font-family: 'maxpinjohnv2'; font-size:30px; }
+.talk{padding-left:22px; text-align: justify; color:#685e9a; font-style: italic; font-size:14px; padding-right:20px; padding-top: 10px;}
+.icon-talk{position:absolute; width:18px; height:16px; background: url(../images/icon-talk.png); background-repeat:no-repeat; top:35px;}
+
+.arrow{margin-top:-40px;}
+.arrow ul li{float:right;list-style: none;	margin: 0;	padding: 0; margin-right:10px;}
+	.arrow-left{display:block; width:10px; height:14px; background: url(../images/arrow-left.png); background-repeat:no-repeat; cursor:pointer;}
+	.arrow-left:hover{width:10px; height:14px; background: url(../images/arrow-left-hot.png); background-repeat:no-repeat;}
+	.arrow-right{display:block; width:10px; height:14px; background: url(../images/arrow-right.png); background-repeat:no-repeat; cursor:pointer;}
+	.arrow-right:hover{width:10px; height:14px; background: url(../images/arrow-right-hot.png); background-repeat:no-repeat;}
+
+.detail-tech{display:block;  text-align:center; font-size:13px; color:black; margin-top:-100px;}
+
+ .bg-tech {float:left;  padding-top: 39px;  width:236px; height:261px; background-image: url(../images/bg-tech.png); background-repeat:no-repeat; }
+ .title-tech{text-transform:uppercase; color:white; text-align:center; font-size:16px; margin-top:-30px;}
+.imgteaser {    margin-bottom: 25px;	overflow: hidden;	float: left;	position: relative; }
+.imgteaser a {	text-decoration: none;	float: left;}
+/* ถ้าไม่ใส่ cursor: pointer ไป ตอนแสดงใน ie6 caption จะหน่วงนิดนึง*/
+.imgteaser a:hover {	cursor: pointer;  }
+/* ตกแต่งภาพให้ดูคล้ายๆ ภาพโพลารอยด์*/
+.imgteaser a img {float: left;	margin-top:8px;	border: none;margin-left: 8px; background: #fff;}
+/* เมื่อเอาเมาส์ไปชี้ที่รูปภาพ ให้แสดงตัว caption ขึ้นมา โดยกำหนดความโปร่งแสงไว้ที่ 75%*/
+/* ตรงนี้แหละที่เป็นจุดสำคัญ  CSS ตรงนี้จะทำงานก็ต่อเมื่อเอาเมาส์ไปชี้ที่ภาพเท่านั้น  โอ้วเหมือน javascript เลย*/
+.imgteaser a:hover .desc { padding-top:30px;
+	display: block;
+	font-size: 14px;
+	background: #d8c4f4;
+	filter:alpha(opacity=85);
+	opacity:.75;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=85)"; /*--IE 8 Transparency--*/
+	color: black;
+	position: absolute;
+	width: 220px;
+	height:223px;
+	text-align:center;
+	vertical-align:center;
+	margin-left:8px;margin-top:8px;
+}
+/* ตัว strong ใน caption กำหนดให้ใหญ่กว่าปกติหน่อย เพื่อความสวยงาม*/
+.imgteaser a:hover .desc strong {
+	display: block;
+	margin-bottom: 5px;
+	font-size:1.5em;
+}
+/* ตอนแสดงขึ้นมาครั้งแรก ให้ซ่อน caption ไว้ก่อน*/
+.imgteaser a .desc {
+	display: none;
+}
+
+
+.line1{ background-image: url(../images/line1.jpg); background-repeat:no-repeat; height:1px; width:100%; margin-top:-10px;}
+.dr-pic{ width:220px; height:287px; background-image: url(../images/glass2.png); background-repeat:no-repeat;background-position:center center; text-align:center; margin-right:20px; }
+	.border-dr-pic{border:1px solid #d7d7d7; margin-top: 30px;}
+	.label{display:block; width:216px; height:42px; background-image: url(../images/label2.png); background-repeat:no-repeat; text-align:center; font-size:15px; font-weight:bold; color:white; line-height:40px; }
+	.position { text-align:center; font-size:14px; font-weight:normal; color:#333; margin-left:-25px; margin-top: 5px;}
+
+#bg-footer{background-image: url(../images/bg-footer.jpg); background-repeat:no-repeat; background-position:center; height:78px;width:100%;margin:0 auto; }
+#bg-header-page{background-color:none !important;}
+#bg-header{background-color:white;}
+
+/* PAGE*/
+
+.title-page{font-family: 'maxpinjohnv2';font-size:26px;color: #881889; font-weight:bold;}
+.breadcrumb li {color: #8c8c8c; font-size:13px;}
+.breadcrumb li a {color: #a649dc; font-size:13px;}
+.breadcrumb li a.hover {color: #77379c; }
+
+#path-page{background-color:white; border-bottom:3px solid #e4e4e4; margin-bottom:40px;}
+#bg-page{background-color:none;}
+.title-page1{color: #b703b1;font-family: 'maxpinjohnv2'; font-size:38px; }
+.title2-page{margin-top:30px; color: #582b85;font-family: 'maxpinjohnv2'; font-size:26px; line-height:26px; border-bottom:1px solid #ded7e8; font-weight:bold;}
+.img-gall{border:1px solid #c5c3c3; margin-top:20px;}
+.img-gall:hover {border:1px solid white;}
+.btn-viewall {float:right; margin-top:15px; margin-right:7px; display:block; width:86px; height:33px; background-image: url(../images/btn-viewall.jpg); background-repeat:no-repeat; border:0;}
+.btn-viewall:hover {display:block; width:86px; height:33px; background-image: url(../images/btn-viewall-hot.jpg); background-repeat:no-repeat; border:0;}
+
+.person{float:left;}
+.patient-talk{float:right; width:65%; color: #752f89;  font-style: italic; text-align: justify; border-bottom:1px dotted #bab9b9;  border-bottom-width: 2px;}
+
+.btn-viewall2 {float:right; margin-bottom:15px; margin-top:-20px; display:block; width:86px; height:33px; background-image: url(../images/btn-viewall.jpg); background-repeat:no-repeat; border:0;}
+.btn-viewall2:hover {display:block; width:86px; height:33px; background-image: url(../images/btn-viewall-hot.jpg); background-repeat:no-repeat; border:0;}
+
+#img-about {padding:0; margin:0;}
+#img-about ul {padding:0; margin:0; list-style:none;}
+#img-about ul li { padding:0; margin:0; list-style:none; display:inline-block; zoom: 1; *display: inline; }
+#img-about ul li:hover{ padding:0; margin:0; filter:alpha(opacity=85);	opacity:.85;}
+
+.form-search{ display: block; float:right;   width: 20%;    height: 30px;    font-size: 14px;    line-height: 1.42857143;    color: #555555; padding-left:10px;
+    background-color: #ffffff;    background-image: url(../images/icon-search.png); background-repeat:no-repeat; background-position:right;
+    border: 1px solid #cccccc;    border-radius: 4px; margin-bottom:10px;   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);    -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;}
+
+/* TAB */
+#tabTech .active { color: white; }
+#tabTech li {  height: 56px; margin:0;}
+#tabTech li a {color: #949494;  background-color: #f2f2f2;  border: 1px dotted #c8c8c8; cursor: default; border-radius: 0px;  margin: 0; height: 48px; cursor:pointer; padding-top: 13px;}
+#tabTech > li.active > a { color: white;  background-image: url(../images/about/angle2.png); background-repeat: no-repeat;
+    border: 0;  background-position: 50% 50%; background-color:white;  height: 56px; }
+
+
+.title-page2{color: #582b85;font-family: 'maxpinjohnv2'; font-size:28px; font-weight:bold;}
+.by{border-bottom:1px solid #dfdfdf; margin-bottom:20px;}
+.text-by{color:#1da0c1;}
+.btn-viewall3 {float:left; margin-bottom:15px; display:block; width:86px; height:33px; background-image: url(../images/btn-viewall.jpg); background-repeat:no-repeat; border:0;}
+.btn-viewall3:hover {display:block; width:86px; height:33px; background-image: url(../images/btn-viewall-hot.jpg); background-repeat:no-repeat; border:0;}
+
+.picDentistTalk{border:1px solid #e6e5e5;}
+.col-left1{width:50%;float:left; position:relative;}
+.col-left2{width:50%;float:right; position:relative;}
+
+.col-right1{float:right;width:40%;}
+.lineDentistTalk1{border-bottom:1px dotted #aeaeae; margin-top:-20px;  margin-bottom:30px;  width: 106%;}
+.title2-Dentist{font-family: 'maxpinjohnv2'; font-size:28px; font-weight:bold; color:#a90fc0;}
+
+.menu-Dentist {padding:0; margin:0;}
+.menu-Dentist ul {padding:0; margin:0; list-style:none;}
+.menu-Dentist ul li {display:block;}
+.menu-Dentist ul li a{display:block; list-style:none;  border: 1px solid #d5d3d3; color:#666666 !important;  border-radius: 4px;  height:40px;  width: 295px; background-color:#f7f2fd;
+background-image: url(../images/DentistTalk/icon-plus.jpg); background-repeat:no-repeat; margin-top: 10px;  padding-left: 58px; padding-top: 8px;}
+.menu-Dentist ul li a:hover {color:#6f5499; background-image: url(../images/DentistTalk/icon-plus-hot.jpg); background-repeat:no-repeat; background-color:white; text-decoration:none;}
+.team-talk{color: #7f37b6;  text-align: justify; width:90%;}
+.contact-Dentist ul {padding:0; list-style:none; margin-top:30px;}
+.text1-Dentist{color: #7f37b6;}
+
+.icon-Dentist1{height:42px; background-image: url(../images/DentistTalk/icon-email.jpg); background-repeat:no-repeat; padding-left:50px; margin-bottom:20px; }
+.icon-Dentist1 a{color:#666666;}
+.icon-Dentist2{height:42px; background-image: url(../images/DentistTalk/icon-phone.jpg); background-repeat:no-repeat; padding-left:50px;margin-bottom:20px;}
+.icon-Dentist3{height:42px; background-image: url(../images/DentistTalk/icon-facebook.jpg); background-repeat:no-repeat; padding-left:50px;margin-bottom:20px;}
+.icon-Dentist3 a{color:#666666;}
+#pagination{float:right; margin-right:-40px;}
+.title-service1{color:#551889; font-family: 'maxpinjohnv2'; font-size:25px; font-weight:bold; text-align:center; margin-top:40px;}
+
+.btn-readmore{margin-bottom:15px; display:block; width:82px; height:30px; background-image: url(../images/btn-readmore.jpg); background-repeat:no-repeat; border:0;position:absolute; left:30%;}
+.btn-readmore:hover {display:block; width:82px; height:30px; background-image: url(../images/btn-readmore-hot.jpg); background-repeat:no-repeat; border:0;}
+.item1 { border: 1px solid #efefef;  background-color:white; padding:10px; width:85%; }
+.list-service ul {padding:0; margin:0; list-style:none;}
+.list-service ul li { list-style:none; background-image: url(../images/point.png); background-repeat:no-repeat; background-position:0px; padding-left:10px;}
+.list-service {margin-bottom:15px; }
+	.img-service1{width:80px; height:80px; background-image: url(../images/pic01-service.png); background-repeat:no-repeat; top:-43px; position:absolute; left:30%;}
+	.img-service1:hover{width:80px; height:80px; background-image: url(../images/pic01-service-hot.png); background-repeat:no-repeat; top:-43px; position:absolute; left:30%;}
+	.img-service2{width:80px; height:80px; background-image: url(../images/pic02-service.png); background-repeat:no-repeat; top:-43px; position:absolute; left:30%;}
+	.img-service2:hover{width:80px; height:80px; background-image: url(../images/pic02-service-hot.png); background-repeat:no-repeat; top:-43px; position:absolute; left:30%;}
+	.img-service3{width:80px; height:80px; background-image: url(../images/pic03-service.png); background-repeat:no-repeat; top:-43px; position:absolute; left:30%;}
+	.img-service4{width:80px; height:80px; background-image: url(../images/pic04-service.png); background-repeat:no-repeat; top:-43px; position:absolute; left:30%;}
+	.img-service5{width:80px; height:80px; background-image: url(../images/pic05-service.png); background-repeat:no-repeat; top:-43px; position:absolute; left:30%;}
+	.img-service6{width:80px; height:80px; background-image: url(../images/pic06-service.png); background-repeat:no-repeat; top:-43px; position:absolute; left:30%;}
+	.img-service7{width:80px; height:80px; background-image: url(../images/pic07-service.png); background-repeat:no-repeat; top:-43px; position:absolute; left:30%;}
+
+.center-itemservice{display:block; position:relative;  margin-top:30px;}
+.open{color:white; background-color:#9a6fc2; padding:10px;width: 80%;}
+.open table{color:white; font-size:14px;}
+.form-contact{  display: block;   width: 100%;   height: 34px;   padding: 6px 12px;   font-size: 11px;   line-height: 1.42857143;   color: #555555;   background-color: #ffffff;
+    background-image: none;   border: 1px solid #cccccc;    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;   -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;}
+.form-contact_{width:40%; float:left; margin-right:30px; }
+
+.area-contact {  margin-top:20px; display: block;   float:left;   width: 85%;   height: 200px;   font-size: 14px;   line-height: 1.42857143;   color: #555555;   background-color: #ffffff;
+    background-repeat: no-repeat;   background-position: right;    border: 1px solid #cccccc;   margin-bottom: 10px;}
+.btn-send{width:112px; height:42px; background-image: url(../images/btn-send.jpg); background-repeat:no-repeat; border:0; margin-top:10px;}
+.btn-send:hover{width:112px; height:42px; background-image: url(../images/btn-send-hot.jpg); background-repeat:no-repeat;}
+
+.btn-dr-group{}
+.btn-dr{background-color:#e0dcdc; padding:5px; text-align:center; display:block; border-radius:3px;}
+
+/* TAB 2 */
+#tab-team{border-bottom: none !important; margin-bottom:35px; margin-left:15px;}
+#tab-team li { margin:0; position:relative;}
+#tab-team li a {color: #666666;    background-color:#e0dcdc;   cursor: default;  border-radius: 8px;  margin:3px;  cursor:pointer;  height:40px; }
+#tab-team li a:hover {color: #7f19ae;    background-color:#dccbef;   cursor: default; cursor:pointer; }
+#tab-team > li.active > a { color: #7f19ae;    background-color:#dccbef;    border: 0; height: 40px; background-image: url(../images/triangle.png); 
+background-repeat:no-repeat; }
+
+#tab-content-team > .active {   display: block;   padding: 30px;}
+#tab-content-team > .tab-pane {  }
+
+ #tab-team > li.active > a .arrow_p i  { width: 0;height: 0;border-style: solid; border-width: 10px 6px 0 6px; border-color: #dccbef transparent transparent transparent;position:absolute; top:40px; left:45%;}
+
+
+.title3-Dentist{font-family: 'maxpinjohnv2'; font-size:26px; font-weight:bold; color:#a90fc0; margin-bottom:30px;}
+
+.title4-Dentist{font-family: 'maxpinjohnv2'; font-size:25px; font-weight:bold; color:black; margin-bottom:30px;}
+
+#btn-more{border-radius:0px; line-height:15px;}
+
+.text1-Personal {font-size: 22px; color:#7f37b6; }
+.list-Personal ul {padding:0; margin:0;}
+.list-Personal ul li {margin-top:10px; border-bottom:1px solid #ccc;}
+.list-Personal ul li label {font-size: 15px; font-weight:bold;}

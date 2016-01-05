@@ -45,7 +45,7 @@ $active_record = TRUE;
 $db['local']['hostname'] = 'localhost';
 $db['local']['username'] = 'root';
 $db['local']['password'] = '';
-$db['local']['database'] = 'drtooth';
+$db['local']['database'] = 'addfriend_2016';
 $db['local']['dbdriver'] = 'mysql';
 $db['local']['dbprefix'] = '';
 $db['local']['pconnect'] = TRUE;
@@ -73,22 +73,6 @@ $db['host']['dbcollat'] = 'utf8_general_ci';
 $db['host']['swap_pre'] = '';
 $db['host']['autoinit'] = TRUE;
 $db['host']['stricton'] = FALSE;
-
-$db['lotus']['hostname'] = 'localhost';
-$db['lotus']['username'] = 'drtoothd_2015';
-$db['lotus']['password'] = '1Wwaozma';
-$db['lotus']['database'] = 'drtoothd_2015';
-$db['lotus']['dbdriver'] = 'mysql';
-$db['lotus']['dbprefix'] = '';
-$db['lotus']['pconnect'] = TRUE;
-$db['lotus']['db_debug'] = TRUE;
-$db['lotus']['cache_on'] = FALSE;
-$db['lotus']['cachedir'] = '';
-$db['lotus']['char_set'] = 'utf8';
-$db['lotus']['dbcollat'] = 'utf8_general_ci';
-$db['lotus']['swap_pre'] = '';
-$db['lotus']['autoinit'] = TRUE;
-$db['lotus']['stricton'] = FALSE;
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */

@@ -59,7 +59,7 @@
     <h1>www.addfriend.in.th</h1>
     <p>หาเพื่อน Facebook, LINE, Twitter, Instagram, ง่ายๆ เพียงแค่ login เข้าสู่ระบบแล้วกรอกข้อมูลส่วนตัวได้เลยจ้า</p>
     <p>
-      <a class="btn btn-lg btn-info" href="../../components/#navbar" role="button">Facebook Login</a>
+    	<?=modules::run('home/inc_login_btn'); ?>
     </p>
   </div>
 

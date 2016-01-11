@@ -11,7 +11,7 @@ Author URI: http://www.mis-algoritmos.com
 		/*Default values*/
 		var $total_pages = -1;//items
 		var $limit = null;
-		var $target = ""; 
+		var $target = "";
 		var $page = 1;
 		var $adjacents = 2;
 		var $showCounter = FALSE;
@@ -27,22 +27,22 @@ Author URI: http://www.mis-algoritmos.com
 
 		/*****/
 		var $calculate = false;
-		
+
 		#Total items
 		function items($value){$this->total_pages = (int) $value;}
-		
+
 		#how many items to show per page
 		function limit($value){$this->limit = (int) $value;}
-		
+
 		#Page to sent the page value
 		function target($value){$this->target = $value;}
-		
+
 		#Current page
 		function currentPage($value){$this->page = ($value) ? (int) $value : 1 ;}
-		
+
 		#How many adjacent pages should be shown on each side of the current page?
 		function adjacents($value){$this->adjacents = (int) $value;}
-		
+
 		#show counter?
 		function showCounter($value=""){$this->showCounter=($value===true)?true:false;}
 
@@ -65,19 +65,19 @@ Author URI: http://www.mis-algoritmos.com
 					}
 				$this->urlF=$value;
 			}
-		
+
 		var $pagination;
 
 		function pagination(){}
 		function show(){
 				if(!$this->calculate)
 					if($this->calculate())
-						return "<div class=\"$this->className\"><ul>$this->pagination</ul></div>\n";
+						return "<div><ul class=\"$this->className\">$this->pagination</ul></div>\n";
 			}
 		function getOutput(){
 				if(!$this->calculate)
 					if($this->calculate())
-						return "<div class=\"$this->className\"><ul>$this->pagination</ul></div>\n";
+						return "<div><ul class=\"$this->className\">$this->pagination</ul></div>\n";
 			}
 		function get_pagenum_link($id){
 				if(strpos($this->target,'?')===false)
@@ -88,7 +88,7 @@ Author URI: http://www.mis-algoritmos.com
 					else
 						return "$this->target&$this->parameterName=$id";
 			}
-		
+
 		function calculate(){
 				$this->pagination = "";
 				$this->calculate == true;
@@ -111,27 +111,27 @@ Author URI: http://www.mis-algoritmos.com
 						$error = true;
 					}
 				if($error)return false;
-				
+
 				$n = trim($this->nextT.' '.$this->nextI);
 				$p = trim($this->prevI.' '.$this->prevT);
-				
+
 				/* Setup vars for query. */
-				if($this->page) 
+				if($this->page)
 					$start = ($this->page - 1) * $this->limit;             //first item to display on this page
 				else
 					$start = 0;                                //if no page var is given, set start to 0
-			
+
 				/* Setup page vars for display. */
 				$prev = $this->page - 1;                            //previous page is page - 1
 				$next = $this->page + 1;                            //next page is page + 1
 				$lastpage = ceil($this->total_pages/$this->limit);        //lastpage is = total pages / items per page, rounded up.
 				$lpm1 = $lastpage - 1;                        //last page minus 1
-				
-				/* 
-					Now we apply our rules and draw the pagination object. 
+
+				/*
+					Now we apply our rules and draw the pagination object.
 					We're actually saving the code to a variable in case we want to draw it more than once.
 				*/
-				
+
 				if($lastpage > 1){
 						if($this->page){
 								//anterior button
@@ -140,7 +140,7 @@ Author URI: http://www.mis-algoritmos.com
 									else
 										$this->pagination .= "<li class=\"disabled\"><a href=\"#\">$p</a></li>";
 							}
-						//pages	
+						//pages
 						if ($lastpage < 7 + ($this->adjacents * 2)){//not enough pages to bother breaking it up
 								for ($counter = 1; $counter <= $lastpage; $counter++){
 										if ($counter == $this->page)

@@ -37,21 +37,24 @@ class Home extends Public_Controller {
 
 								$rs = new User();
 	            	$rs->where('facebook_id = '.$data['user_profile']['id'])->get();
-								if(!$rs->exists()) // ภ้ามี user นี้ใน database //ให้  set_userdata
+								if(!$rs->exists()) // ถ้ายังไม่มีมี user นี้ใน database ให้บันทึกข้อมูล
             		{
             			$rs = new User();
 									$_POST['facebook_id'] = $data['user_profile']['id'];
 	                $_POST['facebook_name'] = $data['user_profile']['name'];
 									$_POST['facebook_email'] = $data['user_profile']['email'];
-	                // $_POST['image'] = 'http://graph.facebook.com/'.$_POST['facebook_id'].'/picture?type=large';
+									$_POST['ip'] = $_SERVER['REMOTE_ADDR'];
+									$_POST['status'] = 0;
 	                $rs->from_array($_POST);
 	                $rs->save();
 									// $rs->check_last_query();
             		}
 
+								// อัพเดทเวลาล้อกอิน
+								$this->db->query("UPDATE users SET updated = '".date("Y-m-d H:i:s")."' where id = ".$rs->id);
+
+								// created session
 								$this->session->set_userdata('id',$rs->id);
-                // $this->session->set_userdata('level',$user->level_id);
-                // $this->session->set_userdata('user_type',$user->user_type_id);
                 $this->session->set_userdata('facebook_id',$rs->facebook_id);
 
 								redirect('home/profile');
@@ -91,8 +94,26 @@ class Home extends Public_Controller {
 	}
 
 	public function profile(){
-		$data['rs'] = new User($this->session->userdata('id'));
-		$this->template->build('profile',$data);
+		if($this->session->userdata('facebook_id') != ""){
+			$data['rs'] = new User($this->session->userdata('id'));
+			$this->template->build('profile',$data);
+		}else{
+			redirect('home');
+		}
+	}
+
+	public function profile_save(){
+		$rs = new User();
+		$rs->from_array($_POST);
+		$rs->save();
+		redirect('home/profile');
+	}
+
+	public function inc_home(){
+		$data['rs'] = new User();
+		$data['rs']->where("status != 0")->order_by('updated desc');
+		$data['rs']->get_page(10);
+		$this->load->view('inc_home',$data);
 	}
 }
 ?>

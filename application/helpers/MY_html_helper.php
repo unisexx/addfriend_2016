@@ -1,11 +1,11 @@
-<?php 
+<?php
 
 if(!function_exists('cycle'))
 {
 	function cycle()
 	{
-		static $i;	
-		
+		static $i;
+
 		if (func_num_args() == 0)
 		{
 			$args = array('even','odd');
@@ -25,14 +25,14 @@ if(!function_exists('menu_active'))
         $CI =& get_instance();
         if($controller)
         {
-            return ($CI->router->fetch_module() == $module && $CI->router->fetch_class() == $controller) ? 'class="'.$class.'"' : '';    
+            return ($CI->router->fetch_module() == $module && $CI->router->fetch_class() == $controller) ? 'class="'.$class.'"' : '';
         }
         elseif($method){
-            return ($CI->router->fetch_module() == $module && $CI->router->fetch_method() == $method) ? 'class="'.$class.'"' : '';  
+            return ($CI->router->fetch_module() == $module && $CI->router->fetch_method() == $method) ? 'class="'.$class.'"' : '';
         }
         else
         {
-            return ($CI->router->fetch_module() == $module) ? 'class='.$class : ''; 
+            return ($CI->router->fetch_module() == $module) ? 'class='.$class : '';
         }
     }
 }
@@ -44,11 +44,11 @@ if(!function_exists('menu_active2'))
         $CI =& get_instance();
         if($controller)
         {
-            return ($CI->router->fetch_module() == $module && $CI->router->fetch_class() == $controller) ? 'class='.$class : '';    
+            return ($CI->router->fetch_module() == $module && $CI->router->fetch_class() == $controller) ? 'class='.$class : '';
         }
         else
         {
-            return ($CI->router->fetch_module() == $module) ? 'class='.$class : ''; 
+            return ($CI->router->fetch_module() == $module) ? 'class='.$class : '';
         }
     }
 }
@@ -86,7 +86,7 @@ if(!function_exists('fix_file'))
     function fix_file(&$files)
     {
         $names = array( 'name' => 1, 'type' => 1, 'tmp_name' => 1, 'error' => 1, 'size' => 1);
-    
+
         foreach ($files as $key => $part) {
             // only deal with valid keys and multiple files
             $key = (string) $key;
@@ -128,7 +128,7 @@ if(!function_exists('thumb'))
     	}else{
     		return "<img ".$param." src=".site_url("media/timthumb/timthumb.php?src=".site_url($imgUrl)."&zc=".$zoom_and_crop."&w=".$width."&h=".$height)."  width=".$width." height=".$height.">";
     	}
-        
+
     }
 }
 
@@ -159,7 +159,7 @@ function webboard_group($post,$type){
             return $webboard_post_level->image;
         }
     }
-    
+
 }
 
 function stripUploadString($uploadString){
@@ -171,36 +171,36 @@ function stripUploadString($uploadString){
 function youtube($youtubeurl){
     //parse_str( parse_url( $youtubeurl, PHP_URL_QUERY ), $my_array_of_vars );
     //preg_match("#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+(?=\?)|(?<=embed/)[^&\n]+|(?<=v=)[^&\‌​n]+|(?<=youtu.be/)[^&\n]+#", $youtubeurl, $matches);
-    
+
     $pattern = '/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i';
   	preg_match($pattern, $youtubeurl, $matches);
   	return isset($matches[1]) ? '<iframe width="640" height="390" src="http://www.youtube.com/embed/'.$matches[1].'" frameborder="0" allowfullscreen></iframe>' : false;
-	
+
 	//return '<iframe width="560" height="315" src="http://www.youtube.com/embed/'.$matches[0].'" frameborder="0" allowfullscreen></iframe>';
 }
 
-function remove_dir($dir) 
-{ 
-    if(is_dir($dir)) 
-    { 
-        $dir = (substr($dir, -1) != "/")? $dir."/":$dir; $openDir = opendir($dir); 
-        while($file = readdir($openDir)) 
-        { 
-            if(!in_array($file, array(".", ".."))) 
-            { 
-                if(!is_dir($dir.$file)) 
-                { 
-                    @unlink($dir.$file); 
-                } 
-                else 
-                { 
-                remove_dir($dir.$file); 
-                } 
-            } 
-        } 
-        closedir($openDir); @rmdir($dir); 
-    } 
-} 
+function remove_dir($dir)
+{
+    if(is_dir($dir))
+    {
+        $dir = (substr($dir, -1) != "/")? $dir."/":$dir; $openDir = opendir($dir);
+        while($file = readdir($openDir))
+        {
+            if(!in_array($file, array(".", "..")))
+            {
+                if(!is_dir($dir.$file))
+                {
+                    @unlink($dir.$file);
+                }
+                else
+                {
+                remove_dir($dir.$file);
+                }
+            }
+        }
+        closedir($openDir); @rmdir($dir);
+    }
+}
 
 
 function dbConvert(&$value,$key = null,$output='UTF-8')
@@ -251,5 +251,37 @@ function gallery_name($id){
     $CI =& get_instance();
     $rs = new Category($id);
     return "<li class='active'>".lang_decode($rs->name)."</li>";
+}
+
+if(!function_exists('check_image_url'))
+{
+	function check_image_url($url=false,$facebook_id)
+	{
+		if($url!=false){
+			$size = @getimagesize($url);
+			 if($size !== false){
+				 return $url;
+			 }else{
+				 return "https://graph.facebook.com/".$facebook_id."/picture?type=large";
+			 }
+		}else{
+			return "https://graph.facebook.com/".$facebook_id."/picture?type=large";
+		}
+	}
+}
+
+if(!function_exists('image_alert'))
+{
+	function image_alert($url=false)
+	{
+		if($url!=false){
+			$size = @getimagesize($url);
+			 if($size !== false){
+				 return $url;
+			 }else{
+				 return '<div class="alert alert-danger" role="alert">ลิ้งค์รูปโพรไฟล์หรือที่อยู่รูปภาพไม่ถูกต้อง ระบบจะใช้รูปจาก facebook แสดงแทน</div>';
+			 }
+		}
+	}
 }
 ?>

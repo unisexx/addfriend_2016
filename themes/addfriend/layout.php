@@ -16,4 +16,6 @@
 
 </div> <!-- /container -->
 
+<?include('_footer.php')?>
+</body>
 </html>

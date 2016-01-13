@@ -32,7 +32,7 @@
 <?foreach ($rs as $key => $row):?>
 <div class="profile">
     <img class="img-thumbnail pull-left" data-src="holder.js/120x120" alt="120x120" src="<?=check_image_url($row->image,$row->facebook_id)?>" style="width: 120px; height: 120px; margin-right:10px;">
-    <h3><a href="profile/<?=$row->id?>"><?=$row->facebook_name?></a></h3>
+    <h3><a href="home/profile/<?=$row->id?>"><?=$row->facebook_name?></a></h3>
     <span class="label label-green"><?php echo $row->age; ?></span>
 		<span class="label" style="background: <?php echo $row->sex->color; ?>"><?php echo $row->sex->title ?></span>
 		<span class="label label-warning"><?php echo $row->province->name; ?></span>

@@ -57,7 +57,7 @@ class Home extends Public_Controller {
 								$this->session->set_userdata('id',$rs->id);
                 $this->session->set_userdata('facebook_id',$rs->facebook_id);
 
-								redirect('home/profile');
+								redirect('home/my_profile');
 
             } catch (FacebookApiException $e) {
                 $user = null;
@@ -93,20 +93,20 @@ class Home extends Public_Controller {
         $this->load->view('inc_login',$data);
 	}
 
-	public function profile(){
+	public function my_profile(){
 		if($this->session->userdata('facebook_id') != ""){
 			$data['rs'] = new User($this->session->userdata('id'));
-			$this->template->build('profile',$data);
+			$this->template->build('my_profile',$data);
 		}else{
 			redirect('home');
 		}
 	}
 
-	public function profile_save(){
+	public function my_profile_save(){
 		$rs = new User();
 		$rs->from_array($_POST);
 		$rs->save();
-		redirect('home/profile');
+		redirect('home/my_profile');
 	}
 
 	public function inc_home(){
@@ -114,6 +114,11 @@ class Home extends Public_Controller {
 		$data['rs']->where("status != 0")->order_by('updated desc');
 		$data['rs']->get_page(10);
 		$this->load->view('inc_home',$data);
+	}
+
+	public function profile($id){
+		$data['rs'] = new User($id);
+		$this->template->build('profile',$data);
 	}
 }
 ?>

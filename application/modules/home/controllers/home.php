@@ -36,27 +36,27 @@ class Home extends Public_Controller {
                 $data['user_profile'] = $this->facebook->api('/me', array('fields' => 'id,name,email'));
 
 								$rs = new User();
-	            	$rs->where('facebook_id = '.$data['user_profile']['id'])->get();
-								if(!$rs->exists()) // ถ้ายังไม่มีมี user นี้ใน database ให้บันทึกข้อมูล
-            		{
-            			$rs = new User();
-									$_POST['facebook_id'] = $data['user_profile']['id'];
-	                $_POST['facebook_name'] = $data['user_profile']['name'];
-									$_POST['facebook_email'] = $data['user_profile']['email'];
-									$_POST['ip'] = $_SERVER['REMOTE_ADDR'];
-									$_POST['status'] = 0;
-	                $rs->from_array($_POST);
-	                $rs->save();
-									// $rs->check_last_query();
-            		}
+				            	$rs->where('facebook_id = '.$data['user_profile']['id'])->get();
+											if(!$rs->exists()) // ถ้ายังไม่มีมี user นี้ใน database ให้บันทึกข้อมูล
+			            		{
+			            			$rs = new User();
+												$_POST['facebook_id'] = $data['user_profile']['id'];
+				                $_POST['facebook_name'] = $data['user_profile']['name'];
+												$_POST['facebook_email'] = $data['user_profile']['email'];
+												$_POST['ip'] = $_SERVER['REMOTE_ADDR'];
+												$_POST['status'] = 0;
+				                $rs->from_array($_POST);
+				                $rs->save();
+												// $rs->check_last_query();
+			            		}
 
 								// อัพเดทเวลาล้อกอิน
 								$this->db->query("UPDATE users SET updated = '".date("Y-m-d H:i:s")."' where id = ".$rs->id);
 
 								// created session
 								$this->session->set_userdata('id',$rs->id);
-                $this->session->set_userdata('facebook_id',$rs->facebook_id);
-
+                				$this->session->set_userdata('facebook_id',$rs->facebook_id);
+								set_notify('success', 'ยินดีต้อนรับเข้าสู่ระบบ');
 								redirect('home/my_profile');
 
             } catch (FacebookApiException $e) {
@@ -70,7 +70,6 @@ class Home extends Public_Controller {
 	}
 
     public function logout(){
-
         $this->load->library('facebook');
 
         // Logs off session from website
@@ -78,7 +77,6 @@ class Home extends Public_Controller {
         // Make sure you destory website session as well.
 
         $this->session->sess_destroy();
-
         redirect('home');
     }
 
@@ -98,6 +96,7 @@ class Home extends Public_Controller {
 			$data['rs'] = new User($this->session->userdata('id'));
 			$this->template->build('my_profile',$data);
 		}else{
+			set_notify('error', 'กรุณาเข้าสู่ระบบ');
 			redirect('home');
 		}
 	}
@@ -106,18 +105,24 @@ class Home extends Public_Controller {
 		$rs = new User();
 		$rs->from_array($_POST);
 		$rs->save();
+		set_notify('success', 'บันทึกข้อมูลเรียบร้อย');
 		redirect('home/my_profile');
 	}
 
 	public function inc_home(){
 		$data['rs'] = new User();
+		if(@$_GET['sex_id']){ $data['rs']->where("sex_id = ".$_GET['sex_id']); }
+		if(@$_GET['province_id']){ $data['rs']->where("province_id = ".$_GET['province_id']); }
+		if(@$_GET['age_start']){ $data['rs']->where("(age between ".$_GET['age_start']." and ".$_GET['age_end'].")"); }
 		$data['rs']->where("status != 0")->order_by('updated desc');
 		$data['rs']->get_page(10);
+		// $data['rs']->check_last_query();
 		$this->load->view('inc_home',$data);
 	}
 
 	public function profile($id){
 		$data['rs'] = new User($id);
+		$this->template->title($data['rs']->display_name.' - Addfriend');
 		$this->template->build('profile',$data);
 	}
 }

@@ -9,7 +9,7 @@ class Public_Controller extends Master_Controller
 		$this->template->title('Addfriend 2016');
 		$this->template->set_theme('addfriend');
     	$this->template->set_layout('layout');
-		
+		$this->template->title('หาเพื่อน หาแฟน หากิ๊ก หาคู่ หาเพื่อนเล่นเกม แลกไอดีไลน์ - Addfriend');
 		// Set js
 		$this->lang->load('admin');
 		$this->template->append_metadata(js_notify());

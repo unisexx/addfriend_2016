@@ -10,7 +10,7 @@
       <label for="age_start">อายุ</label>
       <?
   			for ($i = 12; $i <= 75; ++$i) {
-  				$ageArray[] = $i;
+  				$ageArray[$i] = $i;
   			}
   		?>
   		<?=form_dropdown('age_start', $ageArray, @$_GET['age_start'],'id="age_start" class="form-control"');?>
@@ -21,7 +21,7 @@
     </div>
     <div class="form-group">
       <label for="province">จังหวัด</label>
-  		<?=form_dropdown('province_id', get_option('id','name','provinces order by name asc'), @$_GET['province_id'],'id="province" class="form-control"');?>
+  		<?=form_dropdown('province_id', get_option('id','name','provinces order by name asc'), @$_GET['province_id'],'id="province" class="form-control"','--- เลือกจังหวัด ---');?>
     </div>
     <button type="submit" class="btn btn-success">ค้นหา</button>
   </form>

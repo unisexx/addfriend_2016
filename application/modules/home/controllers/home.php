@@ -104,10 +104,13 @@ class Home extends Public_Controller {
 	}
 
 	public function my_profile_save(){
-		$rs = new User();
-		$rs->from_array($_POST);
-		$rs->save();
-		set_notify('success', 'บันทึกข้อมูลเรียบร้อย');
+		if($_POST){
+			$rs = new User();
+			$_POST['image'] = imgur_upload($_FILES['img']);
+			$rs->from_array($_POST);
+			$rs->save();
+			set_notify('success', 'บันทึกข้อมูลเรียบร้อย');	
+		}
 		redirect('home/my_profile');
 	}
 
@@ -139,10 +142,11 @@ class Home extends Public_Controller {
 					WHERE ".$condition." 
 					AND STATUS != 0
 					ORDER BY
-						updated DESC ";
+						updated desc";
 		// echo $sql;
 		
 		$rs = new User();
+		// $data['rs'] = $this->db->query($sql)->result();
         $data['rs'] = $rs->sql_page($sql, 10);
 		$data['pagination'] = $rs->sql_pagination;
 		
@@ -155,6 +159,10 @@ class Home extends Public_Controller {
 		$this->template->title($data['rs']->display_name.' - Addfriend');
 		$this->db->close();
 		$this->template->build('profile',$data);
+	}
+	
+	public function img_upload(){
+		$this->template->build('img_upload');
 	}
 }
 ?>

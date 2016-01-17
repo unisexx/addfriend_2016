@@ -258,12 +258,13 @@ if(!function_exists('check_image_url'))
 	function check_image_url($url=false,$facebook_id)
 	{
 		if($url!=false){
-			$size = @getimagesize($url);
-			 if($size !== false){
-				 return $url;
-			 }else{
-				 return "https://graph.facebook.com/".$facebook_id."/picture?type=large";
-			 }
+			// $size = @getimagesize($url);
+			 // if($size !== false){
+				 // return $url;
+			 // }else{
+				 // return "https://graph.facebook.com/".$facebook_id."/picture?type=large";
+			 // }
+			return $url;
 		}else{
 			return "https://graph.facebook.com/".$facebook_id."/picture?type=large";
 		}
@@ -275,13 +276,58 @@ if(!function_exists('image_alert'))
 	function image_alert($url=false)
 	{
 		if($url!=false){
-			$size = @getimagesize($url);
-			 if($size !== false){
-				 // return $url;
-			 }else{
-				 return '<div class="alert alert-danger" role="alert">ลิ้งค์รูปโพรไฟล์หรือที่อยู่รูปภาพไม่ถูกต้อง ระบบจะใช้รูปจาก facebook แสดงแทน</div>';
-			 }
+			$ch = curl_init();
+		    curl_setopt($ch, CURLOPT_URL,$url);
+		    // don't download content
+		    curl_setopt($ch, CURLOPT_NOBODY, 1);
+		    curl_setopt($ch, CURLOPT_FAILONERROR, 1);
+		    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		    if(curl_exec($ch)!==FALSE)
+		    {
+		        // return true;
+		    }
+		    else
+		    {
+		         return '<div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-triangle"></i> ลิ้งค์รูปโพรไฟล์หรือที่อยู่รูปภาพไม่ถูกต้อง</div>';
+		    }
 		}
+	}
+}
+
+if(!function_exists('imgur_upload'))
+{
+	function imgur_upload($postImg)
+	{
+		    $img=$postImg;
+		    if($img['name']==''){
+		      	// echo "<h2>An Image Please.</h2>";
+		    }else{
+		     $filename = $img['tmp_name'];
+		     $client_id="94af93212e2e617";//Your Client ID here
+		     $handle = fopen($filename, "r");
+		     $data = fread($handle, filesize($filename));
+		     $pvars   = array('image' => base64_encode($data));
+		     $timeout = 30;
+		     $curl    = curl_init();
+		     curl_setopt($curl, CURLOPT_URL, 'https://api.imgur.com/3/image.json');
+		     curl_setopt($curl, CURLOPT_TIMEOUT, $timeout);
+		     curl_setopt($curl, CURLOPT_HTTPHEADER, array('Authorization: Client-ID ' . $client_id));
+		     curl_setopt($curl, CURLOPT_POST, 1);
+		     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		     curl_setopt($curl, CURLOPT_POSTFIELDS, $pvars);
+		     $out = curl_exec($curl);
+		     curl_close ($curl);
+		     $pms = json_decode($out,true);
+		     $url=$pms['data']['link'];
+		     if($url!=""){
+		      // echo "<h2>Uploaded Without Any Problem</h2>";
+		      // echo "<img src='$url'/>";
+		      return $url;
+		     }else{
+			      // echo "<h2>There's a Problem</h2>";
+			      // echo $pms['data']['error']['message'];
+		     }
+		    }
 	}
 }
 ?>

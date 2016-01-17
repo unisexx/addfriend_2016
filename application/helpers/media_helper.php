@@ -185,10 +185,10 @@ if(!function_exists('uppic_mce'))
 								upic_type = "htmlfull";
 								upic_buttoncss += "color:#000000;";
 								function upic_custom(urlshow, urlfull, urlthumb) {
-								tinyMCE.get(\'detail\').execCommand("mceInsertContent",false,\'<img src="\' +urlfull+ \'" />\');
+									$("#image").val(urlfull);
 								}
 								</script>';
-		return $js; 
+		return $js;
 	}
 }
 
@@ -235,3 +235,5 @@ if(!function_exists('facebook_comment')){
         return $js;
     }
 }
+
+?>

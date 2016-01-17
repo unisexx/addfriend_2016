@@ -265,8 +265,10 @@ if(!function_exists('check_image_url'))
 				 // return "https://graph.facebook.com/".$facebook_id."/picture?type=large";
 			 // }
 			return $url;
+			// return site_url("media/timthumb/timthumb.php?src=".$url."&zc=1&w=120&h=120");
 		}else{
 			return "https://graph.facebook.com/".$facebook_id."/picture?type=large";
+			// return site_url("media/timthumb/timthumb.php?src=https://graph.facebook.com/".$facebook_id."/picture?type=large&zc=1&w=120&h=120");
 		}
 	}
 }
@@ -298,36 +300,23 @@ if(!function_exists('imgur_upload'))
 {
 	function imgur_upload($postImg)
 	{
-		    $img=$postImg;
-		    if($img['name']==''){
-		      	// echo "<h2>An Image Please.</h2>";
-		    }else{
-		     $filename = $img['tmp_name'];
-		     $client_id="94af93212e2e617";//Your Client ID here
-		     $handle = fopen($filename, "r");
-		     $data = fread($handle, filesize($filename));
-		     $pvars   = array('image' => base64_encode($data));
-		     $timeout = 30;
-		     $curl    = curl_init();
-		     curl_setopt($curl, CURLOPT_URL, 'https://api.imgur.com/3/image.json');
-		     curl_setopt($curl, CURLOPT_TIMEOUT, $timeout);
-		     curl_setopt($curl, CURLOPT_HTTPHEADER, array('Authorization: Client-ID ' . $client_id));
-		     curl_setopt($curl, CURLOPT_POST, 1);
-		     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-		     curl_setopt($curl, CURLOPT_POSTFIELDS, $pvars);
-		     $out = curl_exec($curl);
-		     curl_close ($curl);
-		     $pms = json_decode($out,true);
-		     $url=$pms['data']['link'];
-		     if($url!=""){
-		      // echo "<h2>Uploaded Without Any Problem</h2>";
-		      // echo "<img src='$url'/>";
-		      return $url;
-		     }else{
-			      // echo "<h2>There's a Problem</h2>";
-			      // echo $pms['data']['error']['message'];
-		     }
-		    }
+		if($postImg){
+			$image = file_get_contents($postImg);
+			$client_id="94af93212e2e617";//Your Client ID here
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, 'https://api.imgur.com/3/image.json');
+			curl_setopt($ch, CURLOPT_POST, TRUE);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array( 'Authorization: Client-ID ' . $client_id ));
+			curl_setopt($ch, CURLOPT_POSTFIELDS, array( 'image' => base64_encode($image) ));
+			
+			$reply = curl_exec($ch);
+			
+			curl_close($ch);
+			
+			$reply = json_decode($reply);
+			return @$reply->data->link;
+		}
 	}
 }
 ?>

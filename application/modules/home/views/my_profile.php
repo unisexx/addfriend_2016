@@ -10,7 +10,8 @@
   <div id="listfriend">
   <div class="profile example">
         <img class="img-thumbnail pull-left" data-src="holder.js/120x120" alt="120x120" src="<?=check_image_url($rs->image,$rs->facebook_id)?>" style="width: 120px; height: 120px; margin-right:10px;">
-      <h3><?=$rs->facebook_name?></h3>
+        <?// =thumb(check_image_url($rs->image,$rs->facebook_id),120,120,1,' class="img-thumbnail pull-left" data-src="holder.js/120x120" alt="120x120" style="width: 120px; height: 120px; margin-right:10px;"')?>
+      <h3><?=$rs->display_name?></h3>
       <span class="label label-green"><?php echo $rs->age; ?></span>
   		<span class="label" style="background: <?php echo $rs->sex->color; ?>"><?php echo $rs->sex->title ?></span>
   		<span class="label label-warning"><?php echo $rs->province->name; ?></span>
@@ -34,10 +35,11 @@
     <label for="status">สถานะ</label>
     <?=form_dropdown('status', array(0 => 'ปิดการใช้งาน',1 => 'เปิดการใช้งาน'), $rs->status,'id="status" class="form-control"');?>
   </div>
-  <!-- <div class="form-group">
+  <div class="form-group">
     <label for="image">ลิ้งค์รูปโพรไฟล์ (ไฟล์นามสกุล .jpg .png .gif)</label>
+    <br><?//=uppic_mce()?> <a href="home/img_upload">อัพรูปคลิ๊กที่นี่จ้า</a>
     <input type="text" class="form-control" id="image" name="image" value="<?=$rs->image?>" placeholder="ถ้าไม่มีให้ปล่อยว่างไว้ ระบบจะใช้รูปจาก facebook แทน">
-  </div> -->
+  </div>
   <div class="form-group">
     <label for="displayName">ชื่อที่ใช้แสดง</label>
     <input type="text" class="form-control" id="displayName" name="display_name" value="<?=$rs->display_name=="" ? $rs->facebook_name : $rs->display_name ;?>">
@@ -79,10 +81,10 @@
     <label for="social_facebook">facebook ID</label>
     <input type="text" class="form-control validate" id="social_facebook" name="social_facebook" value="<?=$rs->social_facebook?>" placeholder="ถ้าไม่มีให้เว้นว่างไว้">
   </div>
-  <div class="form-group">
+  <!-- <div class="form-group">
     <label for="imgupload">อัพโหลดรูปโพรไฟล์</label>
-    <input id="imgupload" class="form-control" name="img" size="35" type="file"/>
-  </div>
+    <input id="imgupload" class="form-control" name="upload" size="35" type="file"/>
+  </div> -->
 	<input type="hidden" name="id" value="<?=$rs->id?>">
   <button type="submit" class="btn btn-primary">บันทึกข้อมูล</button>
 </form>

@@ -16,6 +16,16 @@
 <?php echo $template['metadata']; ?>
 </head>
 <body>
+	
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/th_TH/sdk.js#xfbml=1&version=v2.5&appId=532330300263938";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 <?include('_header.php')?>
 
 <div class="container">
@@ -35,6 +45,12 @@
   <div class="row">
     <div class="col-md-8 col-xs-12">
 	    <?=modules::run('home/inc_home'); ?>
+    </div>
+    <div class="col-md-4 col-xs-12">
+    	<img class="img-thumbnail pull-right" data-src="holder.js/500x220?text=Banner" alt="Banner" src="#" style="margin-bottom: 10px;">
+    	<img class="img-thumbnail pull-right" data-src="holder.js/500x220?text=Banner" alt="Banner" src="#" style="margin-bottom: 10px;">
+    	
+    	<div style="margin: 10px 0 0 10px;" class="fb-page" data-href="https://www.facebook.com/addfriend.in.th/" data-tabs="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/addfriend.in.th/"><a href="https://www.facebook.com/addfriend.in.th/">หาเพื่อน หาแฟน หากิ๊ก หาคู่ - Addfriend.in.th</a></blockquote></div></div>
     </div>
   </div>
 </div>

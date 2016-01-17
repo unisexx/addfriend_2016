@@ -106,7 +106,13 @@ class Home extends Public_Controller {
 	public function my_profile_save(){
 		if($_POST){
 			$rs = new User();
-			$_POST['image'] = imgur_upload($_FILES['img']);
+			// $_POST['image'] = imgur_upload($_FILES['upload']['tmp_name']);
+			$_POST['display_name'] = strip_tags($_POST['display_name']);
+			$_POST['detail'] = strip_tags($_POST['detail']);
+			if($_POST['social_line'] != ""){ $_POST['social_line'] = strip_tags($_POST['social_line']); }
+			if($_POST['social_instagram'] != ""){ $_POST['social_instagram'] = strip_tags($_POST['social_instagram']); }
+			if($_POST['social_twitter'] != ""){ $_POST['social_twitter'] = strip_tags($_POST['social_twitter']); }
+			if($_POST['social_facebook'] != ""){ $_POST['social_facebook'] = strip_tags($_POST['social_facebook']); }
 			$rs->from_array($_POST);
 			$rs->save();
 			set_notify('success', 'บันทึกข้อมูลเรียบร้อย');	

@@ -50,7 +50,7 @@
     	<img class="img-thumbnail pull-right" data-src="holder.js/500x220?text=Banner" alt="Banner" src="#" style="margin-bottom: 10px;">
     	<img class="img-thumbnail pull-right" data-src="holder.js/500x220?text=Banner" alt="Banner" src="#" style="margin-bottom: 10px;">
     	
-    	<div style="margin: 10px 0 0 10px;" class="fb-page" data-href="https://www.facebook.com/addfriend.in.th/" data-tabs="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/addfriend.in.th/"><a href="https://www.facebook.com/addfriend.in.th/">หาเพื่อน หาแฟน หากิ๊ก หาคู่ - Addfriend.in.th</a></blockquote></div></div>
+    	<div style="margin: 10px 0 0 10px;" class="fb-page" data-href="https://www.facebook.com/addfriend.in.th/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/addfriend.in.th/"><a href="https://www.facebook.com/addfriend.in.th/">หาเพื่อน หาแฟน หากิ๊ก หาคู่ - Addfriend.in.th</a></blockquote></div></div>
     </div>
   </div>
 </div>

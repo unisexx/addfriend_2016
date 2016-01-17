@@ -32,7 +32,7 @@
 
   <!-- Main component for a primary marketing message or call to action -->
   <div class="jumbotron">
-    <h1>addfriend.in.th</h1>
+    <h1>Addfriend.in.th</h1>
     <p>หาเพื่อน หาแฟน หากิ๊ก หาคู่ทาง Facebook, LINE, Twitter, Instagram, ง่ายๆ เพียงแค่ login เข้าสู่ระบบแล้วกรอกข้อมูลส่วนตัวได้เลยจ้า</p>
     <p>
     	<?=modules::run('home/inc_login_btn'); ?>
@@ -47,10 +47,12 @@
 	    <?=modules::run('home/inc_home'); ?>
     </div>
     <div class="col-md-4 col-xs-12">
-    	<img class="img-thumbnail pull-right" data-src="holder.js/500x220?text=Banner" alt="Banner" src="#" style="margin-bottom: 10px;">
-    	<img class="img-thumbnail pull-right" data-src="holder.js/500x220?text=Banner" alt="Banner" src="#" style="margin-bottom: 10px;">
+    	<?if (!$this->agent->is_mobile()):?>
+    	<img class="img-thumbnail pull-left" data-src="holder.js/340x220?text=Banner" alt="Banner" src="#" style="margin-bottom: 10px;">
+    	<img class="img-thumbnail pull-left" data-src="holder.js/340x220?text=Banner" alt="Banner" src="#" style="margin-bottom: 15px;">
+    	<?endif;?>
     	
-    	<div style="margin: 10px 0 0 10px;" class="fb-page" data-href="https://www.facebook.com/addfriend.in.th/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/addfriend.in.th/"><a href="https://www.facebook.com/addfriend.in.th/">หาเพื่อน หาแฟน หากิ๊ก หาคู่ - Addfriend.in.th</a></blockquote></div></div>
+    	<div style="width:100%;" class="fb-page" data-href="https://www.facebook.com/addfriend.in.th/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/addfriend.in.th/"><a href="https://www.facebook.com/addfriend.in.th/">หาเพื่อน หาแฟน หากิ๊ก หาคู่ - Addfriend.in.th</a></blockquote></div></div>
     </div>
   </div>
 </div>

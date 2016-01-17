@@ -24,55 +24,55 @@
       </tr>
       </thead>
       <tbody>
-      <?if($rs->line != ""):?>
+      <?if($rs->social_line != ""):?>
       <tr>
         <th>
           LINE ID
         </th>
         <td>
-          <?=$rs->line?>
+          <?=$rs->social_line?>
         </td>
         <td>
-          <a href="javascript:void(0)" onclick="location.href='http://line.me/ti/p/~<?=$rs->line?>'"><img class="social-icon" src="themes/addfriend/images/line-icon.png"></a>
+          <a href="javascript:void(0)" onclick="location.href='http://line.me/ti/p/~<?=$rs->social_line?>'"><img class="social-icon" src="themes/addfriend/images/line-icon.png"></a>
         </td>
       </tr>
       <?endif;?>
-      <?if($rs->facebook != ""):?>
+      <?if($rs->social_facebook != ""):?>
       <tr>
         <th>
           Facebook
         </th>
         <td>
-          <?=$rs->facebook?>
+          <?=$rs->social_facebook?>
         </td>
         <td>
-          <a href='https://www.facebook.com/<?=$rs->facebook?>' target='_blank'><img class='social-icon' src='themes/addfriend/images/facebook-icon.png'></a>
+          <a href='https://www.facebook.com/<?=$rs->social_facebook?>' target='_blank'><img class='social-icon' src='themes/addfriend/images/facebook-icon.png'></a>
         </td>
       </tr>
       <?endif;?>
-      <?if($rs->twitter != ""):?>
+      <?if($rs->social_twitter != ""):?>
       <tr>
         <th>
           Twitter
         </th>
         <td>
-          <?=$rs->twitter?>
+          <?=$rs->social_twitter?>
         </td>
         <td>
-          <a href='https://twitter.com/<?=$rs->twitter?>' target='_blank'><img class='social-icon' src='themes/addfriend/images/twitter-icon.png'></a>
+          <a href='https://twitter.com/<?=$rs->social_twitter?>' target='_blank'><img class='social-icon' src='themes/addfriend/images/twitter-icon.png'></a>
         </td>
       </tr>
       <?endif;?>
-      <?if($rs->instagram != ""):?>
+      <?if($rs->social_instagram != ""):?>
       <tr>
         <th>
           instagram
         </th>
         <td>
-          <?=$rs->instagram?>
+          <?=$rs->social_instagram?>
         </td>
         <td>
-          <a href='https://www.instagram.com/<?=$rs->instagram?>' target='_blank'><img class='social-icon' src='themes/addfriend/images/instagram-icon.png'></a>
+          <a href='https://www.instagram.com/<?=$rs->social_instagram?>' target='_blank'><img class='social-icon' src='themes/addfriend/images/instagram-icon.png'></a>
         </td>
       </tr>
       <?endif;?>

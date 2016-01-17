@@ -3,8 +3,8 @@ body{padding-top: 70px;}
 #search {
   margin: 10px 0;
   padding: 10px;
-  background: #5D8CAE;
-  color: #fff;
+  background: #e8e8e8;
+  color: rgba(0,0,0,.6);
 }
 #listfriend h3 {
     margin: 0 5px;

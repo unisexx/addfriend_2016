@@ -277,7 +277,7 @@ if(!function_exists('image_alert'))
 		if($url!=false){
 			$size = @getimagesize($url);
 			 if($size !== false){
-				 return $url;
+				 // return $url;
 			 }else{
 				 return '<div class="alert alert-danger" role="alert">ลิ้งค์รูปโพรไฟล์หรือที่อยู่รูปภาพไม่ถูกต้อง ระบบจะใช้รูปจาก facebook แสดงแทน</div>';
 			 }

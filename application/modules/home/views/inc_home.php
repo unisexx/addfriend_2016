@@ -1,10 +1,12 @@
+<? $socialName = array('social_line'=>'Line','social_facebook'=>'Facebook','social_twitter'=>'Twitter','social_instagram'=>'Instagram'); ?>
+
 <fieldset>
   <legend>ค้นหา</legend>
 <div id="search">
   <form method="get" class="form-inline" role="form">
     <div class="form-group">
-      <label for="sex">เพศ</label>
-      <?=form_dropdown('sex_id', get_option('id','title','sexs'), @$_GET['sex_id'],'id="sex" class="form-control"');?>
+      <!-- <label for="sex">เพศ</label> -->
+      <?=form_dropdown('sex_id', get_option('id','title','sexs'), @$_GET['sex_id'],'id="sex" class="form-control"','--- เพศ ---');?>
     </div>
     <div class="form-group">
       <label for="age_start">อายุ</label>
@@ -17,11 +19,16 @@
     </div>
     <div class="form-group">
       <label for="age_end">ถึง</label>
+      	<?if(!isset($_GET['age_end'])){ $_GET['age_end'] = "75";}?>
   		<?=form_dropdown('age_end', $ageArray, @$_GET['age_end'],'id="age_end" class="form-control"');?>
     </div>
     <div class="form-group">
-      <label for="province">จังหวัด</label>
+      <!-- <label for="province">จังหวัด</label> -->
   		<?=form_dropdown('province_id', get_option('id','name','provinces order by name asc'), @$_GET['province_id'],'id="province" class="form-control"','--- เลือกจังหวัด ---');?>
+    </div>
+    <div class="form-group">
+      <!-- <label for="social">แอพ</label> -->
+  		<?=form_dropdown('social', array('social_line'=>'Line','social_facebook'=>'Facebook','social_twitter'=>'Twitter','social_instagram'=>'Instagram'), @$_GET['social'],'id="social" class="form-control"','--- เลือกแอพ ---');?>
     </div>
     <button type="submit" class="btn btn-success">ค้นหา</button>
   </form>
@@ -31,22 +38,44 @@
 <div id="listfriend">
 <?foreach ($rs as $key => $row):?>
 <div class="profile">
-    <img class="img-thumbnail pull-left" data-src="holder.js/120x120" alt="120x120" src="<?=check_image_url($row->image,$row->facebook_id)?>" style="width: 120px; height: 120px; margin-right:10px;">
-    <h3><a href="home/profile/<?=$row->id?>"><?=$row->facebook_name?></a></h3>
+    <img class="img-thumbnail pull-left" data-src="holder.js/120x120" alt="120x120" src="<?=check_image_url($row->image,$row->facebook_id)?>" style="width: 120px; height: 120px; margin-right:10px; margin-bottom:5px;">
+    <h3><a href="home/profile/<?=$row->id?>"><?=$row->display_name?></a></h3>
     <span class="label label-green"><?php echo $row->age; ?></span>
-		<span class="label" style="background: <?php echo $row->sex->color; ?>"><?php echo $row->sex->title ?></span>
-		<span class="label label-warning"><?php echo $row->province->name; ?></span>
+		<span class="label" style="background: <?php echo $row->sex_color; ?>"><?php echo $row->sex_title ?></span>
+		<span class="label label-warning"><?php echo $row->province_name; ?></span>
     <div class="fdetail"><?=$row->detail?></div>
+    
+	<div class="input-group col-md-5 col-xs-12" style="margin-bottom: 5px;">
+		<span class="input-group-addon"><?=@$_GET["social"] != ""? $socialName[$_GET["social"]] : "Line" ;?></span>
+		<input type="text" class="form-control" value="<?=@$_GET["social"] != "" ? $row->$_GET["social"] : $row->social_line ;?>">
+			<?if(@$_GET["social"] == "social_line"):?>
+				<a href="javascript:void(0)" onclick="location.href='http://line.me/ti/p/~<?=$row->social_line?>'" class="input-group-addon" style="background: #00B84F;
+	  color: #fff; border:1px solid #08A100;">เพิ่มเพื่อน</a>
+	  		<?elseif(@$_GET["social"] == "social_facebook"):?>
+	  			<a href='https://www.facebook.com/<?=$row->social_facebook?>' target='_blank' class="input-group-addon" style="background: #00B84F;
+	  color: #fff; border:1px solid #08A100;">เพิ่มเพื่อน</a>
+	  		<?elseif(@$_GET["social"] == "social_twitter"):?>
+	  			<a href='https://twitter.com/<?=$row->social_twitter?>' target='_blank' class="input-group-addon" style="background: #00B84F;
+	  color: #fff; border:1px solid #08A100;">เพิ่มเพื่อน</a>
+	  		<?elseif(@$_GET["social"] == "social_instagram"):?>
+	  			<a href='https://www.instagram.com/<?=$row->social_instagram?>' target='_blank' class="input-group-addon" style="background: #00B84F;
+	  color: #fff; border:1px solid #08A100;">เพิ่มเพื่อน</a>
+		  	<?else:?>
+					<a href="javascript:void(0)" onclick="location.href='http://line.me/ti/p/~<?=$row->social_line?>'" class="input-group-addon" style="background: #00B84F;
+		  color: #fff; border:1px solid #08A100;">เพิ่มเพื่อน</a>
+	  		<?endif;?>
+	</div>	
+	
     <div class="social-data pull-right">
-      <?if($row->line != ""){ echo'<a href="javascript:void(0)" onclick="location.href=\'http://line.me/ti/p/~'.$row->line.'\'"><img class="social-icon" src="themes/addfriend/images/line-icon.png"></a>'; }?>
-      <?if($row->facebook != ""){ echo"<a href='https://www.facebook.com/".$row->facebook."' target='_blank'><img class='social-icon' src='themes/addfriend/images/facebook-icon.png'></a>"; }?>
-      <?if($row->twitter != ""){ echo"<a href='https://twitter.com/".$row->twitter."' target='_blank'><img class='social-icon' src='themes/addfriend/images/twitter-icon.png'></a>"; }?>
-      <?if($row->instagram != ""){ echo"<a href='https://www.instagram.com/".$row->instagram."' target='_blank'><img class='social-icon' src='themes/addfriend/images/instagram-icon.png'></a>"; }?>
+      <?if($row->social_line != ""){ echo'<a href="javascript:void(0)" onclick="location.href=\'http://line.me/ti/p/~'.$row->social_line.'\'"><img class="social-icon" src="themes/addfriend/images/line-icon.png"></a>'; }?>
+      <?if($row->social_facebook != ""){ echo"<a href='https://www.facebook.com/".$row->social_facebook."' target='_blank'><img class='social-icon' src='themes/addfriend/images/facebook-icon.png'></a>"; }?>
+      <?if($row->social_twitter != ""){ echo"<a href='https://twitter.com/".$row->social_twitter."' target='_blank'><img class='social-icon' src='themes/addfriend/images/twitter-icon.png'></a>"; }?>
+      <?if($row->social_instagram != ""){ echo"<a href='https://www.instagram.com/".$row->social_instagram."' target='_blank'><img class='social-icon' src='themes/addfriend/images/instagram-icon.png'></a>"; }?>
     </div>
     <br clear="all">
 </div>
 <?endforeach;?>
 
 <br clear="all">
-<?php echo $rs->pagination();?>
+<?=$pagination?>
 </div>

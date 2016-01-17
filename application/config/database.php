@@ -59,9 +59,9 @@ $db['local']['autoinit'] = TRUE;
 $db['local']['stricton'] = FALSE;
 
 $db['host']['hostname'] = 'localhost';
-$db['host']['username'] = 'tastydsign_drt';
-$db['host']['password'] = 'db@drt%321';
-$db['host']['database'] = 'tastydsign_drt';
+$db['host']['username'] = 'addfrien_d';
+$db['host']['password'] = 'xCBLnHa6l3';
+$db['host']['database'] = 'addfrien_d';
 $db['host']['dbdriver'] = 'mysql';
 $db['host']['dbprefix'] = '';
 $db['host']['pconnect'] = TRUE;

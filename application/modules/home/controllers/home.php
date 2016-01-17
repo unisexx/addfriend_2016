@@ -37,21 +37,22 @@ class Home extends Public_Controller {
 
 								$rs = new User();
 				            	$rs->where('facebook_id = '.$data['user_profile']['id'])->get();
-											if(!$rs->exists()) // ถ้ายังไม่มีมี user นี้ใน database ให้บันทึกข้อมูล
+									if(!$rs->exists()) // ถ้ายังไม่มีมี user นี้ใน database ให้บันทึกข้อมูล
 			            		{
 			            			$rs = new User();
-												$_POST['facebook_id'] = $data['user_profile']['id'];
-				                $_POST['facebook_name'] = $data['user_profile']['name'];
-												$_POST['facebook_email'] = $data['user_profile']['email'];
-												$_POST['ip'] = $_SERVER['REMOTE_ADDR'];
-												$_POST['status'] = 0;
-				                $rs->from_array($_POST);
-				                $rs->save();
-												// $rs->check_last_query();
+									$_POST['facebook_id'] = $data['user_profile']['id'];
+	                				$_POST['facebook_name'] = $data['user_profile']['name'];
+									$_POST['facebook_email'] = $data['user_profile']['email'];
+									$_POST['display_name'] = $data['user_profile']['name'];
+									$_POST['ip'] = $_SERVER['REMOTE_ADDR'];
+									$_POST['status'] = 0;
+					                $rs->from_array($_POST);
+					                $rs->save();
+									// $rs->check_last_query();
 			            		}
 
 								// อัพเดทเวลาล้อกอิน
-								$this->db->query("UPDATE users SET updated = '".date("Y-m-d H:i:s")."' where id = ".$rs->id);
+								$this->db->query("UPDATE users SET updated = '".date("Y-m-d H:i:s")."', ip = '".$_SERVER['REMOTE_ADDR']."' where id = ".$rs->id);
 
 								// created session
 								$this->session->set_userdata('id',$rs->id);
@@ -94,6 +95,7 @@ class Home extends Public_Controller {
 	public function my_profile(){
 		if($this->session->userdata('facebook_id') != ""){
 			$data['rs'] = new User($this->session->userdata('id'));
+			$this->db->close();
 			$this->template->build('my_profile',$data);
 		}else{
 			set_notify('error', 'กรุณาเข้าสู่ระบบ');
@@ -110,19 +112,48 @@ class Home extends Public_Controller {
 	}
 
 	public function inc_home(){
-		$data['rs'] = new User();
-		if(@$_GET['sex_id']){ $data['rs']->where("sex_id = ".$_GET['sex_id']); }
-		if(@$_GET['province_id']){ $data['rs']->where("province_id = ".$_GET['province_id']); }
-		if(@$_GET['age_start']){ $data['rs']->where("(age between ".$_GET['age_start']." and ".$_GET['age_end'].")"); }
-		$data['rs']->where("status != 0")->order_by('updated desc');
-		$data['rs']->get_page(10);
-		// $data['rs']->check_last_query();
+		$condition = " 1=1 ";
+		if(@$_GET['sex_id']){ $condition .= " and sex_id = ".$_GET['sex_id']; }
+		if(@$_GET['province_id']){ $condition .= " and province_id = ".$_GET['province_id']; }
+		if(@$_GET['social']){ $condition .= " and ".$_GET['social']." <> ''"; }
+		if(@$_GET['age_start']){ $condition .= " and (age between ".$_GET['age_start']." and ".$_GET['age_end'].")"; }
+		$sql = "SELECT
+						users.id,
+						users.facebook_id,
+						users.image,
+						users.display_name,
+						users.age,
+						users.detail,
+						users.social_line,
+						users.social_instagram,
+						users.social_whatsapp,
+						users.social_facebook,
+						users.social_twitter,
+						sexs.color sex_color,
+						sexs.title sex_title,
+						provinces.`name` province_name
+					FROM
+						users
+					INNER JOIN provinces ON users.province_id = provinces.id
+					INNER JOIN sexs ON users.sex_id = sexs.id
+					WHERE ".$condition." 
+					AND STATUS != 0
+					ORDER BY
+						updated DESC ";
+		// echo $sql;
+		
+		$rs = new User();
+        $data['rs'] = $rs->sql_page($sql, 10);
+		$data['pagination'] = $rs->sql_pagination;
+		
+		$this->db->close();
 		$this->load->view('inc_home',$data);
 	}
 
 	public function profile($id){
 		$data['rs'] = new User($id);
 		$this->template->title($data['rs']->display_name.' - Addfriend');
+		$this->db->close();
 		$this->template->build('profile',$data);
 	}
 }

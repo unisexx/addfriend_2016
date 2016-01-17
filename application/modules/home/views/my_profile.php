@@ -1,4 +1,5 @@
 <!-- <h1>ข้อมูลส่วนตัว</h1> -->
+<div class="alert alert-info" role="alert"><i class="fa fa-exclamation-circle"></i> ทุกครั้งที่ทำการล้อกอินเข้าสู่ระบบ จะทำให้ชื่อของคุณถูกดันขึ้นไปอยู่ลำดับบนสุดของหน้าแรกเสมอ</div>
 
 <fieldset>
   <legend>กรอกข้อมูลส่วนตัว</legend>
@@ -37,20 +38,20 @@
     <textarea class="form-control" id="detail" rows="5" name="detail"><?=$rs->detail?></textarea>
   </div>
   <div class="form-group">
-    <label for="line">LINE ID</label>
-    <input type="text" class="form-control validate" id="line" name="line" value="<?=$rs->line?>" placeholder="ถ้าไม่มีให้เว้นว่างไว้">
+    <label for="social_line">LINE ID</label>
+    <input type="text" class="form-control validate" id="social_line" name="social_line" value="<?=$rs->social_line?>" placeholder="ถ้าไม่มีให้เว้นว่างไว้">
   </div>
 	<div class="form-group">
-    <label for="instagram">instagram ID</label>
-    <input type="text" class="form-control validate" id="instagram" name="instagram" value="<?=$rs->instagram?>" placeholder="ถ้าไม่มีให้เว้นว่างไว้">
+    <label for="social_instagram">instagram ID</label>
+    <input type="text" class="form-control validate" id="social_instagram" name="social_instagram" value="<?=$rs->social_instagram?>" placeholder="ถ้าไม่มีให้เว้นว่างไว้">
   </div>
 	<div class="form-group">
-    <label for="twitter">twitter ID</label>
-    <input type="text" class="form-control validate" id="twitter" name="twitter" value="<?=$rs->twitter?>" placeholder="ถ้าไม่มีให้เว้นว่างไว้">
+    <label for="social_twitter">twitter ID</label>
+    <input type="text" class="form-control validate" id="social_twitter" name="social_twitter" value="<?=$rs->social_twitter?>" placeholder="ถ้าไม่มีให้เว้นว่างไว้">
   </div>
 	<div class="form-group">
-    <label for="facebook">facebook ID</label>
-    <input type="text" class="form-control validate" id="facebook" name="facebook" value="<?=$rs->facebook?>" placeholder="ถ้าไม่มีให้เว้นว่างไว้">
+    <label for="social_facebook">facebook ID</label>
+    <input type="text" class="form-control validate" id="social_facebook" name="social_facebook" value="<?=$rs->social_facebook?>" placeholder="ถ้าไม่มีให้เว้นว่างไว้">
   </div>
 	<input type="hidden" name="id" value="<?=$rs->id?>">
   <button type="submit" class="btn btn-primary">บันทึกข้อมูล</button>
@@ -61,9 +62,9 @@
 <fieldset>
   <legend>แสดงตัวอย่าง</legend>
   <?if($rs->status == 0):?>
-    <div class="alert alert-danger" role="alert">ตอนนี้คุณอยู่ในสถานะ "<b>ปิดการใช้งาน</b>" ข้อมูลของคุณจะไม่แสดงในหน้าแรก</div>
+    <div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-triangle"></i> ตอนนี้คุณอยู่ในสถานะ "<b>ปิดการใช้งาน</b>" ข้อมูลของคุณจะไม่แสดงในหน้าแรก</div>
   <?else:?>
-    <div class="alert alert-success" role="alert">ตอนนี้คุณอยู่ในสถานะ "<b>เปิดการใช้งาน</b>" ข้อมูลของคุณแสดงให้เพื่อนเห็นแล้ว</div>
+    <div class="alert alert-success" role="alert"><i class="fa fa-check"></i> ตอนนี้คุณอยู่ในสถานะ "<b>เปิดการใช้งาน</b>" ข้อมูลของคุณแสดงให้เพื่อนเห็นแล้ว</div>
   <?endif;?>
   <?=image_alert($rs->image);?>
   <div id="listfriend">
@@ -75,10 +76,10 @@
   		<span class="label label-warning"><?php echo $rs->province->name; ?></span>
       <div class="fdetail"><?=$rs->detail?></div>
       <div class="social-data">
-        <?if($rs->line != ""){ echo'<a href="javascript:void(0)" onclick="location.href=\'http://line.me/ti/p/~'.$rs->line.'\'"><img class="social-icon" src="themes/addfriend/images/line-icon.png"></a>'; }?>
-        <?if($rs->facebook != ""){ echo"<a href='https://www.facebook.com/".$rs->facebook."' target='_blank'><img class='social-icon' src='themes/addfriend/images/facebook-icon.png'></a>"; }?>
-        <?if($rs->twitter != ""){ echo"<a href='https://twitter.com/".$rs->twitter."' target='_blank'><img class='social-icon' src='themes/addfriend/images/twitter-icon.png'></a>"; }?>
-        <?if($rs->instagram != ""){ echo"<a href='https://www.instagram.com/".$rs->instagram."' target='_blank'><img class='social-icon' src='themes/addfriend/images/instagram-icon.png'></a>"; }?>
+        <?if($rs->social_line != ""){ echo'<a href="javascript:void(0)" onclick="location.href=\'http://line.me/ti/p/~'.$rs->social_line.'\'"><img class="social-icon" src="themes/addfriend/images/line-icon.png"></a>'; }?>
+        <?if($rs->social_facebook != ""){ echo"<a href='https://www.facebook.com/".$rs->social_facebook."' target='_blank'><img class='social-icon' src='themes/addfriend/images/facebook-icon.png'></a>"; }?>
+        <?if($rs->social_twitter != ""){ echo"<a href='https://twitter.com/".$rs->social_twitter."' target='_blank'><img class='social-icon' src='themes/addfriend/images/twitter-icon.png'></a>"; }?>
+        <?if($rs->social_instagram != ""){ echo"<a href='https://www.instagram.com/".$rs->social_instagram."' target='_blank'><img class='social-icon' src='themes/addfriend/images/instagram-icon.png'></a>"; }?>
       </div>
       <br clear="all">
   </div>
@@ -96,16 +97,16 @@ $(document).ready(function () {
           names: "social"
       },
       rules: {
-          line: {
+          social_line: {
               require_from_group: [1, ".validate"]
           },
-          instagram: {
+          social_instagram: {
               require_from_group: [1, ".validate"]
           },
-          twitter: {
+          social_twitter: {
               require_from_group: [1, ".validate"]
           },
-          facebook: {
+          social_facebook: {
               require_from_group: [1, ".validate"]
           }
       },

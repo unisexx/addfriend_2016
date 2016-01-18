@@ -45,6 +45,7 @@
 		<span class="label label-warning"><?php echo $row->province_name; ?></span>
     <div class="fdetail"><?=$row->detail?></div>
     
+    <?if(@$_GET["social"]):?>
 	<div class="input-group col-md-5 col-xs-12" style="margin-bottom: 5px;">
 		<span class="input-group-addon"><?=@$_GET["social"] != ""? $socialName[$_GET["social"]] : "Line" ;?></span>
 		<input type="text" class="form-control" value="<?=@$_GET["social"] != "" ? $row->$_GET["social"] : $row->social_line ;?>">
@@ -52,19 +53,49 @@
 				<a href="javascript:void(0)" onclick="location.href='http://line.me/ti/p/~<?=$row->social_line?>'" class="input-group-addon" style="background: #00B84F;
 	  color: #fff; border:1px solid #08A100;">เพิ่มเพื่อน</a>
 	  		<?elseif(@$_GET["social"] == "social_facebook"):?>
-	  			<a href='https://www.facebook.com/<?=$row->social_facebook?>' target='_blank' class="input-group-addon" style="background: #00B84F;
-	  color: #fff; border:1px solid #08A100;">เพิ่มเพื่อน</a>
+	  			<a href='https://www.facebook.com/<?=$row->social_facebook?>' target='_blank' class="input-group-addon" style="background: #3B5998;
+	  color: #fff; border:1px solid #3B5998;">เพิ่มเพื่อน</a>
 	  		<?elseif(@$_GET["social"] == "social_twitter"):?>
-	  			<a href='https://twitter.com/<?=$row->social_twitter?>' target='_blank' class="input-group-addon" style="background: #00B84F;
-	  color: #fff; border:1px solid #08A100;">เพิ่มเพื่อน</a>
+	  			<a href='https://twitter.com/<?=$row->social_twitter?>' target='_blank' class="input-group-addon" style="background: #2AA9DF;
+	  color: #fff; border:1px solid #2AA9DF;">เพิ่มเพื่อน</a>
 	  		<?elseif(@$_GET["social"] == "social_instagram"):?>
-	  			<a href='https://www.instagram.com/<?=$row->social_instagram?>' target='_blank' class="input-group-addon" style="background: #00B84F;
-	  color: #fff; border:1px solid #08A100;">เพิ่มเพื่อน</a>
+	  			<a href='https://www.instagram.com/<?=$row->social_instagram?>' target='_blank' class="input-group-addon" style="background: #6A453B;
+	  color: #fff; border:1px solid #6A453B;">เพิ่มเพื่อน</a>
 		  	<?else:?>
 					<a href="javascript:void(0)" onclick="location.href='http://line.me/ti/p/~<?=$row->social_line?>'" class="input-group-addon" style="background: #00B84F;
 		  color: #fff; border:1px solid #08A100;">เพิ่มเพื่อน</a>
 	  		<?endif;?>
 	</div>	
+	<?else:?>
+		<?if($row->social_line != ""):?>
+			<div class="input-group col-md-5 col-xs-12" style="margin-bottom: 5px;">
+				<span class="input-group-addon">Line</span>
+				<input type="text" class="form-control" value="<?=$row->social_line ;?>">
+						<a href="javascript:void(0)" onclick="location.href='http://line.me/ti/p/~<?=$row->social_line?>'" class="input-group-addon" style="background: #00B84F;color: #fff; border:1px solid #08A100;">เพิ่มเพื่อน</a>
+			</div>	
+		<?elseif($row->social_facebook != ""):?>
+			<div class="input-group col-md-5 col-xs-12" style="margin-bottom: 5px;">
+				<span class="input-group-addon">Facebook</span>
+				<input type="text" class="form-control" value="<?=$row->social_facebook ;?>">
+						<a href='http://www.facebook.com/<?=$row->social_facebook?>' target='_blank' class="input-group-addon" style="background: #3B5998;
+	  color: #fff; border:1px solid #3B5998;">เพิ่มเพื่อน</a>
+			</div>	
+		<?elseif($row->social_twitter != ""):?>
+			<div class="input-group col-md-5 col-xs-12" style="margin-bottom: 5px;">
+				<span class="input-group-addon">Twitter</span>
+				<input type="text" class="form-control" value="<?=$row->social_twitter ;?>">
+						<a href='http://twitter.com/<?=$row->social_twitter?>' target='_blank' class="input-group-addon" style="background: #2AA9DF;
+	  color: #fff; border:1px solid #2AA9DF;">เพิ่มเพื่อน</a>
+			</div>	
+		<?elseif($row->social_instagram != ""):?>
+			<div class="input-group col-md-5 col-xs-12" style="margin-bottom: 5px;">
+				<span class="input-group-addon">Twitter</span>
+				<input type="text" class="form-control" value="<?=$row->social_instagram ;?>">
+						<a href='http://www.instagram.com/<?=$row->social_instagram?>' target='_blank' class="input-group-addon" style="background: #6A453B;
+	  color: #fff; border:1px solid #6A453B;">เพิ่มเพื่อน</a>
+			</div>	
+		<?endif;?>
+	<?endif;?>
 	
     <div class="social-data pull-right">
       <?if($row->social_line != ""){ echo'<a href="javascript:void(0)" onclick="location.href=\'http://line.me/ti/p/~'.$row->social_line.'\'"><img class="social-icon" src="themes/addfriend/images/line-icon.png"></a>'; }?>

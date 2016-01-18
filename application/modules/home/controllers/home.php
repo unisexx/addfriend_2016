@@ -21,16 +21,9 @@ class Home extends Public_Controller {
 	}
 
 	public function login(){
+		//-------------------------------------------- Facebook Login--------------------------
 		$this->load->library('facebook'); // Automatically picks appId and secret from config
-        // OR
-        // You can pass different one like this
-        //$this->load->library('facebook', array(
-        //    'appId' => 'APP_ID',
-        //    'secret' => 'SECRET',
-        //    ));
-
 		$user = $this->facebook->getUser();
-
         if ($user) {
             try {
                 $data['user_profile'] = $this->facebook->api('/me', array('fields' => 'id,name,email'));
@@ -67,28 +60,28 @@ class Home extends Public_Controller {
             // Solves first time login issue. (Issue: #10)
             //$this->facebook->destroySession();
         }
-
+		redirect('home');
 	}
 
     public function logout(){
+    	//----------- Facebook Logout -----------------------------
         $this->load->library('facebook');
-
         // Logs off session from website
         $this->facebook->destroySession();
         // Make sure you destory website session as well.
-
         $this->session->sess_destroy();
+		
         redirect('home');
     }
 
 	public function inc_login_btn(){
+		//--------------------- Facebook Button -------------------------------
 		$this->load->library('facebook'); // Automatically picks appId and secret from config
 
         $data['login_url'] = $this->facebook->getLoginUrl(array(
             'redirect_uri' => site_url('home/login'),
             'scope' => array("email") // permissions here
         ));
-
         $this->load->view('inc_login',$data);
 	}
 
@@ -115,7 +108,7 @@ class Home extends Public_Controller {
 			if($_POST['social_facebook'] != ""){ $_POST['social_facebook'] = strip_tags($_POST['social_facebook']); }
 			$rs->from_array($_POST);
 			$rs->save();
-			set_notify('success', 'บันทึกข้อมูลเรียบร้อย');	
+			set_notify('success', 'บันทึกข้อมูลเรียบร้อย');
 		}
 		redirect('home/my_profile');
 	}
@@ -145,17 +138,16 @@ class Home extends Public_Controller {
 						users
 					INNER JOIN provinces ON users.province_id = provinces.id
 					INNER JOIN sexs ON users.sex_id = sexs.id
-					WHERE ".$condition." 
+					WHERE ".$condition."
 					AND STATUS != 0
 					ORDER BY
 						updated desc";
 		// echo $sql;
-		
+
 		$rs = new User();
-		// $data['rs'] = $this->db->query($sql)->result();
         $data['rs'] = $rs->sql_page($sql, 10);
 		$data['pagination'] = $rs->sql_pagination;
-		
+
 		$this->db->close();
 		$this->load->view('inc_home',$data);
 	}
@@ -166,7 +158,7 @@ class Home extends Public_Controller {
 		$this->db->close();
 		$this->template->build('profile',$data);
 	}
-	
+
 	public function img_upload(){
 		$this->template->build('img_upload');
 	}

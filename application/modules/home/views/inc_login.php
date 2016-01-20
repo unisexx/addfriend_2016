@@ -1,6 +1,16 @@
 <?if($this->session->userdata('id') != ""):?>
-  <a class="btn btn-lg btn-primary" href="home/my_profile" role="button">ข้อมูลส่วนตัว</a>
-  <a class="btn btn-lg btn-primary" href="home/logout" role="button">ออกจากระบบ</a>
+<div class="row">
+<div class="col-md-3">
+	  <a class="btn btn-block btn-social btn-lg btn-facebook" href="home/my_profile">
+	    <span class="fa fa-user"></span> ข้อมูลส่วนตัว
+	  </a>
+</div>
+<div class="col-md-3" <?if($this->agent->is_mobile()){echo'style="margin-top:10px;"';}?>>
+  <a class="btn btn-block btn-social btn-lg btn-google" href="home/logout">
+    <span class="fa fa-sign-out"></span> ออกจากระบบ
+  </a>
+</div>
+</div>
 <?else:?>
 <div class="row">
 <div class="col-md-4">
@@ -9,7 +19,7 @@
 	  </a>
 </div>
 <div class="col-md-4" <?if($this->agent->is_mobile()){echo'style="margin-top:10px;"';}?>>
-  <a class="btn btn-block btn-social btn-lg btn-google" href="<?=$authUrl?>"">
+  <a class="btn btn-block btn-social btn-lg btn-google" href="<?=$authUrl?>">
     <span class="fa fa-google-plus"></span> เข้าสู่ระบบด้วย Gmail
   </a>
 </div>

@@ -38,7 +38,7 @@
 <div id="listfriend">
 <?foreach ($rs as $key => $row):?>
 <div class="profile">
-    <img class="img-thumbnail pull-left" data-src="holder.js/120x120" alt="120x120" src="<?=check_image_url($row->image,$row->facebook_id)?>" style="width: 120px; height: 120px; margin-right:10px; margin-bottom:5px;">
+    <img class="img-thumbnail pull-left" data-src="holder.js/120x120" alt="120x120" src="<?=check_image_url($row->image,$row->facebook_id,$row->google_picture_link)?>" style="width: 120px; height: 120px; margin-right:10px; margin-bottom:5px;">
     <h3><a href="home/profile/<?=$row->id?>"><?=$row->display_name?></a></h3>
     <span class="label label-green"><?php echo $row->age; ?></span>
 		<span class="label" style="background: <?php echo $row->sex_color; ?>"><?php echo $row->sex_title ?></span>
@@ -50,7 +50,7 @@
 		<span class="input-group-addon"><?=@$_GET["social"] != ""? $socialName[$_GET["social"]] : "Line" ;?></span>
 		<input type="text" class="form-control" value="<?=@$_GET["social"] != "" ? $row->$_GET["social"] : $row->social_line ;?>">
 			<?if(@$_GET["social"] == "social_line"):?>
-				<a href="javascript:void(0)" onclick="location.href='http://line.me/ti/p/~<?=$row->social_line?>'" class="input-group-addon" style="background: #00B84F;
+				<a href="javascript:void(0)" target='_blank' onclick="location.href='http://line.me/ti/p/~<?=$row->social_line?>'" class="input-group-addon" style="background: #00B84F;
 	  color: #fff; border:1px solid #08A100;">เพิ่มเพื่อน</a>
 	  		<?elseif(@$_GET["social"] == "social_facebook"):?>
 	  			<a href='https://www.facebook.com/<?=$row->social_facebook?>' target='_blank' class="input-group-addon" style="background: #3B5998;
@@ -62,7 +62,7 @@
 	  			<a href='https://www.instagram.com/<?=$row->social_instagram?>' target='_blank' class="input-group-addon" style="background: #6A453B;
 	  color: #fff; border:1px solid #6A453B;">เพิ่มเพื่อน</a>
 		  	<?else:?>
-					<a href="javascript:void(0)" onclick="location.href='http://line.me/ti/p/~<?=$row->social_line?>'" class="input-group-addon" style="background: #00B84F;
+					<a href="javascript:void(0)" target='_blank' onclick="location.href='http://line.me/ti/p/~<?=$row->social_line?>'" class="input-group-addon" style="background: #00B84F;
 		  color: #fff; border:1px solid #08A100;">เพิ่มเพื่อน</a>
 	  		<?endif;?>
 	</div>	
@@ -71,7 +71,7 @@
 			<div class="input-group col-md-5 col-xs-12" style="margin-bottom: 5px;">
 				<span class="input-group-addon">Line</span>
 				<input type="text" class="form-control" value="<?=$row->social_line ;?>">
-						<a href="javascript:void(0)" onclick="location.href='http://line.me/ti/p/~<?=$row->social_line?>'" class="input-group-addon" style="background: #00B84F;color: #fff; border:1px solid #08A100;">เพิ่มเพื่อน</a>
+						<a href="javascript:void(0)" target='_blank' onclick="location.href='http://line.me/ti/p/~<?=$row->social_line?>'" class="input-group-addon" style="background: #00B84F;color: #fff; border:1px solid #08A100;">เพิ่มเพื่อน</a>
 			</div>	
 		<?elseif($row->social_facebook != ""):?>
 			<div class="input-group col-md-5 col-xs-12" style="margin-bottom: 5px;">

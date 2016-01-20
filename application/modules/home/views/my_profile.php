@@ -9,7 +9,7 @@
   <?// =image_alert($rs->image);?>
   <div id="listfriend">
   <div class="profile example">
-        <img class="img-thumbnail pull-left" data-src="holder.js/120x120" alt="120x120" src="<?=check_image_url($rs->image,$rs->facebook_id)?>" style="width: 120px; height: 120px; margin-right:10px;">
+        <img class="img-thumbnail pull-left" data-src="holder.js/120x120" alt="120x120" src="<?=check_image_url($rs->image,$rs->facebook_id,$rs->google_picture_link)?>" style="width: 120px; height: 120px; margin-right:10px;">
         <?// =thumb(check_image_url($rs->image,$rs->facebook_id),120,120,1,' class="img-thumbnail pull-left" data-src="holder.js/120x120" alt="120x120" style="width: 120px; height: 120px; margin-right:10px;"')?>
       <h3><?=$rs->display_name?></h3>
       <span class="label label-green"><?php echo $rs->age; ?></span>
@@ -38,11 +38,11 @@
   <div class="form-group">
     <label for="image">ลิ้งค์รูปโพรไฟล์ (ไฟล์นามสกุล .jpg .png .gif)</label>
     <br><?//=uppic_mce()?> <a href="home/img_upload">อัพรูปคลิ๊กที่นี่จ้า</a>
-    <input type="text" class="form-control" id="image" name="image" value="<?=$rs->image?>" placeholder="ถ้าไม่มีให้ปล่อยว่างไว้ ระบบจะใช้รูปจาก facebook แทน">
+    <input type="text" class="form-control" id="image" name="image" value="<?=$rs->image?>" placeholder="ถ้าไม่มีให้ปล่อยว่างไว้ ระบบจะใช้รูปจาก<?if($rs->login_type == 1){ echo "บัญชี facebook";}elseif($rs->login_type == 2){echo "บัญชี google";}?> แทน">
   </div>
   <div class="form-group">
     <label for="displayName">ชื่อที่ใช้แสดง</label>
-    <input type="text" class="form-control" id="displayName" name="display_name" value="<?=$rs->display_name=="" ? $rs->facebook_name : $rs->display_name ;?>">
+    <input type="text" class="form-control" id="displayName" name="display_name" value="<?=$rs->display_name?>">
   </div>
 	<div class="form-group">
     <label for="sex">เพศ</label>

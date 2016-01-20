@@ -29,27 +29,30 @@ class Home extends Public_Controller {
                 $data['user_profile'] = $this->facebook->api('/me', array('fields' => 'id,name,email'));
 
 								$rs = new User();
-				            	$rs->where('facebook_id = '.$data['user_profile']['id'])->get();
-									if(!$rs->exists()) // ถ้ายังไม่มีมี user นี้ใน database ให้บันทึกข้อมูล
-			            		{
-			            			$rs = new User();
+								$rs->where('facebook_id = '.$data['user_profile']['id'])->get();
+								if(!$rs->exists()) // ถ้ายังไม่มีมี user นี้ใน database ให้บันทึกข้อมูล
+								{
+			            $rs = new User();
+									$_POST['login_type'] = 1;
 									$_POST['facebook_id'] = $data['user_profile']['id'];
-	                				$_POST['facebook_name'] = $data['user_profile']['name'];
+	                $_POST['facebook_name'] = $data['user_profile']['name'];
 									$_POST['facebook_email'] = $data['user_profile']['email'];
 									$_POST['display_name'] = $data['user_profile']['name'];
+									$_POST['social_facebook'] = $data['user_profile']['id'];
 									$_POST['ip'] = $_SERVER['REMOTE_ADDR'];
 									$_POST['status'] = 0;
-					                $rs->from_array($_POST);
-					                $rs->save();
+	                $rs->from_array($_POST);
+	                $rs->save();
 									// $rs->check_last_query();
-			            		}
+			          }
 
 								// อัพเดทเวลาล้อกอิน
-								$this->db->query("UPDATE users SET updated = '".date("Y-m-d H:i:s")."', ip = '".$_SERVER['REMOTE_ADDR']."' where id = ".$rs->id);
+								$this->db->query("UPDATE users SET updated = '".date("Y-m-d H:i:s")."', ip = '".$_SERVER['REMOTE_ADDR']."', facebook_name = '".$data['user_profile']['name']."' where id = ".$rs->id);
 
 								// created session
 								$this->session->set_userdata('id',$rs->id);
-                				$this->session->set_userdata('facebook_id',$rs->facebook_id);
+								$this->session->set_userdata('login_type',$rs->login_type);
+                $this->session->set_userdata('facebook_id',$rs->facebook_id);
 								set_notify('success', 'ยินดีต้อนรับเข้าสู่ระบบ');
 								redirect('home/my_profile');
 
@@ -60,6 +63,51 @@ class Home extends Public_Controller {
             // Solves first time login issue. (Issue: #10)
             //$this->facebook->destroySession();
         }
+
+		//-------------------------------------------- Google Login --------------------------
+		require_once('application/libraries/google.php');
+		// หลังทำการล้อกอินด้วยอีเมล์ ระบบจะส่งรหัสมาทำการ authenticate ถ้าผ่านจะทำการสร้าง session ชื่อ access_token
+		if (isset($_GET['code'])) {
+		  $client->authenticate($_GET['code']);
+		  // $_SESSION['access_token'] = $client->getAccessToken();
+		  $this->session->set_userdata('access_token',$client->getAccessToken());
+			if ($this->session->userdata('access_token') != "") {
+			  $client->setAccessToken($this->session->userdata('access_token'));
+				$user = $service->userinfo->get();
+			}
+		  //redirect('home/my_profile');
+
+			$rs = new User();
+			$rs->where('google_id = '.$user->id)->get();
+			if(!$rs->exists()) // ถ้ายังไม่มีมี user นี้ใน database
+			{
+				$rs = new User();
+				$_POST['login_type'] = 2;
+				$_POST['google_id'] = $user->id;
+				$_POST['google_name'] = $user->name;
+				$_POST['google_email'] = $user->email;
+				$_POST['google_link'] = $user->link;
+				$_POST['google_picture_link'] = $user->picture;
+				$_POST['display_name'] = $user->name;
+				$_POST['ip'] = $_SERVER['REMOTE_ADDR'];
+				$_POST['status'] = 0;
+				$rs->from_array($_POST);
+				$rs->save();
+				// $rs->check_last_query();
+			}
+
+			// อัพเดทเวลาล้อกอิน
+			$this->db->query("UPDATE users SET updated = '".date("Y-m-d H:i:s")."', ip = '".$_SERVER['REMOTE_ADDR']."', google_picture_link = '".$user->picture."', google_name = '".$user->name."' where id = ".$rs->id);
+
+			// created session
+			$this->session->set_userdata('id',$rs->id);
+			$this->session->set_userdata('login_type',$rs->login_type);
+			$this->session->set_userdata('google_id',$rs->google_id);
+			set_notify('success', 'ยินดีต้อนรับเข้าสู่ระบบ');
+			redirect('home/my_profile');
+		}
+
+
 		redirect('home');
 	}
 
@@ -70,23 +118,31 @@ class Home extends Public_Controller {
         $this->facebook->destroySession();
         // Make sure you destory website session as well.
         $this->session->sess_destroy();
-		
+
         redirect('home');
     }
 
 	public function inc_login_btn(){
+		//--------------------- Google Button -------------------------------
+		// $this->load->library('google');
+		require_once('application/libraries/google.php');
+		// เช็ก session ถ้าเป็นค่าว่าง ให้ทำการสร้างปุ่มสำหรับล้อกอิน google
+		if ($this->session->userdata('access_token') == "") {
+		  $data['authUrl'] = $client->createAuthUrl();
+		}
+
 		//--------------------- Facebook Button -------------------------------
 		$this->load->library('facebook'); // Automatically picks appId and secret from config
+    $data['login_url'] = $this->facebook->getLoginUrl(array(
+        'redirect_uri' => site_url('home/login'),
+        'scope' => array("email") // permissions here
+    ));
 
-        $data['login_url'] = $this->facebook->getLoginUrl(array(
-            'redirect_uri' => site_url('home/login'),
-            'scope' => array("email") // permissions here
-        ));
-        $this->load->view('inc_login',$data);
+    $this->load->view('inc_login',$data);
 	}
 
 	public function my_profile(){
-		if($this->session->userdata('facebook_id') != ""){
+		if($this->session->userdata('id') != ""){
 			$data['rs'] = new User($this->session->userdata('id'));
 			$this->db->close();
 			$this->template->build('my_profile',$data);
@@ -122,6 +178,7 @@ class Home extends Public_Controller {
 		$sql = "SELECT
 						users.id,
 						users.facebook_id,
+						users.google_picture_link,
 						users.image,
 						users.display_name,
 						users.age,
@@ -136,8 +193,8 @@ class Home extends Public_Controller {
 						provinces.`name` province_name
 					FROM
 						users
-					INNER JOIN provinces ON users.province_id = provinces.id
-					INNER JOIN sexs ON users.sex_id = sexs.id
+					LEFT JOIN provinces ON users.province_id = provinces.id
+					LEFT JOIN sexs ON users.sex_id = sexs.id
 					WHERE ".$condition."
 					AND STATUS != 0
 					ORDER BY
@@ -145,7 +202,7 @@ class Home extends Public_Controller {
 		// echo $sql;
 
 		$rs = new User();
-        $data['rs'] = $rs->sql_page($sql, 10);
+    $data['rs'] = $rs->sql_page($sql, 10);
 		$data['pagination'] = $rs->sql_pagination;
 
 		$this->db->close();
@@ -161,6 +218,17 @@ class Home extends Public_Controller {
 
 	public function img_upload(){
 		$this->template->build('img_upload');
+	}
+
+	function google_login(){
+		$this->load->view('google_login');
+	}
+
+	function test2(){
+		echo '<pre>';
+		var_dump($this->session->userdata('access_token'));
+		echo '</pre>';
+		echo'<a href="home/logout">logout</a>';
 	}
 }
 ?>

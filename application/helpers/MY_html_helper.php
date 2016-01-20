@@ -255,7 +255,7 @@ function gallery_name($id){
 
 if(!function_exists('check_image_url'))
 {
-	function check_image_url($url=false,$facebook_id)
+	function check_image_url($url=false,$facebook_id=false,$google_picture_link=false)
 	{
 		if($url!=false){
 			// $size = @getimagesize($url);
@@ -266,9 +266,11 @@ if(!function_exists('check_image_url'))
 			 // }
 			return $url;
 			// return site_url("media/timthumb/timthumb.php?src=".$url."&zc=1&w=120&h=120");
-		}else{
+		}elseif($facebook_id!=false){
 			return "https://graph.facebook.com/".$facebook_id."/picture?type=large";
 			// return site_url("media/timthumb/timthumb.php?src=https://graph.facebook.com/".$facebook_id."/picture?type=large&zc=1&w=120&h=120");
+		}elseif($google_picture_link!=false){
+			return "$google_picture_link";
 		}
 	}
 }
@@ -309,11 +311,11 @@ if(!function_exists('imgur_upload'))
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 			curl_setopt($ch, CURLOPT_HTTPHEADER, array( 'Authorization: Client-ID ' . $client_id ));
 			curl_setopt($ch, CURLOPT_POSTFIELDS, array( 'image' => base64_encode($image) ));
-			
+
 			$reply = curl_exec($ch);
-			
+
 			curl_close($ch);
-			
+
 			$reply = json_decode($reply);
 			return @$reply->data->link;
 		}

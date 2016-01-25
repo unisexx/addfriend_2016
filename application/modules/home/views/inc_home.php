@@ -98,7 +98,7 @@
 	<?endif;?>
 	
     <div class="social-data pull-right">
-      <?if($row->social_line != ""){ echo'<a href="javascript:void(0)" onclick="location.href=\'http://line.me/ti/p/~'.$row->social_line.'\'"><img class="social-icon" src="themes/addfriend/images/line-icon.png"></a>'; }?>
+      <?if($row->social_line != ""){ echo'<a href="javascript:void(0)" target="_blank" onclick="location.href=\'http://line.me/ti/p/~'.$row->social_line.'\'"><img class="social-icon" src="themes/addfriend/images/line-icon.png"></a>'; }?>
       <?if($row->social_facebook != ""){ echo"<a href='https://www.facebook.com/".$row->social_facebook."' target='_blank'><img class='social-icon' src='themes/addfriend/images/facebook-icon.png'></a>"; }?>
       <?if($row->social_twitter != ""){ echo"<a href='https://twitter.com/".$row->social_twitter."' target='_blank'><img class='social-icon' src='themes/addfriend/images/twitter-icon.png'></a>"; }?>
       <?if($row->social_instagram != ""){ echo"<a href='https://www.instagram.com/".$row->social_instagram."' target='_blank'><img class='social-icon' src='themes/addfriend/images/instagram-icon.png'></a>"; }?>

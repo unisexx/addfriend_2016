@@ -211,7 +211,7 @@ class Home extends Public_Controller {
 
 	public function profile($id){
 		$data['rs'] = new User($id);
-		$this->template->title($data['rs']->display_name.' - Addfriend');
+		$this->template->title($data['rs']->display_name.' '.$data['rs']->detail.' - Addfriend');
 		$this->db->close();
 		$this->template->build('profile',$data);
 	}

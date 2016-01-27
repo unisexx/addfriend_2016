@@ -321,4 +321,14 @@ if(!function_exists('imgur_upload'))
 		}
 	}
 }
+
+if(!function_exists('meta_description'))
+{
+	function meta_description($description=false){
+	    $CI =& get_instance();
+	    if($description!=""){
+	        $CI->template->append_metadata( meta('description',$description));
+	    }
+	}
+}
 ?>

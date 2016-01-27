@@ -9,6 +9,7 @@ class Home extends Public_Controller {
 	function index()
 	{
 		$this->template->set_layout('home');
+		meta_description("โสด เหงา ต้องการกำลังใจ หาเพื่อนพูดคุยปรับทุกข์เรื่องราวต่างๆ มาอยู่กับเราสิแล้วคุณจะไม่เหงาอีกต่อไป");
 		$this->template->build('index');
 	}
 
@@ -211,7 +212,8 @@ class Home extends Public_Controller {
 
 	public function profile($id){
 		$data['rs'] = new User($id);
-		$this->template->title($data['rs']->display_name.' '.$data['rs']->detail.' - Addfriend');
+		$this->template->title('หาเพื่อนไลน์ '.$data['rs']->display_name.' - Addfriend');
+		meta_description($data['rs']->detail);
 		$this->db->close();
 		$this->template->build('profile',$data);
 	}
@@ -229,6 +231,10 @@ class Home extends Public_Controller {
 		var_dump($this->session->userdata('access_token'));
 		echo '</pre>';
 		echo'<a href="home/logout">logout</a>';
+	}
+	
+	function inc_sidebar(){
+		$this->load->view('inc_sidebar');
 	}
 }
 ?>

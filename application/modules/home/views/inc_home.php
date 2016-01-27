@@ -39,7 +39,10 @@
 <?foreach ($rs as $key => $row):?>
 <div class="profile">
     <img class="img-thumbnail pull-left" data-src="holder.js/120x120" alt="120x120" src="<?=check_image_url($row->image,$row->facebook_id,$row->google_picture_link)?>" style="width: 120px; height: 120px; margin-right:10px; margin-bottom:5px;">
-    <h3><a href="home/profile/<?=$row->id?>"><?=$row->display_name?></a></h3>
+    <h3>
+    	<a href="home/profile/<?=$row->id?>"><?=$row->display_name?></a>
+    	<div class="pull-right"><div class="fb-like" data-href="http://www.addfriend.in.th/home/profile/<?=$row->id?>" data-layout="box_count" data-action="like" data-show-faces="false" data-share="false"></div></div>
+    </h3>
     <span class="label label-green"><?php echo $row->age; ?></span>
 		<span class="label" style="background: <?php echo $row->sex_color; ?>"><?php echo $row->sex_title ?></span>
 		<span class="label label-warning"><?php echo $row->province_name; ?></span>
@@ -97,7 +100,7 @@
 		<?endif;?>
 	<?endif;?>
 	
-    <div class="social-data pull-right">
+    <div class="social-data pull-left">
       <?if($row->social_line != ""){ echo'<a href="javascript:void(0)" target="_blank" onclick="location.href=\'http://line.me/ti/p/~'.$row->social_line.'\'"><img class="social-icon" src="themes/addfriend/images/line-icon.png"></a>'; }?>
       <?if($row->social_facebook != ""){ echo"<a href='https://www.facebook.com/".$row->social_facebook."' target='_blank'><img class='social-icon' src='themes/addfriend/images/facebook-icon.png'></a>"; }?>
       <?if($row->social_twitter != ""){ echo"<a href='https://twitter.com/".$row->social_twitter."' target='_blank'><img class='social-icon' src='themes/addfriend/images/twitter-icon.png'></a>"; }?>

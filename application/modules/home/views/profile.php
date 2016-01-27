@@ -1,6 +1,6 @@
 <div class="col-md-8 col-xs-12">
   	<div>
-      <img class="img-responsive" data-src="holder.js/120x120" alt="120x120" src="<?=check_image_url($rs->image,$rs->facebook_id)?>" style="margin:0 auto;">
+      <img class="img-responsive" data-src="holder.js/120x120" alt="120x120" src="<?=check_image_url($rs->image,$rs->facebook_id,$rs->google_picture_link)?>" style="margin:0 auto;">
     </div>
     <div class="text-center">
       <h1><?=$rs->display_name?></h1>
@@ -78,4 +78,8 @@
       <?endif;?>
       </tbody>
     </table>
+</div>
+
+<div class="col-md-4 col-xs-12">
+	<?=modules::run('home/inc_sidebar'); ?>
 </div>

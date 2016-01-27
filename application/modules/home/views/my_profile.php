@@ -93,37 +93,36 @@
 <br>
 <div class="alert alert-info" role="alert"><i class="fa fa-exclamation-circle"></i> ทุกครั้งที่ทำการล้อกอินเข้าสู่ระบบ หรือกดปุ่มบันทึกข้อมูล จะทำให้ชื่อของคุณถูกดันขึ้นไปอยู่ลำดับบนสุดของหน้าแรกเสมอ</div>
 
-<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/jquery.validate.min.js"></script>
-<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/additional-methods.js"></script>
+<script type="text/javascript" src="media/js/validate/jquery.validate.min.js"></script>
+<script type="text/javascript" src="media/js/validate/additional-methods.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
 
   $('#myProfile').validate({ // initialize the plugin
-      groups: {
-          names: "social"
-      },
-      rules: {
-          social_line: {
-              require_from_group: [1, ".validate"]
-          },
-          social_instagram: {
-              require_from_group: [1, ".validate"]
-          },
-          social_twitter: {
-              require_from_group: [1, ".validate"]
-          },
-          social_facebook: {
-              require_from_group: [1, ".validate"]
-          }
-      },
-      // submitHandler: function (form) { // for demo
-      //     alert('valid form submitted'); // for demo
-      //     return false; // for demo
-      // }
-  });
-
-  jQuery.extend(jQuery.validator.messages, {
-      require_from_group: jQuery.format("กรุณากรอกข้อมูล social อย่างน้อย 1 รายการ")
+    rules: {
+        display_name: "required",
+        detail: "required",
+        social_line: {
+            require_from_group: [1, ".validate"]
+        },
+        social_instagram: {
+            require_from_group: [1, ".validate"]
+        },
+        social_twitter: {
+            require_from_group: [1, ".validate"]
+        },
+        social_facebook: {
+            require_from_group: [1, ".validate"]
+        },
+    },
+    messages: {
+        display_name: "ชื่อห้ามเป็นค่าว่างจ้า",
+        detail: "กรอกข้อมูลแนะนำตัวหน่อยจ้า",
+        social_line: "กรุณากรอกข้อมูล social อย่างน้อย 1 รายการ",
+        social_instagram: "กรุณากรอกข้อมูล social อย่างน้อย 1 รายการ",
+        social_twitter: "กรุณากรอกข้อมูล social อย่างน้อย 1 รายการ",
+        social_facebook: "กรุณากรอกข้อมูล social อย่างน้อย 1 รายการ"
+    },
   });
 
 });

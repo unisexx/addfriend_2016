@@ -1,5 +1,5 @@
 <div id="content" style="margin-top:10px;height:100%;">
-   <center><h1>ฝากรูป</h1></center>
+   <center><h1>ฝากรูปสำหรับทำรูปโพรไฟล์</h1></center>
    
 <?if($_POST):?>
 
@@ -33,21 +33,23 @@ $reply = json_decode($reply);
 	<img src="<?=@$reply->data->link?>" class="img-thumbnail img-responsive" style="margin-bottom: 10px;">
 	<div class="input-group">
 	  <span class="input-group-addon" id="sizing-addon2">ลิ้งค์รูป</span>
-	  <input type="text" class="form-control"  aria-describedby="sizing-addon2" value="<?=@$reply->data->link?>" onmouseover="javascript:this.focus();this.select();">
+	  <input type="text" class="form-control"  aria-describedby="sizing-addon2" value="<?=@$reply->data->link?>">
 	</div>
 	<br> <span style="color:#d44950;">***</span> ให้ทำการ copy ลิ้งค์รูปนี้ไปใส่ในช่องรูปโพรไฟล์ได้เลยครับ <span style="color:#d44950;">***</span>
 	<hr>
 </div>
 <?endif;?>
 
+<br clear="all">
 <form action="" enctype="multipart/form-data" method="POST">
   <div class="form-group">
     <label for="imgupload">อัพโหลดรูปภาพ</label>
     <input id="imgupload" class="form-control" name="upload" type="file"/>
   </div>
   
-	  <input type="submit" class="btn btn-primary" name="submit" value="อัพโหลดรูป"/>
+	  <input id="submitbtn" type="submit" class="btn btn-primary" name="submit" value="อัพโหลดรูป"/>
 	  <a href="home/my_profile" class="btn btn-primary">กลับไปหน้าข้อมูลส่วนตัว</a>
+	  <img id="loading" src="themes/addfriend/images/loading-icon.gif" style="display: none;">
 </form>
 
 <style>
@@ -56,3 +58,11 @@ border:none;
 padding:8px;
 }
 </style>
+
+<script type="text/javascript">
+$(document).ready(function () {
+  $('#submitbtn').click(function() {
+	    $('#loading').show();
+	});
+});
+</script>

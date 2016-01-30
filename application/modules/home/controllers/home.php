@@ -156,7 +156,24 @@ class Home extends Public_Controller {
 	public function my_profile_save(){
 		if($_POST){
 			$rs = new User();
-			// $_POST['image'] = imgur_upload($_FILES['upload']['tmp_name']);
+			
+			// ถ้ามีการอัพโหลดรูป
+			// if($_FILES['upload']['tmp_name'] != ""){
+				// $image = file_get_contents($_FILES['upload']['tmp_name']);
+				// $client_id="94af93212e2e617";//Your Client ID here
+				// $ch = curl_init();
+				// curl_setopt($ch, CURLOPT_URL, 'https://api.imgur.com/3/image.json');
+				// curl_setopt($ch, CURLOPT_POST, TRUE);
+				// curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+				// curl_setopt($ch, CURLOPT_HTTPHEADER, array( 'Authorization: Client-ID ' . $client_id ));
+				// curl_setopt($ch, CURLOPT_POSTFIELDS, array( 'image' => base64_encode($image) ));
+				// $reply = curl_exec($ch);
+				// curl_close($ch);
+				// $reply = json_decode($reply);
+				// $_POST['image'] = @$reply->data->link;
+			// }
+			
+			if($_POST['image'] != ""){ $_POST['image'] = strip_tags($_POST['image']); }
 			$_POST['display_name'] = strip_tags($_POST['display_name']);
 			$_POST['detail'] = strip_tags($_POST['detail']);
 			if($_POST['social_line'] != ""){ $_POST['social_line'] = strip_tags($_POST['social_line']); }
@@ -235,6 +252,10 @@ class Home extends Public_Controller {
 	
 	function inc_sidebar(){
 		$this->load->view('inc_sidebar');
+	}
+	
+	function info(){
+		// phpinfo();
 	}
 }
 ?>

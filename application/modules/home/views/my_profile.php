@@ -6,11 +6,9 @@
   <?else:?>
     <div class="alert alert-success" role="alert"><i class="fa fa-check"></i> ตอนนี้คุณอยู่ในสถานะ "<b>เปิดการใช้งาน</b>" ข้อมูลของคุณแสดงให้เพื่อนเห็นแล้ว</div>
   <?endif;?>
-  <?// =image_alert($rs->image);?>
   <div id="listfriend">
   <div class="profile example">
         <img class="img-thumbnail pull-left" data-src="holder.js/120x120" alt="120x120" src="<?=check_image_url($rs->image,$rs->facebook_id,$rs->google_picture_link)?>" style="width: 120px; height: 120px; margin-right:10px;">
-        <?// =thumb(check_image_url($rs->image,$rs->facebook_id),120,120,1,' class="img-thumbnail pull-left" data-src="holder.js/120x120" alt="120x120" style="width: 120px; height: 120px; margin-right:10px;"')?>
       <h3><?=$rs->display_name?></h3>
       <span class="label label-green"><?php echo $rs->age; ?></span>
   		<span class="label" style="background: <?php echo $rs->sex->color; ?>"><?php echo $rs->sex->title ?></span>
@@ -86,7 +84,8 @@
     <input id="imgupload" class="form-control" name="upload" size="35" type="file"/>
   </div> -->
 	<input type="hidden" name="id" value="<?=$rs->id?>">
-  <button type="submit" class="btn btn-primary">บันทึกข้อมูล</button>
+	<button type="submit" class="btn btn-primary">บันทึกข้อมูล</button>
+	<!-- <img id="loading" src="themes/addfriend/images/loading-icon.gif" style="display: none;"> -->
 </form>
 </fieldset>
 
@@ -124,6 +123,10 @@ $(document).ready(function () {
         social_facebook: "กรุณากรอกข้อมูล social อย่างน้อย 1 รายการ"
     },
   });
+  
+  // $('button[type=submit]').click(function() {
+	    // $('#loading').show();
+	// });
 
 });
 </script>

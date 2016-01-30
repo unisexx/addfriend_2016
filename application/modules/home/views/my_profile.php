@@ -1,3 +1,5 @@
+<div class="col-xs-12">
+	
 <!-- <h1>ข้อมูลส่วนตัว</h1> -->
 <fieldset>
   <legend>แสดงตัวอย่าง</legend>
@@ -8,19 +10,27 @@
   <?endif;?>
   <div id="listfriend">
   <div class="profile example">
-        <img class="img-thumbnail pull-left" data-src="holder.js/120x120" alt="120x120" src="<?=check_image_url($rs->image,$rs->facebook_id,$rs->google_picture_link)?>" style="width: 120px; height: 120px; margin-right:10px;">
+	<div class="col-md-2" style="text-align: center">
+        <img class="" data-src="holder.js/150x150" alt="150x150" src="<?=check_image_url($rs->image,$rs->facebook_id,$rs->google_picture_link)?>" style="width: 150px; height: 150px; margin-right:10px;">
+	</div>
+	<div class="col-md-10 col-xs-12">
       <h3><?=$rs->display_name?></h3>
-      <span class="label label-green"><?php echo $rs->age; ?></span>
+      <div class="age-sex-location">
+		<span class="label label-green"><?php echo $rs->age; ?></span>
   		<span class="label" style="background: <?php echo $rs->sex->color; ?>"><?php echo $rs->sex->title ?></span>
   		<span class="label label-warning"><?php echo $rs->province->name; ?></span>
+  	 </div>
+  	 <hr style="margin:5px 0;">
       <div class="fdetail"><?=$rs->detail?></div>
       <div class="social-data">
         <?if($rs->social_line != ""){ echo'<a href="javascript:void(0)" onclick="location.href=\'http://line.me/ti/p/~'.$rs->social_line.'\'"><img class="social-icon" src="themes/addfriend/images/line-icon.png"></a>'; }?>
         <?if($rs->social_facebook != ""){ echo"<a href='https://www.facebook.com/".$rs->social_facebook."' target='_blank'><img class='social-icon' src='themes/addfriend/images/facebook-icon.png'></a>"; }?>
         <?if($rs->social_twitter != ""){ echo"<a href='https://twitter.com/".$rs->social_twitter."' target='_blank'><img class='social-icon' src='themes/addfriend/images/twitter-icon.png'></a>"; }?>
         <?if($rs->social_instagram != ""){ echo"<a href='https://www.instagram.com/".$rs->social_instagram."' target='_blank'><img class='social-icon' src='themes/addfriend/images/instagram-icon.png'></a>"; }?>
+        <?if($rs->social_beetalk != ""){ echo"<img class='social-icon' src='themes/addfriend/images/beetalk-icon.png'>"; }?>
       </div>
       <br clear="all">
+  </div>
   </div>
   </div>
 </fieldset>
@@ -68,16 +78,20 @@
     <input type="text" class="form-control validate" id="social_line" name="social_line" value="<?=$rs->social_line?>" placeholder="ถ้าไม่มีให้เว้นว่างไว้">
   </div>
 	<div class="form-group">
-    <label for="social_instagram">instagram ID</label>
+    <label for="social_instagram">Instagram ID</label>
     <input type="text" class="form-control validate" id="social_instagram" name="social_instagram" value="<?=$rs->social_instagram?>" placeholder="ถ้าไม่มีให้เว้นว่างไว้">
   </div>
 	<div class="form-group">
-    <label for="social_twitter">twitter ID</label>
+    <label for="social_twitter">Twitter ID</label>
     <input type="text" class="form-control validate" id="social_twitter" name="social_twitter" value="<?=$rs->social_twitter?>" placeholder="ถ้าไม่มีให้เว้นว่างไว้">
   </div>
 	<div class="form-group">
-    <label for="social_facebook">facebook ID</label>
+    <label for="social_facebook">Facebook ID</label>
     <input type="text" class="form-control validate" id="social_facebook" name="social_facebook" value="<?=$rs->social_facebook?>" placeholder="ถ้าไม่มีให้เว้นว่างไว้">
+  </div>
+  <div class="form-group">
+    <label for="social_beetalk">BeeTalk ID</label>
+    <input type="text" class="form-control validate" id="social_beetalk" name="social_beetalk" value="<?=$rs->social_beetalk?>" placeholder="ถ้าไม่มีให้เว้นว่างไว้">
   </div>
   <!-- <div class="form-group">
     <label for="imgupload">อัพโหลดรูปโพรไฟล์</label>
@@ -91,6 +105,8 @@
 
 <br>
 <div class="alert alert-info" role="alert"><i class="fa fa-exclamation-circle"></i> ทุกครั้งที่ทำการล้อกอินเข้าสู่ระบบ หรือกดปุ่มบันทึกข้อมูล จะทำให้ชื่อของคุณถูกดันขึ้นไปอยู่ลำดับบนสุดของหน้าแรกเสมอ</div>
+
+</div>
 
 <script type="text/javascript" src="media/js/validate/jquery.validate.min.js"></script>
 <script type="text/javascript" src="media/js/validate/additional-methods.min.js"></script>
@@ -113,6 +129,9 @@ $(document).ready(function () {
         social_facebook: {
             require_from_group: [1, ".validate"]
         },
+        social_beetalk: {
+            require_from_group: [1, ".validate"]
+        },
     },
     messages: {
         display_name: "ชื่อห้ามเป็นค่าว่างจ้า",
@@ -120,7 +139,8 @@ $(document).ready(function () {
         social_line: "กรุณากรอกข้อมูล social อย่างน้อย 1 รายการ",
         social_instagram: "กรุณากรอกข้อมูล social อย่างน้อย 1 รายการ",
         social_twitter: "กรุณากรอกข้อมูล social อย่างน้อย 1 รายการ",
-        social_facebook: "กรุณากรอกข้อมูล social อย่างน้อย 1 รายการ"
+        social_facebook: "กรุณากรอกข้อมูล social อย่างน้อย 1 รายการ",
+        social_beetalk: "กรุณากรอกข้อมูล social อย่างน้อย 1 รายการ"
     },
   });
   

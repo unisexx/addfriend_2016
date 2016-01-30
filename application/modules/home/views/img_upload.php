@@ -1,3 +1,5 @@
+<div class="col-xs-12">
+
 <div id="content" style="margin-top:10px;height:100%;">
    <center><h1>ฝากรูปสำหรับทำรูปโพรไฟล์</h1></center>
    
@@ -51,6 +53,8 @@ $reply = json_decode($reply);
 	  <a href="home/my_profile" class="btn btn-primary">กลับไปหน้าข้อมูลส่วนตัว</a>
 	  <img id="loading" src="themes/addfriend/images/loading-icon.gif" style="display: none;">
 </form>
+
+</div>
 
 <style>
 input{

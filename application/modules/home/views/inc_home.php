@@ -1,34 +1,28 @@
-<? $socialName = array('social_line'=>'Line','social_facebook'=>'Facebook','social_twitter'=>'Twitter','social_instagram'=>'Instagram'); ?>
+<? $socialName = array('social_line'=>'Line','social_facebook'=>'Facebook','social_twitter'=>'Twitter','social_instagram'=>'Instagram','social_beetalk'=>'BeeTalk'); ?>
 
 <fieldset>
   <legend>ค้นหา</legend>
 <div id="search">
   <form method="get" class="form-inline" role="form">
     <div class="form-group">
-      <!-- <label for="sex">เพศ</label> -->
       <?=form_dropdown('sex_id', get_option('id','title','sexs'), @$_GET['sex_id'],'id="sex" class="form-control"','--- เพศ ---');?>
     </div>
     <div class="form-group">
-      <label for="age_start">อายุ</label>
       <?
   			for ($i = 12; $i <= 75; ++$i) {
   				$ageArray[$i] = $i;
   			}
   		?>
-  		<?=form_dropdown('age_start', $ageArray, @$_GET['age_start'],'id="age_start" class="form-control"');?>
+  		<?=form_dropdown('age_start', $ageArray, @$_GET['age_start'],'id="age_start" class="form-control"','อายุ');?>
     </div>
     <div class="form-group">
-      <label for="age_end">ถึง</label>
-      	<?if(!isset($_GET['age_end'])){ $_GET['age_end'] = "75";}?>
-  		<?=form_dropdown('age_end', $ageArray, @$_GET['age_end'],'id="age_end" class="form-control"');?>
+  		<?=form_dropdown('age_end', $ageArray, @$_GET['age_end'],'id="age_end" class="form-control"','ถึงอายุ');?>
     </div>
     <div class="form-group">
-      <!-- <label for="province">จังหวัด</label> -->
-  		<?=form_dropdown('province_id', get_option('id','name','provinces order by name asc'), @$_GET['province_id'],'id="province" class="form-control"','--- เลือกจังหวัด ---');?>
+  		<?=form_dropdown('province_id', get_option('id','name','provinces order by name asc'), @$_GET['province_id'],'id="province" class="form-control"','--- จังหวัด ---');?>
     </div>
     <div class="form-group">
-      <!-- <label for="social">แอพ</label> -->
-  		<?=form_dropdown('social', array('social_line'=>'Line','social_facebook'=>'Facebook','social_twitter'=>'Twitter','social_instagram'=>'Instagram'), @$_GET['social'],'id="social" class="form-control"','--- เลือกแอพ ---');?>
+  		<?=form_dropdown('social', array('social_line'=>'Line','social_facebook'=>'Facebook','social_twitter'=>'Twitter','social_instagram'=>'Instagram','social_beetalk'=>'BeeTalk'), @$_GET['social'],'id="social" class="form-control"','--- โซเชียล ---');?>
     </div>
     <button type="submit" class="btn btn-success">ค้นหา</button>
   </form>
@@ -38,22 +32,24 @@
 <ul  id="listfriend" class="list-unstyled">
 <?foreach ($rs as $key => $row):?>
 <li style="position: relative;">
+	
 <div class="profile">
 	<div class="col-md-3" style="text-align: center">
-    	<img class="img-thumbnail" data-src="holder.js/120x120" alt="120x120" src="<?=check_image_url($row->image,$row->facebook_id,$row->google_picture_link)?>" style="width: 120px; height: 120px; margin-right:10px; margin-bottom:5px;">
-    	<div class="">
-    	<iframe src="//www.facebook.com/plugins/like.php?href=http://www.addfriend.in.th/home/profile/<?=$row->id?>&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;share=false&amp;height=21&amp;appId=532330300263938" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px; margin-top: 5px; width: 110px;" allowTransparency="true"></iframe> 
-    	</div>
+    	<a href="home/profile/<?=$row->id?>"><img class="imgProfile" data-src="holder.js/150x150" alt="150x150" src="<?=check_image_url($row->image,$row->facebook_id,$row->google_picture_link)?>" style="width: 150px; height: 150px; margin-right:10px; margin-bottom:5px;"></a>
     </div>
     <div class="col-md-9">
     <h3>
     	<a href="home/profile/<?=$row->id?>"><?=$row->display_name?></a>
     </h3>
     <div class="age-sex-location">
-	    <span class="label label-green"><?php echo $row->age; ?></span>
+	    <span class="label label-success"><?php echo $row->age; ?></span>
 		<span class="label" style="background: <?php echo $row->sex_color; ?>"><?php echo $row->sex_title ?></span>
 		<span class="label label-warning"><?php echo $row->province_name; ?></span>
+		<!-- <span>
+			<iframe src="//www.facebook.com/plugins/like.php?href=http://www.addfriend.in.th/home/profile/<?=$row->id?>&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;share=false&amp;height=21&amp;appId=532330300263938" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px; margin-top: 5px; width: 100px;" allowTransparency="true"></iframe> 
+		</span> -->
 	</div>
+	<hr style="margin:5px 0;">
     <div class="fdetail"><?=$row->detail?></div>
     
     <?if(@$_GET["social"]):?>
@@ -72,6 +68,9 @@
 	  		<?elseif(@$_GET["social"] == "social_instagram"):?>
 	  			<a href='https://www.instagram.com/<?=$row->social_instagram?>' target='_blank' class="input-group-addon" style="background: #6A453B;
 	  color: #fff; border:1px solid #6A453B;">เพิ่มเพื่อน</a>
+		  	<?elseif(@$_GET["social"] == "social_beetalk"):?>
+	  			<a href='javascript:void(0)' class="input-group-addon" style="background: #E9AA26;
+	  color: #fff; border:1px solid #E9AA26;">เพิ่มเพื่อน</a>
 		  	<?else:?>
 					<a href="javascript:void(0)" target='_blank' onclick="location.href='http://line.me/ti/p/~<?=$row->social_line?>'" class="input-group-addon" style="background: #00B84F;
 		  color: #fff; border:1px solid #08A100;">เพิ่มเพื่อน</a>
@@ -105,6 +104,13 @@
 						<a href='http://www.instagram.com/<?=$row->social_instagram?>' target='_blank' class="input-group-addon" style="background: #6A453B;
 	  color: #fff; border:1px solid #6A453B;">เพิ่มเพื่อน</a>
 			</div>	
+		<?elseif($row->social_beetalk != ""):?>
+			<div class="input-group col-md-7 col-xs-12" style="margin-bottom: 5px;">
+				<span class="input-group-addon">BeeTalk</span>
+				<input type="text" class="form-control" value="<?=$row->social_beetalk ;?>">
+						<a href='javascript:void(0)' class="input-group-addon" style="background: #E9AA26;
+	  color: #fff; border:1px solid #E9AA26;">เพิ่มเพื่อน</a>
+			</div>	
 		<?endif;?>
 	<?endif;?>
 	
@@ -113,6 +119,7 @@
       <?if($row->social_facebook != ""){ echo"<a href='https://www.facebook.com/".$row->social_facebook."' target='_blank'><img class='social-icon' src='themes/addfriend/images/facebook-icon.png'></a>"; }?>
       <?if($row->social_twitter != ""){ echo"<a href='https://twitter.com/".$row->social_twitter."' target='_blank'><img class='social-icon' src='themes/addfriend/images/twitter-icon.png'></a>"; }?>
       <?if($row->social_instagram != ""){ echo"<a href='https://www.instagram.com/".$row->social_instagram."' target='_blank'><img class='social-icon' src='themes/addfriend/images/instagram-icon.png'></a>"; }?>
+      <?if($row->social_beetalk != ""){ echo"<img class='social-icon' src='themes/addfriend/images/beetalk-icon.png'>"; }?>
     </div>
     </div>
     <div style="clear: both;"></div>
@@ -124,3 +131,5 @@
 <div style="clear: both;"></div>
 <?=$pagination?>
 </ul>
+
+<hr>

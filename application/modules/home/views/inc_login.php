@@ -6,7 +6,7 @@
 	  </a>
 </div>
 <div class="col-md-3" <?if($this->agent->is_mobile()){echo'style="margin-top:10px;"';}?>>
-  <a class="btn btn-block btn-social btn-lg btn-github" href="home/logout">
+  <a class="btn btn-block btn-social btn-lg btn-google" href="home/logout">
     <span class="fa fa-sign-out"></span> ออกจากระบบ
   </a>
 </div>

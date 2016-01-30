@@ -28,9 +28,9 @@
 <?include('_header.php')?>
 
 <div class="container">
-
-  <?php echo $template['body']; ?>
-
+	<div class="row">
+		<?php echo $template['body']; ?>
+	</div>
 </div> <!-- /container -->
 
 <?include('_footer.php')?>

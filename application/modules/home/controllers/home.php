@@ -192,7 +192,14 @@ class Home extends Public_Controller {
 		if(@$_GET['sex_id']){ $condition .= " and sex_id = ".$_GET['sex_id']; }
 		if(@$_GET['province_id']){ $condition .= " and province_id = ".$_GET['province_id']; }
 		if(@$_GET['social']){ $condition .= " and ".$_GET['social']." <> ''"; }
-		if(@$_GET['age_start']){ $condition .= " and (age between ".$_GET['age_start']." and ".$_GET['age_end'].")"; }
+		if(@$_GET['age_start']){
+			@$_GET['age_end'] = (@$_GET['age_end'] != "")? $_GET['age_end'] : 75 ;
+			 $condition .= " and (age between ".$_GET['age_start']." and ".$_GET['age_end'].")"; 
+		}
+		if(@$_GET['age_end']){
+			@$_GET['age_start'] = (@$_GET['age_start'] != "")? $_GET['age_start'] : 12 ;
+			 $condition .= " and (age between ".$_GET['age_start']." and ".$_GET['age_end'].")"; 
+		}
 		$sql = "SELECT
 						users.id,
 						users.facebook_id,
@@ -206,6 +213,7 @@ class Home extends Public_Controller {
 						users.social_whatsapp,
 						users.social_facebook,
 						users.social_twitter,
+						users.social_beetalk,
 						sexs.color sex_color,
 						sexs.title sex_title,
 						provinces.`name` province_name

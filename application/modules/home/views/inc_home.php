@@ -35,21 +35,29 @@
 </div>
 </fieldset>
 
-<div id="listfriend">
+<ul  id="listfriend" class="list-unstyled">
 <?foreach ($rs as $key => $row):?>
+<li style="position: relative;">
 <div class="profile">
-    <img class="img-thumbnail pull-left" data-src="holder.js/120x120" alt="120x120" src="<?=check_image_url($row->image,$row->facebook_id,$row->google_picture_link)?>" style="width: 120px; height: 120px; margin-right:10px; margin-bottom:5px;">
+	<div class="col-md-3" style="text-align: center">
+    	<img class="img-thumbnail" data-src="holder.js/120x120" alt="120x120" src="<?=check_image_url($row->image,$row->facebook_id,$row->google_picture_link)?>" style="width: 120px; height: 120px; margin-right:10px; margin-bottom:5px;">
+    	<div class="">
+    	<iframe src="//www.facebook.com/plugins/like.php?href=http://www.addfriend.in.th/home/profile/<?=$row->id?>&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;share=false&amp;height=21&amp;appId=532330300263938" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px; margin-top: 5px; width: 110px;" allowTransparency="true"></iframe> 
+    	</div>
+    </div>
+    <div class="col-md-9">
     <h3>
     	<a href="home/profile/<?=$row->id?>"><?=$row->display_name?></a>
-    	<div class="pull-right"><div class="fb-like" data-href="http://www.addfriend.in.th/home/profile/<?=$row->id?>" data-layout="box_count" data-action="like" data-show-faces="false" data-share="false"></div></div>
     </h3>
-    <span class="label label-green"><?php echo $row->age; ?></span>
+    <div class="age-sex-location">
+	    <span class="label label-green"><?php echo $row->age; ?></span>
 		<span class="label" style="background: <?php echo $row->sex_color; ?>"><?php echo $row->sex_title ?></span>
 		<span class="label label-warning"><?php echo $row->province_name; ?></span>
+	</div>
     <div class="fdetail"><?=$row->detail?></div>
     
     <?if(@$_GET["social"]):?>
-	<div class="input-group col-md-5 col-xs-12" style="margin-bottom: 5px;">
+	<div class="input-group col-md-7 col-xs-12" style="margin-bottom: 5px;">
 		<span class="input-group-addon"><?=@$_GET["social"] != ""? $socialName[$_GET["social"]] : "Line" ;?></span>
 		<input type="text" class="form-control" value="<?=@$_GET["social"] != "" ? $row->$_GET["social"] : $row->social_line ;?>">
 			<?if(@$_GET["social"] == "social_line"):?>
@@ -71,27 +79,27 @@
 	</div>	
 	<?else:?>
 		<?if($row->social_line != ""):?>
-			<div class="input-group col-md-5 col-xs-12" style="margin-bottom: 5px;">
+			<div class="input-group col-md-7 col-xs-12" style="margin-bottom: 5px;">
 				<span class="input-group-addon">Line</span>
 				<input type="text" class="form-control" value="<?=$row->social_line ;?>">
 						<a href="javascript:void(0)" target='_blank' onclick="location.href='http://line.me/ti/p/~<?=$row->social_line?>'" class="input-group-addon" style="background: #00B84F;color: #fff; border:1px solid #08A100;">เพิ่มเพื่อน</a>
 			</div>	
 		<?elseif($row->social_facebook != ""):?>
-			<div class="input-group col-md-5 col-xs-12" style="margin-bottom: 5px;">
+			<div class="input-group col-md-7 col-xs-12" style="margin-bottom: 5px;">
 				<span class="input-group-addon">Facebook</span>
 				<input type="text" class="form-control" value="<?=$row->social_facebook ;?>">
 						<a href='http://www.facebook.com/<?=$row->social_facebook?>' target='_blank' class="input-group-addon" style="background: #3B5998;
 	  color: #fff; border:1px solid #3B5998;">เพิ่มเพื่อน</a>
 			</div>	
 		<?elseif($row->social_twitter != ""):?>
-			<div class="input-group col-md-5 col-xs-12" style="margin-bottom: 5px;">
+			<div class="input-group col-md-7 col-xs-12" style="margin-bottom: 5px;">
 				<span class="input-group-addon">Twitter</span>
 				<input type="text" class="form-control" value="<?=$row->social_twitter ;?>">
 						<a href='http://twitter.com/<?=$row->social_twitter?>' target='_blank' class="input-group-addon" style="background: #2AA9DF;
 	  color: #fff; border:1px solid #2AA9DF;">เพิ่มเพื่อน</a>
 			</div>	
 		<?elseif($row->social_instagram != ""):?>
-			<div class="input-group col-md-5 col-xs-12" style="margin-bottom: 5px;">
+			<div class="input-group col-md-7 col-xs-12" style="margin-bottom: 5px;">
 				<span class="input-group-addon">Twitter</span>
 				<input type="text" class="form-control" value="<?=$row->social_instagram ;?>">
 						<a href='http://www.instagram.com/<?=$row->social_instagram?>' target='_blank' class="input-group-addon" style="background: #6A453B;
@@ -106,10 +114,13 @@
       <?if($row->social_twitter != ""){ echo"<a href='https://twitter.com/".$row->social_twitter."' target='_blank'><img class='social-icon' src='themes/addfriend/images/twitter-icon.png'></a>"; }?>
       <?if($row->social_instagram != ""){ echo"<a href='https://www.instagram.com/".$row->social_instagram."' target='_blank'><img class='social-icon' src='themes/addfriend/images/instagram-icon.png'></a>"; }?>
     </div>
-    <br clear="all">
+    </div>
+    <div style="clear: both;"></div>
 </div>
+<div style="clear: both;"></div>
+</li>
 <?endforeach;?>
 
-<br clear="all">
+<div style="clear: both;"></div>
 <?=$pagination?>
-</div>
+</ul>

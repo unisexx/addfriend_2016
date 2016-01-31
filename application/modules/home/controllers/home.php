@@ -238,6 +238,7 @@ class Home extends Public_Controller {
 	public function profile($id){
 		$data['rs'] = new User($id);
 		$this->template->title('หาเพื่อนไลน์ '.$data['rs']->display_name.' - Addfriend');
+		// $this->template->append_metadata('<meta property="og:image" content="'.check_image_url($data['rs']->image,$data['rs']->facebook_id,$data['rs']->google_picture_link,"original").'" />');
 		meta_description($data['rs']->detail);
 		$this->db->close();
 		$this->template->build('profile',$data);

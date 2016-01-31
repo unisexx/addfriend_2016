@@ -9,7 +9,7 @@
     <div class="alert alert-success" role="alert"><i class="fa fa-check"></i> ตอนนี้คุณอยู่ในสถานะ "<b>เปิดการใช้งาน</b>" ข้อมูลของคุณแสดงให้เพื่อนเห็นแล้ว</div>
   <?endif;?>
   <div id="listfriend">
-  <div class="profile example">
+  <div class="profileCard example">
 	<div class="col-md-2" style="text-align: center">
         <img class="" data-src="holder.js/150x150" alt="150x150" src="<?=check_image_url($rs->image,$rs->facebook_id,$rs->google_picture_link)?>" style="width: 150px; height: 150px; margin-right:10px;">
 	</div>
@@ -29,8 +29,9 @@
         <?if($rs->social_instagram != ""){ echo"<a href='https://www.instagram.com/".$rs->social_instagram."' target='_blank'><img class='social-icon' src='themes/addfriend/images/instagram-icon.png'></a>"; }?>
         <?if($rs->social_beetalk != ""){ echo"<img class='social-icon' src='themes/addfriend/images/beetalk-icon.png'>"; }?>
       </div>
-      <br clear="all">
+      <div style="clear:both;"></div>
   </div>
+  <div style="clear:both;"></div>
   </div>
   </div>
 </fieldset>

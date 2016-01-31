@@ -57,22 +57,22 @@
 		<span class="input-group-addon"><?=@$_GET["social"] != ""? $socialName[$_GET["social"]] : "Line" ;?></span>
 		<input type="text" class="form-control" value="<?=@$_GET["social"] != "" ? $row->$_GET["social"] : $row->social_line ;?>">
 			<?if(@$_GET["social"] == "social_line"):?>
-				<a href="javascript:void(0)" target='_blank' onclick="location.href='http://line.me/ti/p/~<?=$row->social_line?>'" class="input-group-addon" style="background: #00B84F;
+				<a rel="nofollow" href="javascript:void(0)" target='_blank' onclick="location.href='http://line.me/ti/p/~<?=$row->social_line?>'" class="input-group-addon" style="background: #00B84F;
 	  color: #fff; border:1px solid #08A100;">เพิ่มเพื่อน</a>
 	  		<?elseif(@$_GET["social"] == "social_facebook"):?>
-	  			<a href='https://www.facebook.com/<?=$row->social_facebook?>' target='_blank' class="input-group-addon" style="background: #3B5998;
+	  			<a rel="nofollow" href='https://www.facebook.com/<?=$row->social_facebook?>' target='_blank' class="input-group-addon" style="background: #3B5998;
 	  color: #fff; border:1px solid #3B5998;">เพิ่มเพื่อน</a>
 	  		<?elseif(@$_GET["social"] == "social_twitter"):?>
-	  			<a href='https://twitter.com/<?=$row->social_twitter?>' target='_blank' class="input-group-addon" style="background: #2AA9DF;
+	  			<a rel="nofollow" href='https://twitter.com/<?=$row->social_twitter?>' target='_blank' class="input-group-addon" style="background: #2AA9DF;
 	  color: #fff; border:1px solid #2AA9DF;">เพิ่มเพื่อน</a>
 	  		<?elseif(@$_GET["social"] == "social_instagram"):?>
-	  			<a href='https://www.instagram.com/<?=$row->social_instagram?>' target='_blank' class="input-group-addon" style="background: #6A453B;
+	  			<a rel="nofollow" href='https://www.instagram.com/<?=$row->social_instagram?>' target='_blank' class="input-group-addon" style="background: #6A453B;
 	  color: #fff; border:1px solid #6A453B;">เพิ่มเพื่อน</a>
 		  	<?elseif(@$_GET["social"] == "social_beetalk"):?>
-	  			<a href='javascript:void(0)' class="input-group-addon" style="background: #E9AA26;
+	  			<a rel="nofollow" href='javascript:void(0)' class="input-group-addon" style="background: #E9AA26;
 	  color: #fff; border:1px solid #E9AA26;">เพิ่มเพื่อน</a>
 		  	<?else:?>
-					<a href="javascript:void(0)" target='_blank' onclick="location.href='http://line.me/ti/p/~<?=$row->social_line?>'" class="input-group-addon" style="background: #00B84F;
+					<a rel="nofollow" href="javascript:void(0)" target='_blank' onclick="location.href='http://line.me/ti/p/~<?=$row->social_line?>'" class="input-group-addon" style="background: #00B84F;
 		  color: #fff; border:1px solid #08A100;">เพิ่มเพื่อน</a>
 	  		<?endif;?>
 	</div>	
@@ -81,44 +81,44 @@
 			<div class="input-group col-md-7 col-xs-12" style="margin-bottom: 5px;">
 				<span class="input-group-addon">Line</span>
 				<input type="text" class="form-control" value="<?=$row->social_line ;?>">
-						<a href="javascript:void(0)" target='_blank' onclick="location.href='http://line.me/ti/p/~<?=$row->social_line?>'" class="input-group-addon" style="background: #00B84F;color: #fff; border:1px solid #08A100;">เพิ่มเพื่อน</a>
+						<a rel="nofollow" href="javascript:void(0)" target='_blank' onclick="location.href='http://line.me/ti/p/~<?=$row->social_line?>'" class="input-group-addon" style="background: #00B84F;color: #fff; border:1px solid #08A100;">เพิ่มเพื่อน</a>
 			</div>	
 		<?elseif($row->social_facebook != ""):?>
 			<div class="input-group col-md-7 col-xs-12" style="margin-bottom: 5px;">
 				<span class="input-group-addon">Facebook</span>
 				<input type="text" class="form-control" value="<?=$row->social_facebook ;?>">
-						<a href='http://www.facebook.com/<?=$row->social_facebook?>' target='_blank' class="input-group-addon" style="background: #3B5998;
+						<a rel="nofollow" href='http://www.facebook.com/<?=$row->social_facebook?>' target='_blank' class="input-group-addon" style="background: #3B5998;
 	  color: #fff; border:1px solid #3B5998;">เพิ่มเพื่อน</a>
 			</div>	
 		<?elseif($row->social_twitter != ""):?>
 			<div class="input-group col-md-7 col-xs-12" style="margin-bottom: 5px;">
 				<span class="input-group-addon">Twitter</span>
 				<input type="text" class="form-control" value="<?=$row->social_twitter ;?>">
-						<a href='http://twitter.com/<?=$row->social_twitter?>' target='_blank' class="input-group-addon" style="background: #2AA9DF;
+						<a rel="nofollow" href='http://twitter.com/<?=$row->social_twitter?>' target='_blank' class="input-group-addon" style="background: #2AA9DF;
 	  color: #fff; border:1px solid #2AA9DF;">เพิ่มเพื่อน</a>
 			</div>	
 		<?elseif($row->social_instagram != ""):?>
 			<div class="input-group col-md-7 col-xs-12" style="margin-bottom: 5px;">
 				<span class="input-group-addon">Twitter</span>
 				<input type="text" class="form-control" value="<?=$row->social_instagram ;?>">
-						<a href='http://www.instagram.com/<?=$row->social_instagram?>' target='_blank' class="input-group-addon" style="background: #6A453B;
+						<a rel="nofollow" href='http://www.instagram.com/<?=$row->social_instagram?>' target='_blank' class="input-group-addon" style="background: #6A453B;
 	  color: #fff; border:1px solid #6A453B;">เพิ่มเพื่อน</a>
 			</div>	
 		<?elseif($row->social_beetalk != ""):?>
 			<div class="input-group col-md-7 col-xs-12" style="margin-bottom: 5px;">
 				<span class="input-group-addon">BeeTalk</span>
 				<input type="text" class="form-control" value="<?=$row->social_beetalk ;?>">
-						<a href='javascript:void(0)' class="input-group-addon" style="background: #E9AA26;
+						<a rel="nofollow" href='javascript:void(0)' class="input-group-addon" style="background: #E9AA26;
 	  color: #fff; border:1px solid #E9AA26;">เพิ่มเพื่อน</a>
 			</div>	
 		<?endif;?>
 	<?endif;?>
 	
     <div class="social-data pull-left">
-      <?if($row->social_line != ""){ echo'<a href="javascript:void(0)" target="_blank" onclick="location.href=\'http://line.me/ti/p/~'.$row->social_line.'\'"><img class="social-icon" src="themes/addfriend/images/line-icon.png"></a>'; }?>
-      <?if($row->social_facebook != ""){ echo"<a href='https://www.facebook.com/".$row->social_facebook."' target='_blank'><img class='social-icon' src='themes/addfriend/images/facebook-icon.png'></a>"; }?>
-      <?if($row->social_twitter != ""){ echo"<a href='https://twitter.com/".$row->social_twitter."' target='_blank'><img class='social-icon' src='themes/addfriend/images/twitter-icon.png'></a>"; }?>
-      <?if($row->social_instagram != ""){ echo"<a href='https://www.instagram.com/".$row->social_instagram."' target='_blank'><img class='social-icon' src='themes/addfriend/images/instagram-icon.png'></a>"; }?>
+      <?if($row->social_line != ""){ echo'<a rel="nofollow" href="javascript:void(0)" target="_blank" onclick="location.href=\'http://line.me/ti/p/~'.$row->social_line.'\'"><img class="social-icon" src="themes/addfriend/images/line-icon.png"></a>'; }?>
+      <?if($row->social_facebook != ""){ echo"<a rel='nofollow' href='https://www.facebook.com/".$row->social_facebook."' target='_blank'><img class='social-icon' src='themes/addfriend/images/facebook-icon.png'></a>"; }?>
+      <?if($row->social_twitter != ""){ echo"<a rel='nofollow' href='https://twitter.com/".$row->social_twitter."' target='_blank'><img class='social-icon' src='themes/addfriend/images/twitter-icon.png'></a>"; }?>
+      <?if($row->social_instagram != ""){ echo"<a rel='nofollow' href='https://www.instagram.com/".$row->social_instagram."' target='_blank'><img class='social-icon' src='themes/addfriend/images/instagram-icon.png'></a>"; }?>
       <?if($row->social_beetalk != ""){ echo"<img class='social-icon' src='themes/addfriend/images/beetalk-icon.png'>"; }?>
     </div>
     </div>

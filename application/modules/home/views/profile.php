@@ -1,6 +1,6 @@
 <div class="col-md-2 col-xs-12">
 	<span>
-		คนนี้แจ่มกดไลค์เลย <i class="fa fa-heart" style="color:#ea4c89;"></i>
+		ชอบคนนี้กดไลค์เลย <i class="fa fa-heart" style="color:#ea4c89;"></i>
 		<iframe src="//www.facebook.com/plugins/like.php?href=http://www.addfriend.in.th/home/profile/<?=$rs->id?>&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;share=false&amp;height=21&amp;appId=532330300263938" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px; margin-top: 0; width: 100px;  vertical-align: middle;" allowTransparency="true"></iframe> 
 	</span>
 	<hr>

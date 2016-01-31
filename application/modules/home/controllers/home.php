@@ -208,6 +208,7 @@ class Home extends Public_Controller {
 						users.display_name,
 						users.age,
 						users.detail,
+						users.vote,
 						users.social_line,
 						users.social_instagram,
 						users.social_whatsapp,
@@ -261,6 +262,29 @@ class Home extends Public_Controller {
 	
 	function inc_sidebar(){
 		$this->load->view('inc_sidebar');
+	}
+	
+	function vote(){
+		if($_POST){
+			$user_id = $_POST['user_id'];
+			$session_id = $this->session->userdata('session_id');
+        	$check = $this->db->query("select id from jams where user_id = ".$user_id." and session_id = '".$session_id."' limit 1")->row_array();
+			if(empty($check)){
+				
+				$_POST['user_id'] = $user_id;
+				$_POST['member_id'] = @$this->session->userdata('id');
+				$_POST['session_id'] = $session_id;
+				$_POST['ip'] = $_SERVER['REMOTE_ADDR'];
+				$_POST['created'] = date("Y-m-d H:i:s");
+				$this->db->insert('jams', $_POST);
+				
+				$this->db->query("UPDATE users SET vote = vote+1 where id = ".$user_id);
+				
+				echo "yes";
+			}else{
+				echo "no";
+			}
+		}
 	}
 	
 	function info(){

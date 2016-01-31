@@ -45,6 +45,17 @@
 	    <span class="label label-success"><?php echo $row->age; ?></span>
 		<span class="label" style="background: <?php echo $row->sex_color; ?>"><?php echo $row->sex_title ?></span>
 		<span class="label label-warning"><?php echo $row->province_name; ?></span>
+		
+		<span class="pull-right">
+		    <div class="btn-group btn-group-xs" role="group" data-toggle="tooltip" data-placement="top" title="แจ่ม">
+		    	<?php // if(is_file('uploads/user/'.$user->image)): ?>
+		        <a class="btn btn-primary btn-jam" style="padding:4px;"><i class="fa fa-heart"></i> </a>
+		        <a class="btn btn-default jam-counter"><?php echo number_format($row->vote); ?></a>
+		        <?php // endif; ?>
+		        <input type="hidden" name="user_id" value="<?php echo $row->id ?>">
+		    </div>
+		</span>
+		
 		<!-- <span>
 			<iframe src="//www.facebook.com/plugins/like.php?href=http://www.addfriend.in.th/home/profile/<?=$row->id?>&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;share=false&amp;height=21&amp;appId=532330300263938" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px; margin-top: 5px; width: 100px;" allowTransparency="true"></iframe> 
 		</span> -->

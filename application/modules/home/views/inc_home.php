@@ -35,11 +35,11 @@
 	
 <div class="profile">
 	<div class="col-md-3" style="text-align: center">
-    	<a href="home/profile/<?=$row->id?>"><img class="imgProfile" data-src="holder.js/150x150" alt="150x150" src="<?=check_image_url($row->image,$row->facebook_id,$row->google_picture_link)?>" style="width: 150px; height: 150px; margin-right:10px; margin-bottom:5px;"></a>
+    	<a href="home/profile/<?=$row->id?>" target="_blank"><img class="imgProfile" data-src="holder.js/150x150" alt="150x150" src="<?=check_image_url($row->image,$row->facebook_id,$row->google_picture_link)?>" style="width: 150px; height: 150px; margin-right:10px; margin-bottom:5px;"></a>
     </div>
     <div class="col-md-9">
     <h3>
-    	<a href="home/profile/<?=$row->id?>"><?=$row->display_name?></a>
+    	<a href="home/profile/<?=$row->id?>" target="_blank"><?=$row->display_name?></a>
     </h3>
     <div class="age-sex-location">
 	    <span class="label label-success"><?php echo $row->age; ?></span>

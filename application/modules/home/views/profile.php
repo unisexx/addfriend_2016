@@ -1,7 +1,14 @@
 <div class="col-md-2 col-xs-12">
 	<span>
-		ชอบคนนี้กดไลค์เลย <i class="fa fa-heart" style="color:#ea4c89;"></i>
+		ชอบกดไลค์ ใช่กดแจ่ม <i class="fa fa-heart" style="color:#ea4c89;"></i>
 		<iframe src="//www.facebook.com/plugins/like.php?href=http://www.addfriend.in.th/home/profile/<?=$rs->id?>&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;share=false&amp;height=21&amp;appId=532330300263938" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px; margin-top: 0; width: 100px;  vertical-align: middle;" allowTransparency="true"></iframe> 
+		<span class="jamblk">
+		    <div class="btn-group btn-group-xs" role="group" data-toggle="tooltip" data-placement="top" title="แจ่ม">
+		        <a class="btn btn-primary btn-jam" style="padding:4px;"><i class="fa fa-heart"></i> </a>
+		        <a class="btn btn-default jam-counter"><?php echo number_format($rs->vote); ?></a>
+		        <input type="hidden" name="user_id" value="<?php echo $rs->id ?>">
+		    </div>
+		</span>
 	</span>
 	<hr>
 </div>
@@ -12,7 +19,7 @@
 	    </div>
 	    <div class="text-center">
 	      <h1><?=$rs->display_name?></h1>
-	      <span class="label label-green"><?php echo $rs->age; ?></span>
+	      	<span class="label label-green"><?php echo $rs->age; ?></span>
 	  		<span class="label" style="background: <?php echo $rs->sex->color; ?>"><?php echo $rs->sex->title ?></span>
 	  		<span class="label label-warning"><?php echo $rs->province->name; ?></span>
 	      <div class="fdetail"><?=$rs->detail?></div>
@@ -114,7 +121,7 @@ ul.share-buttons li{
 }
 ul.share-buttons li a{height:30px; width:30px;box-shadow: none;}
 </style>
-<span>เก็บไว้คนเดียวไม่ไหว แชร์ให้เพื่อนเลย : </span>
+<span>อย่าเก็บไว้คนเดียว แชร์ให้เพื่อนด้วย : </span>
 <ul class="share-buttons">
   <li><a class="btn btn-social-icon btn-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.addfriend.in.th&t=" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&t=' + encodeURIComponent(document.URL)); return false;"><span class="fa fa-facebook"></span></a></li>
   <li><a class="btn btn-social-icon btn-twitter" href="https://twitter.com/intent/tweet?source=http%3A%2F%2Fwww.addfriend.in.th&text=:%20http%3A%2F%2Fwww.addfriend.in.th&via=ratasak" target="_blank" title="Tweet" onclick="window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + ':%20'  + encodeURIComponent(document.URL)); return false;"><span class="fa fa-twitter"></span></a></li>

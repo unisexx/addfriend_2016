@@ -20,22 +20,6 @@
 
 <script>
 $(document).ready(function(){
-	$('[data-toggle="tooltip"]').tooltip();
-	
-	// ปุ่มแจ่ม
-    $('.btn-jam').click(function(){
-       var $this = $(this);
-       var counter = parseInt($this.next('.jam-counter').text())+1;
-       if ( $this.is('.disable') ) {
-	   }else{
-			$this.removeClass( "btn-primary" ).addClass( "btn-danger disable" );
-       		$.post('home/vote',{'user_id' : $this.closest('.btn-group').find('input[name=user_id]').val()
-       		},function(data){
-       			if(data == 'yes'){
-       				$this.closest('.btn-group').find('.jam-counter').html(counter);
-       			}
-       		});
-	   }
-    });
+$('[data-toggle="tooltip"]').tooltip(),$(".btn-jam").click(function(){var t=$(this),e=parseInt(t.next(".jam-counter").text())+1;t.is(".disable")||(t.removeClass("btn-primary").addClass("btn-danger disable"),$.post("home/vote",{user_id:t.closest(".btn-group").find("input[name=user_id]").val()},function(n){"yes"==n&&t.closest(".btn-group").find(".jam-counter").html(e)}))});
 });
 </script>

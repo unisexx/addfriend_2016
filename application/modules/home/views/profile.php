@@ -121,7 +121,7 @@ ul.share-buttons li{
 }
 ul.share-buttons li a{height:30px; width:30px;box-shadow: none;}
 </style>
-<span>อย่าเก็บไว้คนเดียว แชร์ให้เพื่อนด้วย : </span>
+<span>อย่าเก็บไว้คนเดียว แชร์ให้เพื่อนด้วยจ้า : </span>
 <ul class="share-buttons">
   <li><a class="btn btn-social-icon btn-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.addfriend.in.th&t=" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&t=' + encodeURIComponent(document.URL)); return false;"><span class="fa fa-facebook"></span></a></li>
   <li><a class="btn btn-social-icon btn-twitter" href="https://twitter.com/intent/tweet?source=http%3A%2F%2Fwww.addfriend.in.th&text=:%20http%3A%2F%2Fwww.addfriend.in.th&via=ratasak" target="_blank" title="Tweet" onclick="window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + ':%20'  + encodeURIComponent(document.URL)); return false;"><span class="fa fa-twitter"></span></a></li>

@@ -15,17 +15,17 @@
 <div class="row">
 <div class="col-md-4">
 	  <a class="btn btn-block btn-social btn-lg btn-facebook" href="<?=$login_url ?>">
-	    <span class="fa fa-facebook"></span> เข้าสู่ระบบด้วย facebook
+	    <span class="fa fa-facebook"></span> เข้าสู่ระบบด้วย Facebook
 	  </a>
-</div>
-<div class="col-md-4" <?if($this->agent->is_mobile()){echo'style="margin-top:10px;"';}?>>
-  <a class="btn btn-block btn-social btn-lg btn-google" href="<?=$authUrl?>">
-    <span class="fa fa-google-plus"></span> เข้าสู่ระบบด้วย Gmail
-  </a>
 </div>
 <div class="col-md-4" <?if($this->agent->is_mobile()){echo'style="margin-top:10px;"';}?>>
   <a class="btn btn-block btn-social btn-lg btn-twitter" href="home/oath_twitter">
     <span class="fa fa-twitter"></span> เข้าสู่ระบบด้วย Twitter
+  </a>
+</div>
+<div class="col-md-4" <?if($this->agent->is_mobile()){echo'style="margin-top:10px;"';}?>>
+  <a class="btn btn-block btn-social btn-lg btn-google" href="<?=$authUrl?>">
+    <span class="fa fa-google-plus"></span> เข้าสู่ระบบด้วย Gmail
   </a>
 </div>
 </div>

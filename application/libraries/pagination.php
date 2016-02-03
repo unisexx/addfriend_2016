@@ -84,9 +84,9 @@ Author URI: http://www.mis-algoritmos.com
 						if($this->urlF)
 								return str_replace($this->urlF,$id,$this->target);
 							else
-								return "$this->target?$this->parameterName=$id";
+								return "$this->target?$this->parameterName=$id#search";
 					else
-						return "$this->target&$this->parameterName=$id";
+						return "$this->target&$this->parameterName=$id#search";
 			}
 		
 		function calculate(){

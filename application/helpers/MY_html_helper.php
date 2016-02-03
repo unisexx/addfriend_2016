@@ -53,7 +53,7 @@ if(!function_exists('thumb'))
 
 if(!function_exists('check_image_url'))
 {
-	function check_image_url($url=false,$facebook_id=false,$google_picture_link=false,$imgur_img_type=false)
+	function check_image_url($url=false,$facebook_id=false,$google_picture_link=false,$twitter_picture_link=false,$imgur_img_type=false)
 	{
 		if($url!=false){
 			// ถ้าลิ้งค์รูปเป็นลิ้งค์ของ imgur.com
@@ -65,10 +65,10 @@ if(!function_exists('check_image_url'))
 					$array = parse_url($url);
 					$imgThumb = substr( $array['path'],1,-4).'b';
 					$imgType = substr($url, strrpos($url, ".") + 1);
-					return "http://i.imgur.com/".$imgThumb.".".$imgType;	
+					return "http://i.imgur.com/".$imgThumb.".".$imgType;
 				}
 			}else{
-				return $url;	
+				return $url;
 			}
 			// return site_url("media/timthumb/timthumb.php?src=".$url."&zc=1&w=120&h=120");
 		}elseif($facebook_id!=false){
@@ -76,6 +76,8 @@ if(!function_exists('check_image_url'))
 			// return site_url("media/timthumb/timthumb.php?src=https://graph.facebook.com/".$facebook_id."/picture?type=large&zc=1&w=120&h=120");
 		}elseif($google_picture_link!=false){
 			return "$google_picture_link";
+		}elseif($twitter_picture_link!=false){
+			return $twitter_picture_link;
 		}
 	}
 }

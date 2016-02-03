@@ -1,5 +1,5 @@
 <div class="col-xs-12">
-	
+
 <!-- <h1>ข้อมูลส่วนตัว</h1> -->
 <fieldset>
   <legend>แสดงตัวอย่าง</legend>
@@ -11,7 +11,7 @@
   <div id="listfriend">
   <div class="profileCard example">
 	<div class="col-md-2" style="text-align: center">
-        <img class="" data-src="holder.js/150x150" alt="150x150" src="<?=check_image_url($rs->image,$rs->facebook_id,$rs->google_picture_link)?>" style="width: 150px; height: 150px; margin-right:10px;">
+        <img class="" data-src="holder.js/150x150" alt="150x150" src="<?=check_image_url($rs->image,$rs->facebook_id,$rs->google_picture_link,$rs->twitter_profile_image)?>" style="width: 150px; height: 150px; margin-right:10px;">
 	</div>
 	<div class="col-md-10 col-xs-12">
       <h3><?=$rs->display_name?></h3>
@@ -47,7 +47,7 @@
   <div class="form-group">
     <label for="image">ลิ้งค์รูปโพรไฟล์ (ไฟล์นามสกุล .jpg .png .gif)</label>
     <br><?//=uppic_mce()?> <a href="home/img_upload">อัพรูปคลิ๊กที่นี่จ้า</a>
-    <input type="text" class="form-control" id="image" name="image" value="<?=$rs->image?>" placeholder="ถ้าไม่มีให้ปล่อยว่างไว้ ระบบจะใช้รูปจาก<?if($rs->login_type == 1){ echo "บัญชี facebook";}elseif($rs->login_type == 2){echo "บัญชี google";}?> แทน">
+    <input type="text" class="form-control" id="image" name="image" value="<?=$rs->image?>" placeholder="ถ้าไม่มีให้ปล่อยว่างไว้ ระบบจะใช้รูปจาก<?if($rs->login_type == 1){ echo "บัญชี facebook";}elseif($rs->login_type == 2){echo "บัญชี google";}elseif($rs->login_type == 3){echo "บัญชี twitter";}?> แทน">
   </div>
   <div class="form-group">
     <label for="displayName">ชื่อที่ใช้แสดง</label>
@@ -105,7 +105,7 @@
 </fieldset>
 
 <br>
-<div class="alert alert-info" role="alert"><i class="fa fa-exclamation-circle"></i> ทุกครั้งที่ทำการล้อกอินเข้าสู่ระบบ หรือกดปุ่มบันทึกข้อมูล จะทำให้ชื่อของคุณถูกดันขึ้นไปอยู่ลำดับบนสุดของหน้าแรกเสมอ</div>
+<div class="alert alert-info" role="alert"><i class="fa fa-exclamation-circle"></i> ทุกครั้งที่ทำการล้อกอินเข้าสู่ระบบ หรือกดปุ่มบันทึกข้อมูล รวมถึงการกดปุ่มแจ่มจากบุคคลอื่น จะทำให้ชื่อของคุณถูกดันขึ้นไปอยู่ลำดับบนสุดของหน้าแรกเสมอ</div>
 
 </div>
 
@@ -144,7 +144,7 @@ $(document).ready(function () {
         social_beetalk: "กรุณากรอกข้อมูล social อย่างน้อย 1 รายการ"
     },
   });
-  
+
   // $('button[type=submit]').click(function() {
 	    // $('#loading').show();
 	// });

@@ -23,5 +23,10 @@
     <span class="fa fa-google-plus"></span> เข้าสู่ระบบด้วย Gmail
   </a>
 </div>
+<div class="col-md-4" <?if($this->agent->is_mobile()){echo'style="margin-top:10px;"';}?>>
+  <a class="btn btn-block btn-social btn-lg btn-twitter" href="home/oath_twitter">
+    <span class="fa fa-twitter"></span> เข้าสู่ระบบด้วย Twitter
+  </a>
+</div>
 </div>
 <?endif;?>

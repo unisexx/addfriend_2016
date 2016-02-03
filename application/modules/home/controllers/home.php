@@ -108,6 +108,58 @@ class Home extends Public_Controller {
 			redirect('home/my_profile');
 		}
 
+		//-------------------------------------------- Twitter Login --------------------------
+		require_once("application/libraries/twitter/twitteroauth.php");
+		require_once('application/config/twconfig.php');
+		if (!empty($_GET['oauth_verifier']) && !empty($_SESSION['oauth_token']) && !empty($_SESSION['oauth_token_secret'])) {
+		    // We've got everything we need
+		    $twitteroauth = new TwitterOAuth(YOUR_CONSUMER_KEY, YOUR_CONSUMER_SECRET, $_SESSION['oauth_token'], $_SESSION['oauth_token_secret']);
+				// Let's request the access token
+		    $access_token = $twitteroauth->getAccessToken($_GET['oauth_verifier']);
+				// Save it in a session var
+		    $_SESSION['access_token'] = $access_token;
+				// Let's get the user's info
+		    $user_info = $twitteroauth->get('account/verify_credentials');
+				// Print user's info
+
+				// echo '<pre>';
+		    // print_r($user_info);
+		    // echo '</pre><br/>';
+
+		    if (isset($user_info->error)) {
+		        // Something's wrong, go back to square 1
+		        // header('Location: login-twitter.php');
+		    } else {
+					$rs = new User();
+					$rs->where('twitter_id = '.$user_info->id)->get(1);
+					if(!$rs->exists()) // ถ้ายังไม่มีมี user นี้ใน database
+					{
+						$rs = new User();
+						$_POST['login_type'] = 3;
+						$_POST['twitter_id'] = $user_info->id;
+						$_POST['twitter_name'] = $user_info->name;
+						$_POST['twitter_screen_name'] = $user_info->screen_name;
+						$_POST['twitter_profile_image'] = str_replace("normal","400x400",$user_info->profile_image_url);
+						$_POST['display_name'] = $user_info->name;
+						$_POST['social_twitter'] = $user_info->screen_name;
+						$_POST['ip'] = $_SERVER['REMOTE_ADDR'];
+						$_POST['status'] = 0;
+						$rs->from_array($_POST);
+						$rs->save();
+						// $rs->check_last_query();
+					}
+
+					// อัพเดทเวลาล้อกอิน
+					$this->db->query("UPDATE users SET updated = '".date("Y-m-d H:i:s")."', ip = '".$_SERVER['REMOTE_ADDR']."', twitter_profile_image = '".str_replace("normal","400x400",$user_info->profile_image_url)."', twitter_name = '".$user_info->name."' where id = ".$rs->id);
+
+					// created session
+					$this->session->set_userdata('id',$rs->id);
+					$this->session->set_userdata('login_type',$rs->login_type);
+					$this->session->set_userdata('twitter_id',$rs->twitter_id);
+					set_notify('success', 'ยินดีต้อนรับเข้าสู่ระบบ');
+					redirect('home/my_profile');
+		    }
+		}
 
 		redirect('home');
 	}
@@ -142,6 +194,10 @@ class Home extends Public_Controller {
     $this->load->view('inc_login',$data);
 	}
 
+	function oath_twitter(){
+		redirect('application/libraries/login-twitter.php');
+	}
+
 	public function my_profile(){
 		if($this->session->userdata('id') != ""){
 			$data['rs'] = new User($this->session->userdata('id'));
@@ -156,7 +212,7 @@ class Home extends Public_Controller {
 	public function my_profile_save(){
 		if($_POST){
 			$rs = new User();
-			
+
 			// ถ้ามีการอัพโหลดรูป
 			// if($_FILES['upload']['tmp_name'] != ""){
 				// $image = file_get_contents($_FILES['upload']['tmp_name']);
@@ -172,7 +228,7 @@ class Home extends Public_Controller {
 				// $reply = json_decode($reply);
 				// $_POST['image'] = @$reply->data->link;
 			// }
-			
+
 			if($_POST['image'] != ""){ $_POST['image'] = strip_tags($_POST['image']); }
 			$_POST['display_name'] = strip_tags($_POST['display_name']);
 			$_POST['detail'] = strip_tags($_POST['detail']);
@@ -194,16 +250,17 @@ class Home extends Public_Controller {
 		if(@$_GET['social']){ $condition .= " and ".$_GET['social']." <> ''"; }
 		if(@$_GET['age_start']){
 			@$_GET['age_end'] = (@$_GET['age_end'] != "")? $_GET['age_end'] : 75 ;
-			 $condition .= " and (age between ".$_GET['age_start']." and ".$_GET['age_end'].")"; 
+			 $condition .= " and (age between ".$_GET['age_start']." and ".$_GET['age_end'].")";
 		}
 		if(@$_GET['age_end']){
 			@$_GET['age_start'] = (@$_GET['age_start'] != "")? $_GET['age_start'] : 12 ;
-			 $condition .= " and (age between ".$_GET['age_start']." and ".$_GET['age_end'].")"; 
+			 $condition .= " and (age between ".$_GET['age_start']." and ".$_GET['age_end'].")";
 		}
 		$sql = "SELECT
 						users.id,
 						users.facebook_id,
 						users.google_picture_link,
+						users.twitter_profile_image,
 						users.image,
 						users.display_name,
 						users.age,
@@ -259,34 +316,34 @@ class Home extends Public_Controller {
 		echo '</pre>';
 		echo'<a href="home/logout">logout</a>';
 	}
-	
+
 	function inc_sidebar(){
 		$this->load->view('inc_sidebar');
 	}
-	
+
 	function vote(){
 		if($_POST){
 			$user_id = $_POST['user_id'];
 			$session_id = $this->session->userdata('session_id');
         	$check = $this->db->query("select id from jams where user_id = ".$user_id." and session_id = '".$session_id."' limit 1")->row_array();
 			if(empty($check)){
-				
+
 				$_POST['user_id'] = $user_id;
 				$_POST['member_id'] = @$this->session->userdata('id');
 				$_POST['session_id'] = $session_id;
 				$_POST['ip'] = $_SERVER['REMOTE_ADDR'];
 				$_POST['created'] = date("Y-m-d H:i:s");
 				$this->db->insert('jams', $_POST);
-				
-				$this->db->query("UPDATE users SET vote = vote+1 where id = ".$user_id);
-				
+
+				$this->db->query("UPDATE users SET vote = vote+1, updated = '".date("Y-m-d H:i:s")."' where id = ".$user_id);
+
 				echo "yes";
 			}else{
 				echo "no";
 			}
 		}
 	}
-	
+
 	function info(){
 		// phpinfo();
 	}

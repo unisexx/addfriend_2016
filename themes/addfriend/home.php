@@ -33,7 +33,7 @@
   <!-- Main component for a primary marketing message or call to action -->
   <div class="jumbotron">
     <h1>Addfriend.in.th</h1>
-    <p>หาเพื่อน หาแฟน หากิ๊ก หาคู่ทาง Facebook, LINE, Twitter, Instagram, BeeTalk ง่ายๆ เพียงแค่ login เข้าสู่ระบบแล้วกรอกข้อมูลส่วนตัวได้เลยจ้า</p>
+    <p>หาเพื่อน หาแฟน หากิ๊ก หาคู่ทาง Facebook, LINE, Twitter, Instagram, BeeTalk แลกไอดีกันง่ายๆ เพียงแค่ login เข้าสู่ระบบแล้วกรอกข้อมูลส่วนตัวได้เลยจ้า</p>
     <p>
     	<?=modules::run('home/inc_login_btn'); ?>
     </p>

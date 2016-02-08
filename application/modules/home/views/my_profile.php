@@ -39,7 +39,7 @@
 
 <fieldset>
   <legend>กรอกข้อมูลส่วนตัว</legend>
-<form id="myProfile" method="post" action="home/my_profile_save" enctype="multipart/form-data">
+<form id="myProfile" method="post" action="home/my_profile_save">
   <div class="form-group">
     <label for="status">สถานะ</label>
     <?=form_dropdown('status', array(0 => 'ปิดการใช้งาน',1 => 'เปิดการใช้งาน'), $rs->status,'id="status" class="form-control"');?>

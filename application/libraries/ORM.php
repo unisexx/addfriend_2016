@@ -113,7 +113,10 @@ class ORM extends DataMapper
     function sql_page($sql, $limit = 20)
     {
         $db = get_instance()->db;
-        $this->sql_page_total = $db->query($sql)->num_rows();
+		$rs = preg_replace("/select(.*)from/is","select count(users.id) total from",$sql);
+		$q = $db->query($rs)->row_array();
+        $this->sql_page_total = $q['total'];
+        // $this->sql_page_total = $db->query($sql)->num_rows();
         
         $this->load->library('pagination');
         $page = new pagination();

@@ -281,12 +281,13 @@ class Home extends Public_Controller {
 					LEFT JOIN sexs ON users.sex_id = sexs.id
 					WHERE ".$condition."
 					AND STATUS != 0
+					AND banned is null
 					ORDER BY
 						updated desc";
 		// echo $sql;
 
 		$rs = new User();
-    $data['rs'] = $rs->sql_page($sql, 10);
+    	$data['rs'] = $rs->sql_page($sql, 10);
 		$data['pagination'] = $rs->sql_pagination;
 
 		$this->db->close();
@@ -342,6 +343,26 @@ class Home extends Public_Controller {
 				echo "no";
 			}
 		}
+	}
+	
+	function banned($id){
+		if($this->session->userdata('facebook_id') == '1122018497830648'){
+			$this->db->query("UPDATE users SET banned = 1 where id = ".$id);
+			set_notify('success', 'ดำเนินการแบนเรียบร้อย');
+		}else{
+			set_notify('error', 'คำสั่งไม่ถูกต้อง');
+		}
+		redirect('home');
+	}
+	
+	function unbanned($id){
+		if($this->session->userdata('facebook_id') == '1122018497830648'){
+			$this->db->query("UPDATE users SET banned = null where id = ".$id);
+			set_notify('success', 'ดำเนินการปลดแบนเรียบร้อย');
+		}else{
+			set_notify('error', 'คำสั่งไม่ถูกต้อง');
+		}
+		redirect('home');
 	}
 
 	function info(){

@@ -3,10 +3,14 @@
 <!-- <h1>ข้อมูลส่วนตัว</h1> -->
 <fieldset>
   <legend>แสดงตัวอย่าง</legend>
-  <?if($rs->status == 0):?>
-    <div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-triangle"></i> ตอนนี้คุณอยู่ในสถานะ "<b>ปิดการใช้งาน</b>" ข้อมูลของคุณจะไม่แสดงในหน้าแรก</div>
+  <?if($rs->banned != ""):?>
+	<div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-triangle"></i> บัญชีของท่านถูกระงับการใช้งาน เนื่องจากมีการทำผิดกฏของเว็บ (รูปภาพไม่เหมาะสม) หากต้องการปลดแบน กรุณาติดต่อแอดมินที่อีเมล์ <a href="mailto:line2me.info@gmail.com?subject=ติดต่อเรื่องปลดแบน">line2me.info@gmail.com</a> (ค่าใช้จ่ายสำหรับการปลดแบนคือบัตรทรูมันนี่ 50 บาท)</div>
   <?else:?>
-    <div class="alert alert-success" role="alert"><i class="fa fa-check"></i> ตอนนี้คุณอยู่ในสถานะ "<b>เปิดการใช้งาน</b>" ข้อมูลของคุณแสดงให้เพื่อนเห็นแล้ว</div>
+	  <?if($rs->status == 0):?>
+	    <div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-triangle"></i> ตอนนี้คุณอยู่ในสถานะ "<b>ปิดการใช้งาน</b>" ข้อมูลของคุณจะไม่แสดงในหน้าแรก</div>
+	  <?else:?>
+	    <div class="alert alert-success" role="alert"><i class="fa fa-check"></i> ตอนนี้คุณอยู่ในสถานะ "<b>เปิดการใช้งาน</b>" ข้อมูลของคุณแสดงให้เพื่อนเห็นแล้ว</div>
+	  <?endif;?>
   <?endif;?>
   <div id="listfriend">
   <div class="profileCard example">

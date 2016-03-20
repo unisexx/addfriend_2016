@@ -10,12 +10,9 @@
 
 
 
-      <!-- <a id="footer-back-to-top" class="WhiteButton badge-back-to-top offscreen">
-
-          <strong>Back to Top</strong>
-
-          <span></span>
-
-      </a> -->
+      <a id="footer-back-to-top" class="WhiteButton badge-back-to-top offscreen">
+		    <strong>Back to Top</strong>
+		    <span></span>
+		</a>
 
   </div>

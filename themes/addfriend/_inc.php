@@ -19,7 +19,5 @@
 </script>
 
 <script>
-$(document).ready(function(){
-$('[data-toggle="tooltip"]').tooltip(),$(".btn-jam").click(function(){var t=$(this),e=parseInt(t.next(".jam-counter").text())+1;t.is(".disable")||(t.removeClass("btn-primary").addClass("btn-danger disable"),$.post("home/vote",{user_id:t.closest(".btn-group").find("input[name=user_id]").val()},function(n){"yes"==n&&t.closest(".btn-group").find(".jam-counter").html(e)}))});
-});
+$(document).ready(function(){$('[data-toggle="tooltip"]').tooltip(),$(".btn-jam").click(function(){var o=$(this),t=parseInt(o.next(".jam-counter").text())+1;o.is(".disable")||(o.removeClass("btn-primary").addClass("btn-danger disable"),$.post("home/vote",{user_id:o.closest(".btn-group").find("input[name=user_id]").val()},function(e){"yes"==e&&o.closest(".btn-group").find(".jam-counter").html(t)}))}),$(window).scroll(function(){0!=$(this).scrollTop()?$("#footer-back-to-top").removeClass("offscreen"):$("#footer-back-to-top").addClass("offscreen")}),$("#footer-back-to-top").click(function(){$("body,html").animate({scrollTop:0},800)})});
 </script>

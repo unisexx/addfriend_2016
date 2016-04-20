@@ -1,4 +1,6 @@
-<img class="img-thumbnail pull-left" data-src="holder.js/340x150?text=สนใจโฆษณาตำแหน่งนี้ติดต่อ line2me.info@gmail.com (200 บาท/เดือน หรือเหมา 3 เดือนในราคา 500 บาท)" alt="สนใจโฆษณาตำแหน่งนี้ติดต่อ line2me.info@gmail.com (200 บาท/เดือน หรือเหมา 3 เดือนในราคา 500 บาท)" style="margin-bottom: 10px;">
+<a href="http://www.magnumpj.com" target="_blank"><img src="uploads/banner/magnumpj.gif" width="340" height="150" style="border-radius: 5px;"></a>
+
+<img class="img-thumbnail pull-left" data-src="holder.js/340x150?text=สนใจโฆษณาตำแหน่งนี้ติดต่อ line2me.info@gmail.com (200 บาท/เดือน หรือเหมา 3 เดือนในราคา 500 บาท)" alt="สนใจโฆษณาตำแหน่งนี้ติดต่อ line2me.info@gmail.com (200 บาท/เดือน หรือเหมา 3 เดือนในราคา 500 บาท)" style="margin: 10px 0;">
 <!-- <img class="img-thumbnail pull-left" data-src="holder.js/340x220?text=สนใจโฆษณาตำแหน่งนี้ติดต่อ line2me.info@gmail.com (200 บาท/เดือน หรือเหมา 3 เดือนในราคา 500 บาท)" alt="โฆษณาตำแหน่งนี้ติดต่อ line2me.info@gmail.com" style="margin-bottom: 15px;"> -->
 
 <?if (!$this->agent->is_mobile()):?>

@@ -364,6 +364,19 @@ class Home extends Public_Controller {
 		}
 		redirect('home');
 	}
+	
+	function banner(){
+		if($this->session->userdata('facebook_id') == '1122018497830648'){
+			$data['rs'] = new Banner();
+	        $data['rs']->order_by('end_date asc')->get_page();
+	        $this->template->append_metadata(js_checkbox('approve'));
+			
+			$this->template->build('banner');
+		}else{
+			set_notify('error', 'คำสั่งไม่ถูกต้อง');
+			redirect('home');
+		}
+	}
 
 	function info(){
 		// phpinfo();

@@ -371,12 +371,47 @@ class Home extends Public_Controller {
 	        $data['rs']->order_by('end_date asc')->get_page();
 	        $this->template->append_metadata(js_checkbox('approve'));
 			
-			$this->template->build('banner');
+			$this->template->build('banner',$data);
 		}else{
 			set_notify('error', 'คำสั่งไม่ถูกต้อง');
 			redirect('home');
 		}
 	}
+	
+	function banner_form($id=false){
+		if($this->session->userdata('facebook_id') == '1122018497830648'){
+			$data['banner'] = new Banner($id);
+			$this->template->build('banner_form',$data);
+		}else{
+			set_notify('error', 'คำสั่งไม่ถูกต้อง');
+			redirect('home');
+		}
+	}
+	
+	function banner_save(){
+		if($_POST)
+        {
+            $banner = new Banner($id);
+			$_POST['status'] = "approve";
+            $_POST['start_date'] = Date2DB($_POST['start_date']);
+            $_POST['end_date'] = Date2DB($_POST['end_date']);
+            $banner->from_array($_POST);
+            $banner->save();
+            set_notify('success', lang('save_data_complete'));
+        }
+        redirect('home/banner');
+	}
+	
+	function banner_delete($id=FALSE)
+    {
+        if($id)
+        {
+            $banner = new Banner($id);
+            $banner->delete();
+            set_notify('success', lang('delete_data_complete'));
+        }
+        redirect('home/banner');
+    }
 
 	function info(){
 		// phpinfo();

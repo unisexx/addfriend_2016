@@ -319,7 +319,9 @@ class Home extends Public_Controller {
 	}
 
 	function inc_sidebar(){
-		$this->load->view('inc_sidebar');
+		$data['banners'] = new Banner();
+		$data['banners']->where("start_date <= date(sysdate()) and end_date >= date(sysdate()) and status = 'approve'")->get();
+		$this->load->view('inc_sidebar',$data);
 	}
 
 	function vote(){

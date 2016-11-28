@@ -14,7 +14,7 @@
   			<tr>
   				<td></td>
   				<td><?php echo DB2Date($row->end_date)?></td>
-  				<td></td>
+  				<td><img src="<?php echo $row->image;?>"></td>
   				<td><?php echo $row->url;?></td>
   				<td><?php echo $row->email;?></td>
   				<td>

@@ -1,3 +1,5 @@
+<a href="http://www.maxnutrex.info/" target="_blank"><img src="uploads/image/banner/maxx3.gif" style="margin: 10px 0;"></a>
+
 <img class="img-thumbnail pull-left" data-src="holder.js/340x150?text=สนใจโฆษณาตำแหน่งนี้ติดต่อ line2me.info@gmail.com (200 บาท/เดือน หรือเหมา 3 เดือนในราคา 500 บาท)" alt="สนใจโฆษณาตำแหน่งนี้ติดต่อ line2me.info@gmail.com (200 บาท/เดือน หรือเหมา 3 เดือนในราคา 500 บาท)" style="margin: 10px 0;">
 <!-- <img class="img-thumbnail pull-left" data-src="holder.js/340x220?text=สนใจโฆษณาตำแหน่งนี้ติดต่อ line2me.info@gmail.com (200 บาท/เดือน หรือเหมา 3 เดือนในราคา 500 บาท)" alt="โฆษณาตำแหน่งนี้ติดต่อ line2me.info@gmail.com" style="margin-bottom: 15px;"> -->
 

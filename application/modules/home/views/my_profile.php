@@ -103,7 +103,9 @@
     <input id="imgupload" class="form-control" name="upload" size="35" type="file"/>
   </div> -->
 	<input type="hidden" name="id" value="<?=$rs->id?>">
+  <?if($rs->banned == ""):?>
 	<button type="submit" class="btn btn-primary">บันทึกข้อมูล</button>
+  <?endif;?>
 	<!-- <img id="loading" src="themes/addfriend/images/loading-icon.gif" style="display: none;"> -->
 </form>
 </fieldset>
@@ -152,6 +154,14 @@ $(document).ready(function () {
   // $('button[type=submit]').click(function() {
 	    // $('#loading').show();
 	// });
+
+  $('#myProfile').on('keyup keypress', function(e) {
+    var keyCode = e.keyCode || e.which;
+    if (keyCode === 13) {
+      e.preventDefault();
+      return false;
+    }
+  });
 
 });
 </script>

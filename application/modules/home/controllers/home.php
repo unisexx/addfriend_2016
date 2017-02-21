@@ -282,6 +282,7 @@ class Home extends Public_Controller {
 					WHERE ".$condition."
 					AND STATUS != 0
 					AND banned is null
+					AND hide is null
 					ORDER BY
 						updated desc";
 		// echo $sql;
@@ -296,6 +297,9 @@ class Home extends Public_Controller {
 
 	public function profile($id){
 		$data['rs'] = new User($id);
+		if($data['rs']->hide != "" or $data['rs']->banned != ""){
+			redirect('home');
+		}
 		$this->template->title('หาเพื่อนไลน์ '.$data['rs']->display_name.' - Addfriend');
 		// $this->template->append_metadata('<meta property="og:image" content="'.check_image_url($data['rs']->image,$data['rs']->facebook_id,$data['rs']->google_picture_link,"original").'" />');
 		meta_description($data['rs']->detail);
@@ -346,7 +350,7 @@ class Home extends Public_Controller {
 			}
 		}
 	}
-	
+
 	function banned($id){
 		if($this->session->userdata('facebook_id') == '1122018497830648'){
 			$this->db->query("UPDATE users SET banned = 1 where id = ".$id);
@@ -356,7 +360,7 @@ class Home extends Public_Controller {
 		}
 		redirect('home');
 	}
-	
+
 	function unbanned($id){
 		if($this->session->userdata('facebook_id') == '1122018497830648'){
 			$this->db->query("UPDATE users SET banned = null where id = ".$id);
@@ -366,20 +370,20 @@ class Home extends Public_Controller {
 		}
 		redirect('home');
 	}
-	
+
 	function banner(){
 		if($this->session->userdata('facebook_id') == '1122018497830648'){
 			$data['rs'] = new Banner();
 	        $data['rs']->order_by('end_date asc')->get_page();
 	        $this->template->append_metadata(js_checkbox('approve'));
-			
+
 			$this->template->build('banner',$data);
 		}else{
 			set_notify('error', 'คำสั่งไม่ถูกต้อง');
 			redirect('home');
 		}
 	}
-	
+
 	function banner_form($id=false){
 		if($this->session->userdata('facebook_id') == '1122018497830648'){
 			$data['banner'] = new Banner($id);
@@ -389,7 +393,7 @@ class Home extends Public_Controller {
 			redirect('home');
 		}
 	}
-	
+
 	function banner_save(){
 		if($_POST)
         {
@@ -403,7 +407,7 @@ class Home extends Public_Controller {
         }
         redirect('home/banner');
 	}
-	
+
 	function banner_delete($id=FALSE)
     {
         if($id)

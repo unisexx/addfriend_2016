@@ -27,23 +27,23 @@ class Home extends Public_Controller {
 		$user = $this->facebook->getUser();
         if ($user) {
             try {
-                $data['user_profile'] = $this->facebook->api('/me', array('fields' => 'id,name,email'));
+                $data['user_profile'] = $this->facebook->api('/'.$user, array('fields' => 'id,name,email'));
 
 								$rs = new User();
 								$rs->where('facebook_id = '.$data['user_profile']['id'])->get();
 								if(!$rs->exists()) // ถ้ายังไม่มีมี user นี้ใน database ให้บันทึกข้อมูล
 								{
-			            $rs = new User();
+			            			$rs = new User();
 									$_POST['login_type'] = 1;
 									$_POST['facebook_id'] = $data['user_profile']['id'];
-	                $_POST['facebook_name'] = $data['user_profile']['name'];
+	                				$_POST['facebook_name'] = $data['user_profile']['name'];
 									$_POST['facebook_email'] = $data['user_profile']['email'];
 									$_POST['display_name'] = $data['user_profile']['name'];
 									$_POST['social_facebook'] = $data['user_profile']['id'];
 									$_POST['ip'] = $_SERVER['REMOTE_ADDR'];
 									$_POST['status'] = 0;
-	                $rs->from_array($_POST);
-	                $rs->save();
+					                $rs->from_array($_POST);
+					                $rs->save();
 									// $rs->check_last_query();
 			          }
 
@@ -53,7 +53,7 @@ class Home extends Public_Controller {
 								// created session
 								$this->session->set_userdata('id',$rs->id);
 								$this->session->set_userdata('login_type',$rs->login_type);
-                $this->session->set_userdata('facebook_id',$rs->facebook_id);
+                				$this->session->set_userdata('facebook_id',$rs->facebook_id);
 								set_notify('success', 'ยินดีต้อนรับเข้าสู่ระบบ');
 								redirect('home/my_profile');
 
@@ -418,6 +418,10 @@ class Home extends Public_Controller {
         }
         redirect('home/banner');
     }
+	
+	function test(){
+		$this->load->view('test');
+	}
 
 	function info(){
 		// phpinfo();

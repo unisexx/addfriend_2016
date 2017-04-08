@@ -5,7 +5,7 @@ session_start();
 
 $twitteroauth = new TwitterOAuth(YOUR_CONSUMER_KEY, YOUR_CONSUMER_SECRET);
 // Requesting authentication tokens, the parameter is the URL we will be redirected to
-$request_token = $twitteroauth->getRequestToken('http://www.addfriend.in.th/home/login');
+$request_token = $twitteroauth->getRequestToken('http://www.addfriend.in.th/home/login_twitter');
 
 // echo "<pre>";
 // var_dump($request_token);

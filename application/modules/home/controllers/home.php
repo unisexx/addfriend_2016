@@ -4,6 +4,7 @@ class Home extends Public_Controller {
 	function __construct()
 	{
 		parent::__construct();
+		session_start();
 	}
 
 	function index()
@@ -22,49 +23,6 @@ class Home extends Public_Controller {
 	}
 
 	public function login(){
-		//-------------------------------------------- Facebook Login--------------------------
-		$this->load->library('facebook'); // Automatically picks appId and secret from config
-		$user = $this->facebook->getUser();
-        if ($user) {
-            try {
-                $data['user_profile'] = $this->facebook->api('/'.$user, array('fields' => 'id,name,email'));
-
-								$rs = new User();
-								$rs->where('facebook_id = '.$data['user_profile']['id'])->get();
-								if(!$rs->exists()) // ถ้ายังไม่มีมี user นี้ใน database ให้บันทึกข้อมูล
-								{
-			            			$rs = new User();
-									$_POST['login_type'] = 1;
-									$_POST['facebook_id'] = $data['user_profile']['id'];
-	                				$_POST['facebook_name'] = $data['user_profile']['name'];
-									$_POST['facebook_email'] = $data['user_profile']['email'];
-									$_POST['display_name'] = $data['user_profile']['name'];
-									$_POST['social_facebook'] = $data['user_profile']['id'];
-									$_POST['ip'] = $_SERVER['REMOTE_ADDR'];
-									$_POST['status'] = 0;
-					                $rs->from_array($_POST);
-					                $rs->save();
-									// $rs->check_last_query();
-			          }
-
-								// อัพเดทเวลาล้อกอิน
-								$this->db->query("UPDATE users SET updated = '".date("Y-m-d H:i:s")."', ip = '".$_SERVER['REMOTE_ADDR']."', facebook_name = '".$data['user_profile']['name']."' where id = ".$rs->id);
-
-								// created session
-								$this->session->set_userdata('id',$rs->id);
-								$this->session->set_userdata('login_type',$rs->login_type);
-                				$this->session->set_userdata('facebook_id',$rs->facebook_id);
-								set_notify('success', 'ยินดีต้อนรับเข้าสู่ระบบ');
-								redirect('home/my_profile');
-
-            } catch (FacebookApiException $e) {
-                $user = null;
-            }
-        }else {
-            // Solves first time login issue. (Issue: #10)
-            //$this->facebook->destroySession();
-        }
-
 		//-------------------------------------------- Google Login --------------------------
 		require_once('application/libraries/google.php');
 		// หลังทำการล้อกอินด้วยอีเมล์ ระบบจะส่งรหัสมาทำการ authenticate ถ้าผ่านจะทำการสร้าง session ชื่อ access_token
@@ -108,7 +66,58 @@ class Home extends Public_Controller {
 			redirect('home/my_profile');
 		}
 
-		//-------------------------------------------- Twitter Login --------------------------
+		redirect('home');
+	}
+
+	public function login_facebook(){
+    	//-------------------------------------------- Facebook Login--------------------------
+		$this->load->library('facebook'); // Automatically picks appId and secret from config
+		$user = $this->facebook->getUser();
+        if ($user) {
+            try {
+                $data['user_profile'] = $this->facebook->api('/'.$user, array('fields' => 'id,name,email'));
+
+								$rs = new User();
+								$rs->where('facebook_id = '.$data['user_profile']['id'])->get();
+								if(!$rs->exists()) // ถ้ายังไม่มีมี user นี้ใน database ให้บันทึกข้อมูล
+								{
+			            			$rs = new User();
+									$_POST['login_type'] = 1;
+									$_POST['facebook_id'] = $data['user_profile']['id'];
+	                				$_POST['facebook_name'] = $data['user_profile']['name'];
+									$_POST['facebook_email'] = $data['user_profile']['email'];
+									$_POST['display_name'] = $data['user_profile']['name'];
+									$_POST['social_facebook'] = $data['user_profile']['id'];
+									$_POST['ip'] = $_SERVER['REMOTE_ADDR'];
+									$_POST['status'] = 0;
+					                $rs->from_array($_POST);
+					                $rs->save();
+									// $rs->check_last_query();
+			          }
+
+								// อัพเดทเวลาล้อกอิน
+								$this->db->query("UPDATE users SET updated = '".date("Y-m-d H:i:s")."', ip = '".$_SERVER['REMOTE_ADDR']."', facebook_name = '".$data['user_profile']['name']."' where id = ".$rs->id);
+
+								// created session
+								$this->session->set_userdata('id',$rs->id);
+								$this->session->set_userdata('login_type',$rs->login_type);
+                				$this->session->set_userdata('facebook_id',$rs->facebook_id);
+								set_notify('success', 'ยินดีต้อนรับเข้าสู่ระบบ');
+								redirect('home/my_profile');
+
+            } catch (FacebookApiException $e) {
+                $user = null;
+            }
+        }else {
+            // Solves first time login issue. (Issue: #10)
+            //$this->facebook->destroySession();
+        }
+		
+        redirect('home');
+    }
+
+	public function login_twitter(){
+    	//-------------------------------------------- Twitter Login --------------------------
 		require_once("application/libraries/twitter/twitteroauth.php");
 		require_once('application/config/twconfig.php');
 		if (!empty($_GET['oauth_verifier']) && !empty($_SESSION['oauth_token']) && !empty($_SESSION['oauth_token_secret'])) {
@@ -122,7 +131,7 @@ class Home extends Public_Controller {
 		    $user_info = $twitteroauth->get('account/verify_credentials');
 				// Print user's info
 
-				// echo '<pre>';
+			// echo '<pre>';
 		    // print_r($user_info);
 		    // echo '</pre><br/>';
 
@@ -161,9 +170,9 @@ class Home extends Public_Controller {
 		    }
 		}
 
-		redirect('home');
-	}
-
+        redirect('home');
+    }
+	
     public function logout(){
     	//----------- Facebook Logout -----------------------------
         $this->load->library('facebook');
@@ -186,10 +195,10 @@ class Home extends Public_Controller {
 
 		//--------------------- Facebook Button -------------------------------
 		$this->load->library('facebook'); // Automatically picks appId and secret from config
-    $data['login_url'] = $this->facebook->getLoginUrl(array(
-        'redirect_uri' => site_url('home/login'),
-        'scope' => array("email") // permissions here
-    ));
+	    $data['login_url'] = $this->facebook->getLoginUrl(array(
+	        'redirect_uri' => site_url('home/login_facebook'),
+	        'scope' => array("email") // permissions here
+	    ));
 
     $this->load->view('inc_login',$data);
 	}
@@ -420,7 +429,9 @@ class Home extends Public_Controller {
     }
 	
 	function test(){
-		$this->load->view('test');
+		session_start();
+		require_once("application/libraries/Facebook/php-graph-sdk-5.0.0/src/Facebook/autoload.php");
+		$this->template->build('test');
 	}
 
 	function info(){

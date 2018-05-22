@@ -42,6 +42,16 @@
 <br><br>
 
 <fieldset>
+  <div class="alert alert-danger" role="alert">
+    <b>หมายเหตุ</b>
+    <ul>
+      <li>ห้ามโพสต์ในเชิงการค้าขายบริการทางเพศ</li>
+      <li>ห้ามลงราคา</li>
+      <li>ห้ามโพสต์รูปโป๊ อนาจาร</li>
+      <li>หากแอดมินตรวจสอบพบ จะทำการปิดสถานะการใช้งาน ลบ ซ่อน หรือระงับการใช้งานโดยไม่แจ้งให้ทราบล่วงหน้า</li>
+    </ul>
+  </div>
+
   <legend>กรอกข้อมูลส่วนตัว</legend>
 <form id="myProfile" method="post" action="home/my_profile_save">
   <div class="form-group">
@@ -49,7 +59,7 @@
     <?=form_dropdown('status', array(0 => 'ปิดการใช้งาน',1 => 'เปิดการใช้งาน'), $rs->status,'id="status" class="form-control"');?>
   </div>
   <div class="form-group">
-    <label for="image">ลิ้งค์รูปโพรไฟล์ (ไฟล์นามสกุล .jpg .png .gif)<br><small>***ไม่อนุญาตภาพโป๊ อนาจาร เห็นหัว เห็นขน หากพบจะถูกระงับการใช้งานนะครับ***</small></label>
+    <label for="image">ลิ้งค์รูปโพรไฟล์ (ไฟล์นามสกุล .jpg .png .gif)</label>
     <br><?//=uppic_mce()?> <a href="home/img_upload">อัพรูปคลิ๊กที่นี่จ้า</a>
     <input type="text" class="form-control" id="image" name="image" value="<?=$rs->image?>" placeholder="ถ้าไม่มีให้ปล่อยว่างไว้ ระบบจะใช้รูปจาก<?if($rs->login_type == 1){ echo "บัญชี facebook";}elseif($rs->login_type == 2){echo "บัญชี google";}elseif($rs->login_type == 3){echo "บัญชี twitter";}?> แทน">
   </div>

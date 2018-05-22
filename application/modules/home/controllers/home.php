@@ -380,6 +380,27 @@ class Home extends Public_Controller {
 		redirect('home');
 	}
 
+	function closed($id){
+		if($this->session->userdata('facebook_id') == '1122018497830648'){
+			$this->db->query("UPDATE users SET status = 0 where id = ".$id);
+			set_notify('success', 'ดำเนินการแบนเรียบร้อย');
+		}else{
+			set_notify('error', 'คำสั่งไม่ถูกต้อง');
+		}
+		redirect('home');
+	}
+
+	function user_delete($id){
+		if($this->session->userdata('facebook_id') == '1122018497830648'){
+			$user = new User($id);
+            $user->delete();
+            set_notify('success', lang('delete_data_complete'));
+		}else{
+			set_notify('error', 'คำสั่งไม่ถูกต้อง');
+		}
+		redirect('home');
+	}
+
 	function banner(){
 		if($this->session->userdata('facebook_id') == '1122018497830648'){
 			$data['rs'] = new Banner();

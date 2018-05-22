@@ -40,6 +40,11 @@
     <div class="col-md-9">
     <h3>
     	<a href="home/profile/<?=$row->id?>" target="_blank"><?=$row->display_name?></a>
+		<?php if($this->session->userdata('facebook_id') == '1122018497830648'): ?>
+			  <a href="home/closed/<?=$row->id?>">[ปิดสถานะ]</a>
+			  <a href="home/banned/<?=$row->id?>">[แบนด์]</a>
+			  <a href="home/user_delete/<?=$row->id?>" onclick="return confirm('<?php echo lang('notice_confirm_delete');?>')">[ลบออกจากระบบ]</a>
+		<?php endif;?>
     </h3>
     <div class="age-sex-location">
 	    <span class="label label-success"><?php echo $row->age; ?></span>

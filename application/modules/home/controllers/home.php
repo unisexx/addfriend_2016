@@ -367,7 +367,8 @@ class Home extends Public_Controller {
 		}else{
 			set_notify('error', 'คำสั่งไม่ถูกต้อง');
 		}
-		redirect('home');
+		// redirect('home');
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	function unbanned($id){
@@ -377,7 +378,8 @@ class Home extends Public_Controller {
 		}else{
 			set_notify('error', 'คำสั่งไม่ถูกต้อง');
 		}
-		redirect('home');
+		// redirect('home');
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	function closed($id){
@@ -387,7 +389,8 @@ class Home extends Public_Controller {
 		}else{
 			set_notify('error', 'คำสั่งไม่ถูกต้อง');
 		}
-		redirect('home');
+		// redirect('home');
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	function user_delete($id){
@@ -398,7 +401,8 @@ class Home extends Public_Controller {
 		}else{
 			set_notify('error', 'คำสั่งไม่ถูกต้อง');
 		}
-		redirect('home');
+		// redirect('home');
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	function banner(){

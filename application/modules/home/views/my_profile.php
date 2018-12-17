@@ -4,7 +4,7 @@
 <fieldset>
   <legend>แสดงตัวอย่าง</legend>
   <?if($rs->banned != ""):?>
-	<div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-triangle"></i> บัญชีของท่านถูกระงับการใช้งาน เนื่องจากมีการทำผิดกฏของเว็บ (รูปภาพไม่เหมาะสม) หากต้องการปลดแบน กรุณาติดต่อแอดมินที่อีเมล์ <a href="mailto:line2me.info@gmail.com?subject=ติดต่อเรื่องปลดแบน">line2me.info@gmail.com</a> (ค่าใช้จ่ายสำหรับการปลดแบนคือบัตรทรูมันนี่ 50 บาท)</div>
+	<div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-triangle"></i> บัญชีของท่านถูกระงับการใช้งาน เนื่องจากมีการทำผิดกฏของเว็บ (รูปภาพหรือข้อความไม่เหมาะสม) หากต้องการปลดแบน กรุณาติดต่อแอดมินที่อีเมล์ <a href="mailto:line2me.info@gmail.com?subject=ติดต่อเรื่องปลดแบน">line2me.info@gmail.com</a> (ค่าใช้จ่ายสำหรับการปลดแบนคือบัตรทรูมันนี่ 50 บาท)</div>
   <?else:?>
 	  <?if($rs->status == 0):?>
 	    <div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-triangle"></i> ตอนนี้คุณอยู่ในสถานะ "<b>ปิดการใช้งาน</b>" ข้อมูลของคุณจะไม่แสดงในหน้าแรก</div>
@@ -48,18 +48,19 @@
       <li>ห้ามโพสต์ในเชิงการค้าขายบริการทางเพศ</li>
       <li>ห้ามลงราคา</li>
       <li>ห้ามโพสต์รูปโป๊ อนาจาร</li>
-      <li>หากแอดมินตรวจสอบพบ จะทำการปิดสถานะการใช้งาน ลบ ซ่อน หรือระงับการใช้งานโดยไม่แจ้งให้ทราบล่วงหน้า</li>
+      <li>ห้ามโพสต์กลั่นแกล้งให้ผู้อื่นให้ได้รับความเดือดร้อน เสียหาย</li>
+      <li>หากแอดมินตรวจสอบพบ จะทำการปิดสถานะการใช้งาน ลบ ซ่อน หรือระงับการใช้งานโดยไม่แจ้งให้ทราบล่วงหน้า ส่วนในกรณีที่เป็นการกลั่นแกล้งผู้อื่น จะมีการรวบรวมข้อมูลหลักฐานส่งให้ผู้เสียหายดำเนินการฟ้องร้องต่อไป</li>
     </ul>
   </div>
 
   <legend>กรอกข้อมูลส่วนตัว</legend>
 <form id="myProfile" method="post" action="home/my_profile_save">
   <div class="form-group">
-    <label for="status">สถานะ</label>
+    <label for="status">สถานะ <small>(เปิดการใช้งาน = ทุกคนจะเห็นข้อมูลของเรา, ปิดการใช้งาน = ทุกคนจะไม่เห็นข้อมูลของเรา)</small> </label>
     <?=form_dropdown('status', array(0 => 'ปิดการใช้งาน',1 => 'เปิดการใช้งาน'), $rs->status,'id="status" class="form-control"');?>
   </div>
   <div class="form-group">
-    <label for="image">ลิ้งค์รูปโพรไฟล์ (ไฟล์นามสกุล .jpg .png .gif)</label>
+    <label for="image">ลิ้งค์รูปโพรไฟล์ <small>(ไฟล์นามสกุล .jpg .png .gif)</small></label>
     <br><?//=uppic_mce()?> <a href="home/img_upload">อัพรูปคลิ๊กที่นี่จ้า</a>
     <input type="text" class="form-control" id="image" name="image" value="<?=$rs->image?>" placeholder="ถ้าไม่มีให้ปล่อยว่างไว้ ระบบจะใช้รูปจาก<?if($rs->login_type == 1){ echo "บัญชี facebook";}elseif($rs->login_type == 2){echo "บัญชี google";}elseif($rs->login_type == 3){echo "บัญชี twitter";}?> แทน">
   </div>
@@ -85,7 +86,7 @@
 		<?=form_dropdown('province_id', get_option('id','name','provinces'), $rs->province_id,'id="province" class="form-control"');?>
   </div>
 	<div class="form-group">
-    <label for="detail">แนะนำตัว</label>
+    <label for="detail">แนะนำตัว <small>(ห้ามลงราคา และห้ามโพสต์ในเชิงการค้าขายบริการทางเพศ)</small></label>
     <textarea class="form-control" id="detail" rows="5" name="detail"><?=$rs->detail?></textarea>
   </div>
   <div class="form-group">

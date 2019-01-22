@@ -65,6 +65,18 @@
 <div class="container">
 
 
+<!-- แบนเนอร์ -->
+<?php
+    $date_now = date("Y-m-d"); // this format is string comparable
+
+    if ($this->agent->is_mobile()){
+        if ($date_now < '2019-22-02') {
+            echo '<a href="http://www.maxman9999.com/index.aspx" target="_blank"><img src="https://www.addfriend.in.th/uploads/image/banner/image2.GIF" style="height:200px; width:340px; margin-bottom:10px;"></a>';
+        }
+    }
+
+?>
+
 
   <!-- Main component for a primary marketing message or call to action -->
 
@@ -72,7 +84,7 @@
 
     <h1>Addfriend.in.th</h1>
 
-    <p>หาเพื่อน หาแฟน หากิ๊ก หาคู่ทาง Facebook, LINE, Twitter, Instagram, BeeTalk แลกไอดีกันง่ายๆ เพียงแค่ login เข้าสู่ระบบแล้วกรอกข้อมูลส่วนตัวได้เลยจ้า</p>
+    <p>หาเพื่อนคุย เพื่อนแชท เพื่อนแก้เหงา Facebook, LINE, Twitter, Instagram, BeeTalk แลกไอดีกันง่ายๆ เพียงแค่ login เข้าสู่ระบบแล้วกรอกข้อมูลส่วนตัวได้เลยจ้า</p>
 
     <p>
 

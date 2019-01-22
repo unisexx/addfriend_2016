@@ -2,6 +2,9 @@
 <html>
 <head>
 <base href="<?php echo base_url(); ?>" />
+<!-- https insecure requests -->
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
+<?php header('Access-Control-Allow-Origin: *'); ?>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
 <meta content='index,follow,archive,imageindex,imageclick' name='robots'/>
